@@ -72,12 +72,6 @@
     text-align: right;
 }
 
-/* #cart-row-container {
-    display: grid;
-    grid-template-columns: 2fr 4fr 2fr 1fr 2fr 2fr 1fr;
-    grid-template-rows: 1fr;
-    margin-top: 15px;
-} */
 
 #tables-outer-container {
     display: flex;
