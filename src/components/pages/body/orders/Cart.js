@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Stripe } from '../orders/Stripe';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Col, Row, InputGroup, FormControl } from 'react-bootstrap';
 
 import './Cart.css';
 
@@ -27,7 +27,7 @@ export const Cart = ({
 }) => {
 	const history = useHistory();
 	const [shipping, setShipping] = useState(5);
-    
+
 	const removeHandler = (product) => {
 		const productId = product.id;
 		if (user.firstName !== 'Guest') {
@@ -55,7 +55,6 @@ export const Cart = ({
 		const { jointId, id: productId, quantity, unitPrice } = product;
 		if (quantity + direction > 0) {
 			if (user.firstName !== 'Guest') {
-				
 				patchCartItemQuantity(
 					{
 						userId: user.id,
@@ -73,7 +72,6 @@ export const Cart = ({
 						console.error(error);
 					});
 			} else {
-				
 				const newCart = { ...cart };
 				let newQuantity = 0;
 				let newTotal = 0;
@@ -118,11 +116,9 @@ export const Cart = ({
 	const checkoutHandler = () => {
 		setView('userCheckout');
 		history.push('/checkout');
-		
 	};
 
 	const guestCheckout = () => {
-		
 		setView('guest');
 		history.push('/checkout');
 	};
@@ -142,12 +138,16 @@ export const Cart = ({
 			<div id='tables-outer-container'>
 				<div id='cart-container'>
 					{cart.cartQuantity > 0 ? (
-						<div className='cart-titles'>
-							<span className='cart-title'>Product</span>
-							<span className='cart-quantity'>Quantity</span>
-							<span className='cart-price'>Price</span>
-							<span className='cart-total'>Total</span>
-						</div>
+						<Container id='cart-titles'>
+							<Row>
+								<Col xs={1} ></Col>
+								<Col xs={3} className='cart-title'>Product</Col>
+								<Col xs={3} className='cart-title'>Quantity</Col>
+								<Col xs={2} className='cart-title'>Price</Col>
+								<Col xs={2} className='cart-title'>Total</Col>
+								<Col xs={1} ></Col>
+							</Row>
+						</Container>
 					) : (
 						<div></div>
 					)}
@@ -155,59 +155,65 @@ export const Cart = ({
 						{cart.items.length > 0
 							? cart.items.map((product, i) => {
 									return (
-										<div key={i} id='cart-row-container'>
-											<img
-												className='cart-image cart-field'
-												src={process.env.PUBLIC_URL + product.image}
-											/>
-											<label className='cart-field cart-product-title'>
-												{product.title}
-											</label>
-											<label className='cart-field cart-product-quantity'>
-												{product.quantity}
-											</label>
-											<div className='cart-buttons'>
-												<Button
-													variant='dark'
-													className='uptick cart-field tick'
-													onClick={() => {
-														ticker(product, 1);
-													}}
-												>
-													&#11014;
-												</Button>
-												<Button
-													variant='dark'
-													className='downtick cart-field tick'
-													onClick={() => {
-														ticker(product, -1);
-													}}
-												>
-													&#11015;
-												</Button>
-											</div>
-											<label className='cart-field cart-product-price'>
-												${' '}
-												{product.unitPrice.toLocaleString('en-US', {
-													minimumFractionDigits: 2,
-												})}
-											</label>
-											<label className='cart-field cart-product-total'>
-												${' '}
-												{product.itemTotal.toLocaleString('en-US', {
-													minimumFractionDigits: 2,
-												})}
-											</label>
-											<Button
-												variant='dark'
-												className='cart-field cart-delete'
-												onClick={() => {
-													removeHandler(product);
-												}}
-											>
-												remove
-											</Button>
-										</div>
+										<Container key={i} id='cart-row-container'>
+											<Row>
+												<Col xs={1} >
+													<img
+														className='cart-image'
+														src={process.env.PUBLIC_URL + product.image}
+													/>
+												</Col>
+												<Col xs={3} className='cart-field cart-product-title'>
+													{product.title}
+												</Col>
+												<Col xs={3} >
+													<InputGroup id='quantity-group'>
+														<FormControl
+															id='quantity-field'
+															placeholder={product.quantity}
+															aria-label={product.quantity}
+															aria-describedby='basic-addon2'
+														/>
+														<InputGroup.Append id='quantity-buttons' > 
+															<Button variant='outline-secondary' onClick={() => {
+																	ticker(product, 1);
+																}}>
+																&#11014;
+															</Button>
+															<Button variant='outline-secondary' onClick={() => {
+																	ticker(product, -1);
+																}}>
+																&#11015;
+															</Button>
+														</InputGroup.Append>
+													</InputGroup>
+													
+												</Col>
+												<Col xs={2} className='cart-field cart-product-price'>
+													${' '}
+													{product.unitPrice.toLocaleString('en-US', {
+														minimumFractionDigits: 2,
+													})}
+												</Col>
+												<Col xs={2} className='cart-field cart-product-total'>
+													${' '}
+													{product.itemTotal.toLocaleString('en-US', {
+														minimumFractionDigits: 2,
+													})}
+												</Col>
+												<Col xs={1} >
+													<Button
+														variant='dark'
+														className='cart-delete'
+														onClick={() => {
+															removeHandler(product);
+														}}
+													>
+														remove
+													</Button>
+												</Col>
+											</Row>
+										</Container>
 									);
 							  })
 							: ''}
@@ -241,15 +247,28 @@ export const Cart = ({
 						</span>
 					</div>
 					{user.isUser && !profileCompleted ? (
-						<Button variant='dark' id='check' className='checkout-button' onClick={checkoutHandler}>
+						<Button
+							variant='dark'
+							id='check'
+							className='checkout-button'
+							onClick={checkoutHandler}
+						>
 							Checkout
 						</Button>
 					) : !user.isUser && !profileCompleted ? (
 						<div className='options'>
-							<Button  variant='dark' className='checkout-guest asguest' onClick={guestCheckout}>
+							<Button
+								variant='dark'
+								className='checkout-guest asguest'
+								onClick={guestCheckout}
+							>
 								As a guest
 							</Button>
-							<Button variant='dark' className='checkout-guest asuser' onClick={newUserCheckout}>
+							<Button
+								variant='dark'
+								className='checkout-guest asuser'
+								onClick={newUserCheckout}
+							>
 								Create Account
 							</Button>
 						</div>
