@@ -138,10 +138,10 @@ export const Cart = ({
 			<div id='tables-outer-container'>
 				<div id='cart-container'>
 					{cart.cartQuantity > 0 ? (
-						<Container id='cart-titles'>
-							<Row>
+						<Container fluid='true' id='cart-titles'>
+							<Row xs={12} sm={12} md={12} lg={12} id='cart-row' >
 								<Col xs={1} ></Col>
-								<Col xs={3} className='cart-title'>Product</Col>
+								<Col xs={3} className='cart-title cart-product-title'>Product</Col>
 								<Col xs={3} className='cart-title'>Quantity</Col>
 								<Col xs={2} className='cart-title'>Price</Col>
 								<Col xs={2} className='cart-title'>Total</Col>
@@ -155,8 +155,8 @@ export const Cart = ({
 						{cart.items.length > 0
 							? cart.items.map((product, i) => {
 									return (
-										<Container key={i} id='cart-row-container'>
-											<Row>
+										<Container fluid='true' key={i} id='cart-row-container'>
+											<Row xs={12} sm={12} md={12} lg={12} id='cart-row'>
 												<Col xs={1} >
 													<img
 														className='cart-image'
