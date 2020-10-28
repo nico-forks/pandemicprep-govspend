@@ -21,7 +21,7 @@
     z-index: 1;
 }
 
-#admin-nav button {
+/* #admin-nav button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,9 +40,15 @@
     background-size: 400%;
     -webkit-transition: background 300ms ease-in-out;
     transition: background 300ms ease-in-out;
+} */
+
+#admin-nav button {
+    margin: 5px 50px -40px 50px;
+    width: 170px;
+    height: 40px;
 }
 
-#admin-nav button:hover {
+/* #admin-nav button:hover {
     background-color:  rgb(1, 0, 53);
     color: white;
     background-position: 0;
@@ -52,7 +58,7 @@
     transform: scale(1.075,1.075);
     border: 1px solid white;
     border-radius: 10px;
-}
+} */
 
 #adminDiv {
 	position: absolute;

@@ -123,7 +123,15 @@
 /*FORM STYLING*/
 .searchForm {
     display: flex;
-    margin-top: -10px;
+    align-items: center;
+}
+
+.searchForm button {
+    height: 38px;
+}
+
+.searchForm .form-control {
+    margin-top: 0px;
 }
 /*SEARCH BUTTON*/
 #search {
@@ -221,7 +229,6 @@
 .dropdown {
     position: relative;
     display: inline-block;
-    margin-bottom: 10px;
     padding-right: 10px;
 }
 /*DROPDOWN HOVER (CONTENT)*/

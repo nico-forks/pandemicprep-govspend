@@ -4,6 +4,8 @@
     height: 100%;
     width: 100vw;
     margin-bottom: 100px;
+    background-color: #ffffff;
+    padding: 20px;
 }
 
 .sales-report {
@@ -73,3 +75,6 @@
     background-color: lightslategray;
 }
 
+.empty {
+    margin: 150px auto;
+}

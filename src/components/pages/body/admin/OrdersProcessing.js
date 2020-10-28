@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
+import { Pagination } from 'react-bootstrap';
 // import users from '../../../../../db/singletables/users';
 
 import './OrdersProcessing.css';
@@ -154,33 +155,26 @@ export const OrdersProcessing = ({ user }) => {
 					})
 				)}
 			</div>
-			<div id='pagination'>
+			<Pagination className='bootstrap-pagination'>
 				{processingPage === 1 ? (
 					''
 				) : (
 					<>
-						<button onClick={firstHandler}>
-							❮❮
-						</button>
-						<button onClick={prevHandler}>
-							❮
-						</button>
+						<Pagination.First onClick={firstHandler}/>
+						<Pagination.Prev onClick={prevHandler}/>
 					</>
 				)}
-				<button>{processingPage}</button>
+				<Pagination.Item>{processingPage}</Pagination.Item>
 				{processingPage === processingPageLimit ? (
 					''
 				) : (
 					<>
-						<button onClick={nextHandler}>
-							❯
-						</button>
-						<button onClick={lastHandler}>
-							❯❯
-						</button>
+						<Pagination.Next onClick={nextHandler}/>
+						<Pagination.Last onClick={lastHandler}/>
 					</>
 				)}
-			</div>
+
+			</Pagination>
 		</div>
 	);
 };
