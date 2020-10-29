@@ -139,13 +139,21 @@ export const Cart = ({
 				<div id='cart-container'>
 					{cart.cartQuantity > 0 ? (
 						<Container fluid='true' id='cart-titles'>
-							<Row xs={12} sm={12} md={12} lg={12} id='cart-row' >
-								<Col xs={1} ></Col>
-								<Col xs={3} className='cart-title cart-product-title'>Product</Col>
-								<Col xs={3} className='cart-title'>Quantity</Col>
-								<Col xs={2} className='cart-title'>Price</Col>
-								<Col xs={2} className='cart-title'>Total</Col>
-								<Col xs={1} ></Col>
+							<Row xs={12} sm={12} md={12} lg={12} id='cart-row'>
+								<Col xs={1}></Col>
+								<Col as='h3' xs={3} className='cart-title cart-product-title'>
+									Product
+								</Col>
+								<Col as='h3' xs={3} className='cart-title'>
+									Quantity
+								</Col>
+								<Col as='h3' xs={2} className='cart-title'>
+									Price
+								</Col>
+								<Col as='h3' xs={2} className='cart-title'>
+									Total
+								</Col>
+								<Col xs={1}></Col>
 							</Row>
 						</Container>
 					) : (
@@ -157,16 +165,19 @@ export const Cart = ({
 									return (
 										<Container fluid='true' key={i} id='cart-row-container'>
 											<Row xs={12} sm={12} md={12} lg={12} id='cart-row'>
-												<Col xs={1} >
+												<Col xs={1}>
 													<img
 														className='cart-image'
 														src={process.env.PUBLIC_URL + product.image}
 													/>
 												</Col>
-												<Col xs={3} className='cart-field cart-product-title'>
+												<Col
+													xs={3}
+													className='cart-field cart-product-title'
+												>
 													{product.title}
 												</Col>
-												<Col xs={3} >
+												<Col xs={3}>
 													<InputGroup id='quantity-group'>
 														<FormControl
 															id='quantity-field'
@@ -174,34 +185,45 @@ export const Cart = ({
 															aria-label={product.quantity}
 															aria-describedby='basic-addon2'
 														/>
-														<InputGroup.Append id='quantity-buttons' > 
-															<Button variant='outline-secondary' onClick={() => {
+														<InputGroup.Append id='quantity-buttons'>
+															<Button
+																variant='outline-secondary'
+																onClick={() => {
 																	ticker(product, 1);
-																}}>
+																}}
+															>
 																&#11014;
 															</Button>
-															<Button variant='outline-secondary' onClick={() => {
+															<Button
+																variant='outline-secondary'
+																onClick={() => {
 																	ticker(product, -1);
-																}}>
+																}}
+															>
 																&#11015;
 															</Button>
 														</InputGroup.Append>
 													</InputGroup>
-													
 												</Col>
-												<Col xs={2} className='cart-field cart-product-price'>
+												<Col
+													xs={2}
+													className='cart-field cart-product-price'
+												>
 													${' '}
 													{product.unitPrice.toLocaleString('en-US', {
 														minimumFractionDigits: 2,
 													})}
 												</Col>
-												<Col xs={2} className='cart-field cart-product-total'>
+												<Col
+													xs={2}
+													className='cart-field cart-product-total'
+												>
 													${' '}
 													{product.itemTotal.toLocaleString('en-US', {
 														minimumFractionDigits: 2,
 													})}
 												</Col>
-												<Col xs={1} >
+												<Col xs={1}>
 													<Button
 														variant='dark'
 														className='cart-delete'
@@ -220,58 +242,98 @@ export const Cart = ({
 					</div>
 				</div>
 				<div id='total-outer-container'>
-					<div id='total-container'>
-						<span className='total-title total'>Cart Summary</span>
-						<span className='total-label total'>Sub-Total:</span>
-						<span className='total-amount total'>
-							${' '}
-							{parseFloat(cart.total).toLocaleString('en-US', {
-								minimumFractionDigits: 2,
-							})}
-						</span>
-						<span className='total-label total'>Shipping:</span>
-						<span className='total-shipping total'>
-							${' '}
-							{parseFloat(cart.total) > 0
-								? shipping.toLocaleString('en-US', { minimumFractionDigits: 2 })
-								: '0.00'}
-						</span>
-						<span className='total-label total'>Total:</span>
-						<span className='total-total total'>
-							${' '}
-							{parseFloat(cart.total) > 0
-								? (parseFloat(cart.total) + shipping).toLocaleString('en-US', {
-										minimumFractionDigits: 2,
-								  })
-								: '0.00'}
-						</span>
-					</div>
+					<Container fluid='md' id='total-container'>
+						<Row>
+							<Col className='total-title total'>Cart Summary</Col>
+						</Row>
+
+						<Row>
+							<Col className='total-label total'>Sub-Total:</Col>
+							<Col>
+								<InputGroup className='amount-fields'>
+									<InputGroup.Prepend>
+										<InputGroup.Text variant='outline-secondary'>$</InputGroup.Text>
+									</InputGroup.Prepend>
+									<InputGroup.Append>
+										  <InputGroup.Text className='total-amount total' variant='outline-secondary'>{parseFloat(cart.total).toLocaleString('en-US', {
+											minimumFractionDigits: 2,
+										})}</InputGroup.Text>
+									</InputGroup.Append>
+								</InputGroup>
+							</Col>
+						</Row>
+						<Row>
+							<Col className='total-label total'>Shipping:</Col>
+							<Col>
+								<InputGroup className='amount-fields'>
+									<InputGroup.Prepend>
+										<InputGroup.Text variant='outline-secondary'>$</InputGroup.Text>
+									</InputGroup.Prepend>
+									<InputGroup.Append>
+										  <InputGroup.Text className='total-amount total' variant='outline-secondary'>{parseFloat(cart.total) > 0
+									? shipping.toLocaleString('en-US', { minimumFractionDigits: 2 })
+									: '0.00'}</InputGroup.Text>
+									</InputGroup.Append>
+								</InputGroup>
+							</Col>
+
+							
+						</Row>
+						<Row>
+							<Col className='total-label total'>Total:</Col>
+							<Col>
+								<InputGroup className='amount-fields'>
+									<InputGroup.Prepend>
+										<InputGroup.Text variant='outline-secondary'>$</InputGroup.Text>
+									</InputGroup.Prepend>
+									<InputGroup.Append>
+										  <InputGroup.Text className='total-amount total' variant='outline-secondary'>{parseFloat(cart.total) > 0
+									? (parseFloat(cart.total) + shipping).toLocaleString('en-US', {
+											minimumFractionDigits: 2,
+									  })
+									: '0.00'}</InputGroup.Text>
+									</InputGroup.Append>
+								</InputGroup>
+							</Col>
+
+						</Row>
+					</Container>
+
 					{user.isUser && !profileCompleted ? (
-						<Button
-							variant='dark'
-							id='check'
-							className='checkout-button'
-							onClick={checkoutHandler}
-						>
-							Checkout
-						</Button>
+						<Container id='checkout-buttons'>
+							<Row id='checkout-button'>
+								<Col as='button'
+									md={8}
+									variant='dark'
+									id='check'
+									className='checkout-button'
+									onClick={checkoutHandler}
+								>
+									Checkout
+								</Col>
+							</Row>
+						</Container>
 					) : !user.isUser && !profileCompleted ? (
-						<div className='options'>
-							<Button
-								variant='dark'
-								className='checkout-guest asguest'
-								onClick={guestCheckout}
-							>
-								As a guest
-							</Button>
-							<Button
-								variant='dark'
-								className='checkout-guest asuser'
-								onClick={newUserCheckout}
-							>
-								Create Account
-							</Button>
-						</div>
+						<Container id='checkout-buttons'>
+							<Row className='options'>
+								<Col
+									as='button'
+									variant='dark'
+									className='checkout-guest asguest'
+									onClick={guestCheckout}
+								>
+									As a guest
+								</Col>
+								<Col
+									as='button'
+									variant='dark'
+									className='checkout-guest asuser'
+									onClick={newUserCheckout}
+								>
+									Create Account
+								</Col>
+							</Row>
+						</Container>
 					) : (
 						<Stripe className='stripe-button' />
 					)}
