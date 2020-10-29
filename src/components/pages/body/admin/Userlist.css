@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
-
-
 
 /*add new user*/
 #admin-list-user {
@@ -94,7 +93,11 @@
 }
 
 .user-list-container {
-    width: 80%;
+    background-color: #ced4da;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #admin-list-users {
@@ -168,4 +171,23 @@
 #isUser {
     margin-left: 0px;
     margin-right: 0px;
+}
+
+
+
+#bootstrap-form {
+    margin: 40px 200px 40px 200px;
+    border: 1px solid #ced4da;
+    box-shadow:
+    10px 10px 20px rgba(0, 0, 0, 0.205),
+    -10px 10px 20px rgba(0, 0, 0, 0.205)
+    ;
+    border-radius: .25rem;
+    padding: 10px;
+    background-color: white;
+}
+
+.edit-h2 {
+    text-align: center;
+    padding: 10px;
 }

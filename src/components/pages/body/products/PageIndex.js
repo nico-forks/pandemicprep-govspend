@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Pagination } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './PageIndex.css';
 import { getProductsByQuery } from '../../../../api/products';
@@ -66,32 +67,25 @@ export const PageIndex = ({
 	};
 
 	return (
-		<div id='pagination'>
-			{page === 1 ? (
-				''
-			) : (
-				<>
-					<button onClick={firstHandler}>
-						❮❮
-					</button>
-					<button onClick={prevHandler}>
-						❮
-					</button>
-				</>
-			)}
-			<button>{page}</button>
-			{page === pageLimit ? (
-				''
-			) : (
-				<>
-					<button onClick={nextHandler}>
-						❯
-					</button>
-					<button onClick={lastHandler}>
-						❯❯
-					</button>
-				</>
-			)}
-		</div>
+		<Pagination className='bootstrap-pagination'>
+				{page === 1 ? (
+					''
+				) : (
+					<>
+						<Pagination.First onClick={firstHandler}/>
+						<Pagination.Prev onClick={prevHandler}/>
+					</>
+				)}
+				<Pagination.Item>{page}</Pagination.Item>
+				{page === pageLimit ? (
+					''
+				) : (
+					<>
+						<Pagination.Next onClick={nextHandler}/>
+						<Pagination.Last onClick={lastHandler}/>
+					</>
+				)}
+
+			</Pagination>
 	);
 };

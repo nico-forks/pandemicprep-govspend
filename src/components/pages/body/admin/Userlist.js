@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
+import { Form, Button, Row, Col, Pagination } from 'react-bootstrap';
 
 import './Userlist.css';
 
@@ -77,8 +78,8 @@ export const Userlist = ({ user, setUser, setCart }) => {
 		}
 	};
 	// sets admin view which removes readonly from the inputs
-	const enableEditMode = (item, index) => {
-		setClickedIndex(index);
+	const enableEditMode = (item) => {
+		setClickedIndex(item.id);
 		if (adminView === 'none') {
 			setAdminView('editOneUser');
 		} else {
@@ -140,251 +141,258 @@ export const Userlist = ({ user, setUser, setCart }) => {
 
 	return (
 		<div className='userList'>
-			<form id='admin-list-user' onSubmit={adminAddUser}>
-				<span className='each-input'>
-					First Name:
-					<input
-						type='text'
-						placeholder='First Name'
-						value={firstName}
-						onChange={handleFirstName}
-					></input>
-				</span>
-
-				<span className='each-input'>
-					Email:
-					<input
-						type='text'
-						placeholder='Email'
-						value={email}
-						onChange={handleEmail}
-					></input>
-				</span>
-
-				<span className='each-input checkbox2'>
-					<p>Is Admin:</p>
-					<input
-						id='admin-checkbox'
-						type='checkbox'
-						placeholder='isAdmin'
-						defaultChecked={false}
-						onChange={handleIsAdmin}
-					></input>
-				</span>
-
-				<span className='each-input'>
-					Last Name:
-					<input
-						type='text'
-						placeholder='Last Name'
-						value={lastName}
-						onChange={handleLastName}
-					></input>
-				</span>
-
-				<span className='each-input'>
-					Password:
-					<input
-						type='password'
-						placeholder='Password'
-						value={password}
-						onChange={handlePassword}
-					></input>
-				</span>
-
-				<button id='user-button2'>Add New</button>
-			</form>
-			<h1 id='addUserH1'>Edit Existing Users</h1>
+			<Form id='bootstrap-form'>
+				<h3>Add New User</h3>
+				<Row>	
+					<Col>
+						<Form.Group>
+							<Form.Label>First Name</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='First Name'
+								value={firstName}
+								onChange={handleFirstName}
+							></Form.Control>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group>
+							<Form.Label>Last Name</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='Last Name'
+								value={lastName}
+								onChange={handleLastName}
+							></Form.Control>
+						</Form.Group>
+					</Col>				
+					<Col>
+						<Form.Group>
+							<Form.Label>Email</Form.Label>
+							<Form.Control
+								type='text'
+								placeholder='Email'
+								value={email}
+								onChange={handleEmail}
+							></Form.Control>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group>
+							<Form.Label>Password</Form.Label>
+							<Form.Control
+								type='password'
+								placeholder='Password'
+								value={password}
+								onChange={handlePassword}
+							></Form.Control>
+						</Form.Group>
+					</Col>
+					<Col>
+						<Form.Group>
+							<Form.Label>Admin</Form.Label>
+							<Form.Control
+								type='checkbox'
+								placeholder='isAdmin'
+								defaultChecked={false}
+								onChange={handleIsAdmin}
+							></Form.Control>
+						</Form.Group>
+					</Col>
+				</Row>
+				<Button onClick={adminAddUser}>Create</Button>
+			</Form>
+			
 			<div className='user-list-container'>
+				<h2 className='edit-h2'>Edit Existing Users</h2>
 				{adminUserList.map((item, index) => {
 					return (
 						<div key={index}>
-							{adminView === 'editOneUser' &&
-							clickedIndex === index /**edit mode ternary */ ? (
-								<form
-									id='admin-list-users'
-									onSubmit={(event) => {
-										editUser(event, item);
-									}}
-								>
-									<span className='each-input'>
-										<h1>Email:</h1>
-										<input
-											type='text'
-											placeholder={item.email}
-											value={editEmail}
-											onChange={(event) => setEditEmail(event.target.value)}
-										></input>
-									</span>
+							{adminView === 'editOneUser' && clickedIndex === item.id ? (
+								<Form id='bootstrap-form'>
+									<h3>{item.firstName} {item.lastName}</h3>
+									<Row>
+										<Col>
+											<Form.Group>
+												<Form.Label>Email</Form.Label>
+												<Form.Control
+													type='text'
+													placeholder={item.email}
+													value={editEmail}
+													onChange={(event) => setEditEmail(event.target.value)}
+												></Form.Control>
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>Password</Form.Label>
+												<Form.Control
+													type='password'
+													placeholder='Password'
+													onChange={(event) =>
+														setEditPassword(event.target.value)
+													}
+												></Form.Control>
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>Admin</Form.Label>
+												<Form.Control 
+													type='checkbox'
+													defaultChecked={item.isAdmin}
+													onChange={(event) =>
+														setIsAdmin(event.target.checked)
+													}
+												></Form.Control>
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>User</Form.Label>
+												<Form.Control
+													id='checkbox2'
+													type='checkbox'
+													defaultChecked={item.isUser}
+													onChange={(event) => {
+														setIsUser(event.target.checked);
+													}}
+												></Form.Control>
+											</Form.Group>
+										</Col>
+									</Row>
+									{adminView === 'editOneUser' &&
+										clickedIndex === item.id ? (
+											<div>
+												<Button
+													onClick={() => setAdminView('none')}
+												>Cancel</Button>
 
-									<span className='each-input'>
-										<h1>Password:</h1>
-										<input
-											id='checkbox'
-											type='password'
-											placeholder='Password'
-											onChange={(event) =>
-												setEditPassword(event.target.value)
-											}
-										></input>
-									</span>
-
-									{item.isAdmin ? (
-										<span className='each-input checkbox'>
-											<h1>Is Admin:</h1>
-											<input
-												id='checkbox2'
-												type='checkbox'
-												defaultChecked={item.isAdmin}
-												onChange={(event) =>
-													setIsAdmin(event.target.checked)
-												}
-											></input>
-										</span>
-									) : (
-										<span className='each-input checkbox'>
-											<h1>Is Admin:</h1>
-											<input
-												id='checkbox2'
-												type='checkbox'
-												defaultChecked={item.isAdmin}
-												onChange={(event) =>
-													setIsAdmin(event.target.checked)
-												}
-											></input>
-										</span>
-									)}
-
-									{item.isUser ? (
-										<span className='each-input checkbox' id='isUser'>
-											<h1>Is User:</h1>
-											<input
-												id='checkbox2'
-												type='checkbox'
-												defaultChecked={item.isUser}
-												onChange={(event) => {
-													setIsUser(event.target.checked);
+												<Button
+													type='button'
+													onClick={(event) => {editUser(event, item)}}
+												>Authorize</Button>
+											</div>
+										) : (
+											<Button
+												className='edit-button'
+												type='button'
+												onClick={() => {
+													enableEditMode(item);
 												}}
-											></input>
-										</span>
-									) : (
-										<span className='each-input checkbox' id='isUser'>
-											<h1>Is User:</h1>
-											<input
-												id='checkbox2'
-												type='checkbox'
-												defaultChecked={item.isUser}
-												onChange={(event) => {
-													setIsUser(event.target.checked);
-												}}
-											></input>
-										</span>
-									)}
-
-									<button id='user-button' type='button' onClick={enableEditMode}>
-										Edit
-									</button>
-									{adminView === 'editOneUser' ? (
-										<button id='user-button'>Authorize</button>
-									) : (
-										''
-									)}
-								</form>
+											>Edit</Button>
+										)
+									}
+								</Form>
 							) : (
-								<form id='admin-list-users'>
-									<span className='each-input'>
-										<h1>Email:</h1>
-										<input
-											type='text'
-											placeholder={item.email}
-											value={item.email}
-											readOnly
-										></input>
-									</span>
+								<Form id='bootstrap-form'>
+									<h3>{(item.firstName + '' + item.lastName)}</h3>
+									<Row>
+										<Col>
+											<Form.Group>
+												<Form.Label>Email</Form.Label>
+												<Form.Control
+													type='text'
+													placeholder={item.email}
+													value={item.email}
+													readOnly
+												></Form.Control>
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>Password</Form.Label>
+												<Form.Control
+													type='password'
+													placeholder='Password'
+													readOnly
+												></Form.Control>
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>Admin</Form.Label>
+												{item.isAdmin ? (
+													<Form.Control 
+														type='checkbox'
+														checked
+														readOnly
+													></Form.Control>
+												) : (
+													<Form.Control 
+														type='checkbox'
+														readOnly													
+													></Form.Control>
+												)}
+											</Form.Group>
+										</Col>
+										<Col>
+											<Form.Group>
+												<Form.Label>User</Form.Label>
+												{item.isUser ? (
+													<Form.Control
+														type='checkbox'
+														checked
+														readOnly
+													></Form.Control>
+												) : (
+													<Form.Control
+														type='checkbox'
+														readOnly
+													></Form.Control>
+												)}
+											</Form.Group>
+										</Col>
+									</Row>
+									{adminView === 'editOneUser' &&
+										clickedIndex === item.id ? (
+											<div>
+												<Button
+													onClick={() => setAdminView('none')}
+												>Cancel</Button>
 
-									<span className='each-input'>
-										<h1>Password:</h1>
-										<input
-											id='checkbox'
-											type='password'
-											placeholder='Password'
-											readOnly
-										></input>
-									</span>
-
-									{item.isAdmin ? (
-										<span className='each-input checkbox'>
-											<h1>Is Admin:</h1>
-											<input id='checkbox2' type='checkbox' checked></input>
-										</span>
-									) : (
-										<span className='each-input checkbox'>
-											<h1>Is Admin:</h1>
-											<input id='checkbox2' type='checkbox'></input>
-										</span>
-									)}
-
-									{item.isUser ? (
-										<span className='each-input checkbox' id='isUser'>
-											<h1>Is User:</h1>
-											<input id='checkbox2' type='checkbox' checked></input>
-										</span>
-									) : (
-										<span className='each-input checkbox' id='isUser'>
-											<h1>Is User:</h1>
-											<input id='checkbox2' type='checkbox'></input>
-										</span>
-									)}
-
-									<button
-										id='user-button'
-										type='button'
-										onClick={() => {
-											enableEditMode(item, index);
-										}}
-									>
-										Edit
-									</button>
-									{adminView === 'editOneUser' ? (
-										<button id='user-button'>Authorize</button>
-									) : (
-										''
-									)}
-								</form>
+												<Button
+													type='button'
+													onClick={(event) => {editUser(event, item)}}
+												>Authorize</Button>
+											</div>
+										) : (
+											<Button
+												className='edit-button'
+												type='button'
+												onClick={() => {
+													enableEditMode(item);
+												}}
+											>Edit</Button>
+										)
+									}
+								</Form>
 							)}
+							
 						</div>
 					);
 				})}
 			</div>
-			<div id='pagination'>
+			<Pagination className='bootstrap-pagination'>
 				{userPage === 1 ? (
 					''
 				) : (
-
-						<>
-							<button onClick={firstHandler}>
-								❮❮
-						</button>
-							<button onClick={prevHandler}>
-								❮
-						</button>
-						</>
-					)}
-				<button>{userPage}</button>
+					<>
+						<Pagination.First onClick={firstHandler}/>
+						<Pagination.Prev onClick={prevHandler}/>
+					</>
+				)}
+				<Pagination.Item>{userPage}</Pagination.Item>
 				{userPage === userPageLimit ? (
 					''
 				) : (
-						<>
-							<button onClick={nextHandler}>
-								❯
-						</button>
-							<button onClick={lastHandler}>
-								❯❯
-						</button>
-						</>
-					)}
+					<>
+						<Pagination.Next onClick={nextHandler}/>
+						<Pagination.Last onClick={lastHandler}/>
+					</>
+				)}
 
-			</div>
+			</Pagination>
 		</div>
 	);
 };

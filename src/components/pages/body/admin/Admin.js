@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 
 import { AdminProductList, Userlist, OrdersProcessing } from '../../../index';
 import './Admin.css';
@@ -18,50 +19,35 @@ export const Admin = ({ user, setUser, setCart }) => {
 	return (
 		<>
 			<div id='admin-nav'>
-				<button
+				<Button
 					onClick={() => {
 						setAdminView('products');
 					}}
 				>
 					Products
-				</button>
-				<button
+				</Button>
+				<Button
 					onClick={() => {
 						setAdminView('users');
 					}}
 				>
 					Users
-				</button>
-				<button
+				</Button>
+				<Button
 					onClick={() => {
 						setAdminView('processing');
 					}}
 				>
 					Processing Orders
-				</button>
-				<button
+				</Button>
+				<Button
 					onClick={() => {
 						setAdminView('sales');
 					}}
 				>
 					Sales Report
-				</button>
+				</Button>
 			</div>
-			{adminView === '' ? (
-				''
-			) : (
-				<h1 className='adminH1'>
-					{adminView === 'products'
-						? 'Add New Product'
-						: adminView === 'users'
-						? 'Add New User'
-						: adminView === 'processing'
-						? 'Processing Orders'
-						: adminView === 'sales'
-						? 'Sales Report'
-						: ''}
-				</h1>
-			)}
 
 			{adminView === 'none' ? (
 				<div id='adminDiv'>

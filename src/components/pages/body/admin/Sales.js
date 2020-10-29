@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
+import { Pagination } from 'react-bootstrap';
 
 import './Sales.css';
 import { getSalesReport } from '../../../../api';
@@ -78,9 +79,8 @@ export const Sales = ({ user }) => {
 	return (
 		<div className='sales-container'>
 			<div className='sales-report'>
-			{Object.values(twentyTwenty) === null ? <h1>No Sales to Report</h1> :
-			Object.entries(twentyTwenty).map((month, index) => {
-
+			{salesReport.length < 1 ? <h1 className='empty'>No Sales to Report</h1> :
+			(Object.entries(twentyTwenty).map((month, index) => {
 				
 				if (month[1].length === 0) {
 					return '';
@@ -93,8 +93,7 @@ export const Sales = ({ user }) => {
 				}
 				month[1].push({date: 'Monthly Total', cartQuantity: cartQuantity, total: total})
 
-				return(
-					  
+				return(					  
 						<div key={index} className='month-container'>
 							<p className='month-h1'>{month[0]}</p>
 							<div className='report-titles'>
@@ -114,11 +113,10 @@ export const Sales = ({ user }) => {
 									</div>
 								)
 							})}
-
 						</div>
 					
 				)
-			})}
+			}))}
 			</div>
 		</div>
 	)
