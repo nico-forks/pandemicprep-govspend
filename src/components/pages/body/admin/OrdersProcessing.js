@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
-import { Pagination } from 'react-bootstrap';
+import { Pagination, Button } from 'react-bootstrap';
 // import users from '../../../../../db/singletables/users';
 
 import './OrdersProcessing.css';
@@ -106,13 +106,14 @@ export const OrdersProcessing = ({ user }) => {
 									>
 										ˇ
 									</button> */}
-									<button
+									<Button
+									variant='secondary'
 										className='processing-button'
 										value='complete-button'
 										onClick={() => finalizeOrder(order)}
 									>
 										Complete Order
-									</button>
+									</Button>
 								</div>
 
 								{clickedIndex === index ? (

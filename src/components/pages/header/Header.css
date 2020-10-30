@@ -271,8 +271,13 @@
 a:hover #dropdownIcon {
     width: 25px;
     margin-right: 10px;
-    filter: invert(100%);
+    
 }
+
+.dropdown-list-item:hover {
+    background-color: silver;
+}
+
 
 #cart-size {
     color: red;

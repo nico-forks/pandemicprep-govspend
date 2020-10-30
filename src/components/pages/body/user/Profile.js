@@ -365,6 +365,7 @@ export const Profile = ({
 				/>
 				<Button
 					id='reveal'
+					variant='light'
 					className={
 						view === 'register' ||
 						view === 'userCheckout' ||
@@ -533,13 +534,13 @@ export const Profile = ({
 				/>
 
 				<br></br>
-				<Button id='submit' type='submit'>
+				<Button id='submit' variant='light' type='submit'>
 					{view === 'userCheckout' || view === 'guest' || view === 'checkout-register'
 						? 'Complete Payment'
 						: 'Submit'}
 				</Button>
 				<br></br>
-				<Button id='cancel' onClick={cancelHandler}>
+				<Button id='cancel' variant='light' onClick={cancelHandler}>
 					Cancel
 				</Button>
 			</Form>

@@ -241,7 +241,7 @@ export const Cart = ({
 							: ''}
 					</div>
 				</div>
-				<div id='total-outer-container'>
+				<div id='total-outer-container' className={cart.total === 0 ? 'hide' : 'show'}>
 					<Container fluid='md' id='total-container'>
 						<Row>
 							<Col className='total-title total'>Cart Summary</Col>
@@ -302,7 +302,7 @@ export const Cart = ({
 					{user.isUser && !profileCompleted ? (
 						<Container id='checkout-buttons'>
 							<Row id='checkout-button'>
-								<Col as='button'
+								<Button
 									md={8}
 									variant='dark'
 									id='check'
@@ -310,28 +310,28 @@ export const Cart = ({
 									onClick={checkoutHandler}
 								>
 									Checkout
-								</Col>
+								</Button>
 							</Row>
 						</Container>
 					) : !user.isUser && !profileCompleted ? (
 						<Container id='checkout-buttons'>
 							<Row className='options'>
-								<Col
-									as='button'
+								<Button
+									
 									variant='dark'
 									className='checkout-guest asguest'
 									onClick={guestCheckout}
 								>
 									As a guest
-								</Col>
-								<Col
-									as='button'
+								</Button>
+								<Button
+									
 									variant='dark'
 									className='checkout-guest asuser'
 									onClick={newUserCheckout}
 								>
 									Create Account
-								</Col>
+								</Button>
 							</Row>
 						</Container>
 					) : (

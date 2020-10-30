@@ -103,7 +103,7 @@
     
     margin-top: 10px;
     margin-bottom: 55px;
-    margin-left: 50px;
+    margin-left: calc(50px + ((22vw - 200px)/2));
     background-image: -webkit-linear-gradient(45deg, rgb(55, 0, 55) 50%, transparent 50%);
     background-image: linear-gradient(45deg, rgb(55, 0, 55) 50%, transparent 50%);
     background-position: 100%;
@@ -133,7 +133,7 @@
 }
 
 .asguest {
-    margin-left: 75px;
+    margin-left: calc(50px + (22vw - 310px)/2);
 }
 
 #check:hover,
@@ -171,4 +171,8 @@
 }
 #checkout-buttons {
     justify-content: center;
+}
+
+.hide {
+    display: none;
 }

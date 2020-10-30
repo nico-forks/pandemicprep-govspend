@@ -141,7 +141,7 @@ export const Header = ({
 							</Dropdown.Toggle>
 							<Dropdown.Menu  >
 								{user.isAdmin ? (
-									<Dropdown.Item href='#' onClick={() => history.push('/admin')}>
+									<Dropdown.Item className='dropdown-list-item' href='#' onClick={() => history.push('/admin')}>
 										<img
 											id='dropdownIcon'
 											src={process.env.PUBLIC_URL + '/styleimages/admin.png'}
@@ -152,6 +152,7 @@ export const Header = ({
 									''
 								)}
 								<Dropdown.Item
+								className='dropdown-list-item'
 									href='#'
 									onClick={() => {
 										setView('edit');
@@ -164,7 +165,7 @@ export const Header = ({
 									/>
 									Edit Profile
 								</Dropdown.Item>
-								<Dropdown.Item href='#' onClick={() => history.push('/orders')}>
+								<Dropdown.Item className='dropdown-list-item' href='#' onClick={() => history.push('/orders')}>
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/shop.png'}
@@ -172,6 +173,7 @@ export const Header = ({
 									Orders
 								</Dropdown.Item>
 								<Dropdown.Item
+								className='dropdown-list-item'
 									href='#'
 									onClick={() => {
 										localStorage.removeItem('panprepToken');
