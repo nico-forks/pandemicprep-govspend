@@ -28,7 +28,7 @@ export const Categories = ({ NavLink, category, setCategory, categoryList, setPa
                     >
                         <div key={i} id="cat" className="category-tile">
                             {category === item.name ? (
-                                <Button variant='danger' className="category-name redCat">{item.name}</Button>
+                                <Button variant='primary' className="category-name redCat">{item.name}</Button>
                             ) : (
                                 <Button variant='dark' className="category-name">{item.name}</Button>
                             )}
