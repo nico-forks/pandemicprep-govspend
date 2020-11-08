@@ -40,12 +40,13 @@ export const Promoted = ({ NavLink, setProduct, useHistory }) => {
 				<h1>Featured Products</h1>
 			</div>
 
-			<Carousel className='carousel'>
+			<Carousel className='carousel' indicators={false} >
 				{content.map((item, index) => (
 					<Carousel.Item
 						key={index}
 						className='carousel-item'
 						interval={1000}
+						
 						onClick={() => {
 							fetchPromotedProduct(item, index);
 						}}
@@ -53,12 +54,14 @@ export const Promoted = ({ NavLink, setProduct, useHistory }) => {
 						<div className='image-container'>
 							<img className="d-block" src={item.image} />
 						
-						<Carousel.Caption id='carousel-captions'>
-							<h3>{item.title}</h3>
-							<p>${' '}
-								{item.price.toLocaleString('en-US', {
-									minimumFractionDigits: 2,
-								})}</p>
+						<Carousel.Caption className='carousel-captions'>
+							<div className='carousel-text'>
+								<h3>{item.title}</h3>
+								<p>${' '}
+									{item.price.toLocaleString('en-US', {
+										minimumFractionDigits: 2,
+									})}</p>
+							</div>
 						</Carousel.Caption>
 						</div>
 					</Carousel.Item>
