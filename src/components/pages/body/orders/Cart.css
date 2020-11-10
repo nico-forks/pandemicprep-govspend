@@ -115,28 +115,18 @@
 .checkout-guest {
     width: 145px;
     height: 60px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    font: bold 22px Helvetica, Sans-Serif;
-    letter-spacing: -1px;
-    color: black;
+    
     margin-top: 10px;
     margin-bottom: 55px;
     margin-left: 20px;
-    background-image: -webkit-linear-gradient(45deg, rgb(55, 0, 55) 50%, transparent 50%);
-    background-image: linear-gradient(45deg, rgb(55, 0, 55) 50%, transparent 50%);
-    background-position: 100%;
-    background-size: 400%;
-    -webkit-transition: background 300ms ease-in-out;
-    transition: background 300ms ease-in-out;
+    
 }
 
 .asguest {
     margin-left: calc(50px + (22vw - 310px)/2);
 }
 
-#check:hover,
+/* #check:hover,
 .checkout-guest:hover {
     background-color: rgb(1, 0, 53);
     color: white;
@@ -145,7 +135,7 @@
     -ms-transform: scale(1.075, 1.075);
     -o-transform: scale(1.075, 1.075);
     transform: scale(1.075, 1.075);
-}
+} */
 
 .options {
     display: flex;

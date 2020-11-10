@@ -9,14 +9,6 @@ body {
     z-index: -1;
 }
 
-
-
-
-
-
-
-
-
 .wrapper {
     margin-top: 170px;
     text-align: center;
@@ -24,7 +16,6 @@ body {
     position: relative;
     z-index: -1
 }
-
 
 .wrapper h1 {
     font: bold 62px Helvetica, Sans-Serif; 
@@ -39,14 +30,6 @@ body {
     z-index: -1
 }
   
-  
-
-  
-  
-  
-  
-  
-
 #flexwrapper {
   height: 55vh;
 }

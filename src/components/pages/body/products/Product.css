@@ -30,32 +30,15 @@ margin-right: 45px;
 }
 
 #addToCart {
-    background-color: white;
-    border: 1px solid black;
-   
+    
     width: 140px;
     height: 50px;
-    font: bold 22px Helvetica, Sans-Serif; 
-    letter-spacing: -1px; 
-    color: black; 
+    
     margin-bottom: 5px;
-    background-image: -webkit-linear-gradient(45deg, black 50%, transparent 50%);
-    background-image: linear-gradient(45deg, black 50%, transparent 50%);
-    background-position: 100%;
-    background-size: 400%;
-    -webkit-transition: background 300ms ease-in-out;
-    transition: background 300ms ease-in-out;
+    
 }
 
-#addToCart:hover {
-    background-color:  rgb(1, 0, 53);
-    color: white;
-    background-position: 0;
-    webkit-transform: scale(1.075,1.075);
-    -ms-transform: scale(1.075,1.075);
-    -o-transform: scale(1.075,1.075);
-    transform: scale(1.075,1.075);
-}
+
 
 .description1 {
     font: bold 22px Helvetica, Sans-Serif;

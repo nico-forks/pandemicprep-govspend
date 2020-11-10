@@ -284,7 +284,7 @@ export const Cart = ({
 							<Col>
 								<InputGroup className='amount-fields'>
 									<InputGroup.Prepend>
-										<InputGroup.Text variant='outline-secondary'>$</InputGroup.Text>
+										<InputGroup.Text className='total' variant='outline-secondary'>$</InputGroup.Text>
 									</InputGroup.Prepend>
 									<InputGroup.Append>
 										  <InputGroup.Text className='total-amount total' variant='outline-secondary'>{parseFloat(cart.total) > 0

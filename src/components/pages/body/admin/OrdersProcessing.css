@@ -93,6 +93,9 @@
 .processing-button {
     position: relative;
     bottom: 10px;
+    width: 200px;
+    margin-top: 20px;
+    margin-right: -130px;
 }
 
 #hidden-titles {
@@ -132,33 +135,6 @@
     text-align: center;
 }
 
-.processing-button {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    width: 200px;
-    margin-top: 20px;
-    margin-right: -130px;
-    font: bold 22px Helvetica, Sans-Serif; 
-    letter-spacing: -1px; 
-    color: dodgerblue; 
-    background-image: -webkit-linear-gradient(45deg, dodgerblue 50%, transparent 50%);
-    background-image: linear-gradient(45deg, dodgerblue 50%, transparent 50%);
-    background-position: 100%;
-    background-size: 400%;
-    -webkit-transition: background 300ms ease-in-out;
-    transition: background 300ms ease-in-out;
-}
-
-.processing-button:hover{
-    background-color:  rgb(1, 0, 53);
-    color: white;
-    background-position: 0;
-    webkit-transform: scale(1.075,1.075);
-    -ms-transform: scale(1.075,1.075);
-    -o-transform: scale(1.075,1.075);
-    transform: scale(1.075,1.075);
-}
 
 .hidden-processing {
     display: none;

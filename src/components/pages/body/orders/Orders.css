@@ -93,13 +93,14 @@
 .orders-h1 {
     font: bold 32px Helvetica, Sans-Serif;
     letter-spacing: -1px;
-    margin-bottom: 25px;
-    background-color: black;
-    border: 3px solid black;
+    margin-bottom: 60px;
+    /* background-color: black; */
+    /* border: 3px solid black; */
     color: white;
     height: 70px;
     width: 100%;
     padding-top: 15px;
+    margin-top: 60px;
 }
 
 
