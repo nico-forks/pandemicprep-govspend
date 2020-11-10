@@ -70,16 +70,7 @@
     height: 60px;
 }
 
-.cart-delete {
-    
-    font: bold 22px Helvetica, Sans-Serif;
-    letter-spacing: -1px;
-}
 
-.cart-delete:hover {
-    color: black;
-    background-color: white;
-}
 
 #total-container {
     background-color: black;
