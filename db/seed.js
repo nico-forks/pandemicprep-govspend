@@ -1,23 +1,12 @@
 const Promise = require("bluebird");
 // ALL DATABASE FUNCTIONS BEING IMPORTED FROM THE DB INDEX FOLDER
-const {
-    getProductById,
-    getProductsByCategory,
-    getAllProductsCart,
-    getHighlightedProducts,
-    getAllUsers,
-    categoryIdByName,
-    getAllCategories,
-    addCart,
-    getCartHistoryStatusAdmin,
-    getCartHistoryStatus,
-    addProductToCart,
-    addReview,
-    getReviewsByProductId
-} = require('./index')
+
 // FUNCTIONS REQUIRED WITH A MORE ACCURATE PATH TO AVOID CIRCULAR DEPENDENCIES
-const { addUser, updateUser, getUserById } = require('./singletables/users');
-const { addProductAndCategory, getProductsByQuery, getAllProducts } = require('./singletables/products');
+const { addUser, updateUser, getUserById, getAllUsers } = require('./singletables/users');
+const { categoryIdByName, getAllCategories } = require('./singletables/categories');
+const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductById, getProductsByCategory } = require('./singletables/products');
+const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
+const { addReview, getReviewsByReview } = require('./singletables/review');
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
 //

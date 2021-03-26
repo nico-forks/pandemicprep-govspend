@@ -122,13 +122,13 @@ async function dropTables() {
     }
 }
 
-async function populateInitialData() {
-    try {
-        await seed();
-    } catch (error) {
-        throw error;
-    }
-}
+// async function populateInitialData() {
+//     try {
+//         await seed();
+//     } catch (error) {
+//         throw error;
+//     }
+// }
 
 buildTables()
     .then(seed)
