@@ -29,8 +29,8 @@ server.use((req, res, next) => {
 const { client } = require('./db/client');
 
 // connect to the server
-// const PORT = process.env.PORT || 5000;
-const PORT = process.env.DATABASE_URL || 5000;
+const PORT = process.env.PORT || 5000;
+// const PORT = process.env.DATABASE_URL || 5000;
 server.listen(PORT, async () => {
   console.log(`Server is running on ${ PORT }!`);
 
