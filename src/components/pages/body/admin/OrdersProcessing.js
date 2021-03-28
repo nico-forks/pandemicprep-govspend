@@ -28,7 +28,7 @@ export const OrdersProcessing = ({ user }) => {
 
 	const toggleDetails = (event, index) => {
 		if (event.target.value !== 'complete-button') {
-			console.log('event value ', event.target.value);
+			
 			if (clickedIndex === index) {
 				setClickedIndex(-1);
 			} else {

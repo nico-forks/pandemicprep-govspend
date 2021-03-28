@@ -91,7 +91,7 @@ export const AdminProductList = ({ user }) => {
 	};
 	const editProduct = async (event, item) => {
 		event.preventDefault();
-		console.log(event, item, 'event and item')
+		
 		try {
 			const fields = {
 				title: editTitle === '' ? item.title : editTitle,

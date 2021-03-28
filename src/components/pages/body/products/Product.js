@@ -11,7 +11,7 @@ import { addProductToGuestCart } from '../../../index';
 
 export const Product = ({ product, setCart, cart, user, setCartSize }) => {
 	
-	console.log('getting to the product page');
+	
 	const history = useHistory();
 	if (!('id' in product)) {
 		history.push('/');

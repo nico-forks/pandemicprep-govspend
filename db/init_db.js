@@ -5,7 +5,7 @@
 //POPULATING INITIAL DATA WITH SEED.JS
 
 const { client } = require("./client");
-const { seed } = require("./");
+const { seed } = require("./seed");
 
 async function buildTables() {
     try {

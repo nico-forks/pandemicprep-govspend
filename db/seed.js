@@ -6,7 +6,7 @@ const { addUser, updateUser, getUserById, getAllUsers } = require('./singletable
 const { categoryIdByName, getAllCategories } = require('./singletables/categories');
 const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductById, getProductsByCategory } = require('./singletables/products');
 const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
-const { addReview, getReviewsByReview } = require('./singletables/review');
+const { addReview } = require('./singletables/reviews');
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
 //

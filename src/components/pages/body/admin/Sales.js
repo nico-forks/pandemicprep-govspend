@@ -27,7 +27,7 @@ export const Sales = ({ user }) => {
 	useEffect(() => {
 		getSalesReport(user.token)
 			.then((response) => {
-				console.log(response, 'response in sales')
+				
 				response.forEach((item) => {
 					if (item.date.substring(0, 7) === '2020-01') {
 						twentyTwenty.january.push(item)

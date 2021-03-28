@@ -123,7 +123,7 @@ export const Profile = ({
 					country,
 					phone,
 				});
-				console.log('new user from profile ', newUser);
+				
 				if (newUser.message) {
                     alert(newUser.message);
                     return;

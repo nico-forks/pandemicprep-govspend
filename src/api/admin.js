@@ -95,12 +95,12 @@ export async function completeOrder(cartId, token) {
 }
 
 export async function getSalesReport(token) {
-	console.log('getting to sales axios')
+	
 	try {
 		const { data } = await axios.get(`/api/admin/sales`, {
 			headers: { Authorization: 'Bearer ' + token },
 		});
-		console.log(data, 'data in sales axios')
+		
 		return data;
 	} catch (error) {
 		throw error;

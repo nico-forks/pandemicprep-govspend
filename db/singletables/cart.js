@@ -9,8 +9,7 @@ const LIMIT = 20;
  * @param {object} status(active, processing, complete)
  */
 async function addCart({ status, total, userId }) {
-	console.log('im getting to add cart at the database', status, total, userId);
-	// lastUpdated = getDate();
+	
 	try {
 		const {
 			rows: [newCart],
@@ -25,7 +24,7 @@ async function addCart({ status, total, userId }) {
 		newCart.total = parseFloat(newCart.total);
 
 		newCart.items = [];
-		console.log('new cart being sent ', newCart);
+		
 		return newCart;
 	} catch (error) {}
 }
@@ -521,7 +520,7 @@ async function getSalesReport() {
 			OR status = 'complete'
 			GROUP BY date;
 		`);
-		console.log(rows, 'rows in db ')
+		
 		return rows;
 	} catch (error) {
 		throw error;
