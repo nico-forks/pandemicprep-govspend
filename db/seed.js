@@ -1,4 +1,5 @@
 const Promise = require("bluebird");
+const fetch = require('node-fetch');
 // ALL DATABASE FUNCTIONS BEING IMPORTED FROM THE DB INDEX FOLDER
 
 // FUNCTIONS REQUIRED WITH A MORE ACCURATE PATH TO AVOID CIRCULAR DEPENDENCIES
@@ -7,8 +8,11 @@ const { categoryIdByName, getAllCategories } = require('./singletables/categorie
 const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductById, getProductsByCategory } = require('./singletables/products');
 const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
 const { addReview } = require('./singletables/reviews');
+
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
+// Imported array with all the random users
+
 //
 //
 //
@@ -19,12 +23,16 @@ const productArray = require("./singletables/productObject");
 async function seed() {
     try {
         await createNewUsers();
+        await fillUsers();
         // await gettingAllUsers();
         // await creatingOneNewProduct();
-        await seedingProductObject();
-        await gettingProductsByQuery();
-        await updatingUsers();
-        await gettingUserById();
+        // await fileWriting();  //ran only one time to write the users into a file
+
+        // await seedingProductObject();
+        // await gettingProductsByQuery();
+        // await updatingUsers();
+        // await gettingUserById();
+        
         // await gettingCategoryIdsByName();
         // await addingOneCart();
         // await seedingInitialReviews();
@@ -49,6 +57,8 @@ async function createNewUsers() {
             lastName: "Cash",
             isAdmin: true,
             isUser: true,
+            birthdate: '1980-04-26',
+            gender: 'male',
             email: "johnny@cash.com",
             password: "Password1",
             addressLine1: "4545 street",
@@ -67,6 +77,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '1985-03-21',
+            gender: 'female',
             email: "myemail2@you.com",
             password: "Password2",
             addressLine1: null,
@@ -85,6 +97,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '1990-05-22',
+            gender: 'male',
             email: "myemail3@you.com",
             password: "Password3",
             addressLine1: null,
@@ -103,6 +117,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '2000-06-23',
+            gender: 'female',
             email: "myemail4@you.com",
             password: "not",
             addressLine1: null,
@@ -119,6 +135,44 @@ async function createNewUsers() {
         throw error;
     }
 }
+
+//add 2000 random US users. The function takes very long to execute. About 5 mins or more.
+async function fillUsers() {
+    try {
+        // const data = await fetch('https://randomuser.me/api/?results=2000&nat=us');
+        const newUsers = (await data.json()).results;
+        // console.log(newUsers);
+        const length = newUsers.length;
+
+        await Promise.mapSeries(newUsers, function(item, index, length) {
+            const user = addUser({
+                firstName: item.name.first,
+                lastName: item.name.last,
+                birthdate: item.dob.date.slice(0, 10),
+                gender: item.gender,
+                isAdmin: false,
+                isUser: true,
+                email: item.email,
+                password: item.login.password,
+                addressLine1: `${item.location.street.number} ${item.location.street.name}`,
+                addressLine2: '',
+                city: item.location.city,
+                state: item.location.state,
+                zipcode: item.location.postcode,
+                country: item.location.country,
+                phone: item.phone,
+                creditCard: null
+        });
+        
+        return user;
+        })
+
+        
+    } catch (error) {
+        console.error('fillUsers()', error);
+    }
+}
+
 async function gettingAllUsers() {
     try {
         console.log("Running getAllUsers...");

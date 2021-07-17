@@ -18,6 +18,8 @@ const SALT_COUNT = 13;
 async function addUser({
 	firstName,
 	lastName,
+	birthdate,
+	gender,
 	isAdmin = false,
 	isUser = false,
 	email = null,
@@ -48,8 +50,8 @@ async function addUser({
 				rows: [newUser],
 			} = await client.query(
 				`
-            INSERT INTO users("isAdmin", "isUser", email, password, "firstName", "lastName", "addressLine1", "addressLine2", city, state, zipcode, country, phone, "creditCard")
-            VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 ,$7 ,$8 ,$9 ,$10 ,$11 ,$12 ,$13, $14)
+            INSERT INTO users("isAdmin", "isUser", email, password, "firstName", "lastName", birthdate, gender, "addressLine1", "addressLine2", city, state, zipcode, country, phone, "creditCard")
+            VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 ,$7 ,$8 ,$9 ,$10 ,$11 ,$12 ,$13, $14, $15, $16)
             ON CONFLICT DO NOTHING
             RETURNING *;
         `,
@@ -61,6 +63,8 @@ async function addUser({
 					securedPassword,
 					firstName,
 					lastName,
+					birthdate,
+					gender,
 					addressLine1,
 					addressLine2,
 					city,

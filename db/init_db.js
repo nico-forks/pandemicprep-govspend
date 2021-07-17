@@ -48,6 +48,7 @@ async function createTables() {
         "imageDescription" varchar(255)
       );
 
+      /*
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         "isAdmin" BOOLEAN DEFAULT false,
@@ -56,19 +57,22 @@ async function createTables() {
         password varchar(255),
         "firstName" varchar(255) NOT NULL,
         "lastName" varchar(255) NOT NULL,
+        birthdate DATE,
+        gender varchar(10),
         "addressLine1" varchar(255),
         "addressLine2" varchar(255),
         city varchar(255),
         state varchar(255),
-        zipcode varchar(255),
+        zipcode varchar(20),
         country varchar(255),
-        phone varchar(255),
+        phone varchar(20),
         "creditCard" varchar(255)
       );
+      */
 
       CREATE TABLE carts (
         id SERIAL PRIMARY KEY,
-        status varchar(255) NOT NULL,
+        status varchar(20) NOT NULL,
         "cartQuantity" INTEGER DEFAULT 0,
         date VARCHAR(10),
         time VARCHAR(8), 
@@ -114,7 +118,7 @@ async function dropTables() {
       DROP TABLE IF EXISTS products_categories;
       DROP TABLE IF EXISTS reviews;
       DROP TABLE IF EXISTS carts;
-      DROP TABLE IF EXISTS users CASCADE;
+      /* DROP TABLE IF EXISTS users CASCADE; */
       DROP TABLE IF EXISTS categories;
       DROP TABLE IF EXISTS products;
     `);
