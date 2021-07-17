@@ -163,6 +163,7 @@ async function fillUsers() {
                 phone: item.phone,
                 creditCard: null
         });
+        
         return user;
         })
 
