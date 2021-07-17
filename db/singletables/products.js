@@ -39,17 +39,18 @@ async function addProductAndCategory({ name, price, description, image, category
  */
 async function addProduct({ name, price, description, image, isHighlighted }) {
 	try {
+		const cost = Math.round(((price * (Math.random() * 0.70 + 0.20 )) + Number.EPSILON) * 100) /100;
 		const {
 			rows: [newProduct],
 		} = await client.query(
 			`
-		INSERT INTO products (title, price, description, image, "isHighlighted")
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO products (title, price, cost, description, image, "isHighlighted")
+		VALUES ($1, $2, $3, $4, $5, $6)
 		ON CONFLICT DO NOTHING
 		RETURNING *;
 	`,
 
-			[name, price, description, image, isHighlighted],
+			[name, price, cost, description, image, isHighlighted],
 		);
 		if (newProduct) {
 			newProduct.price = parseFloat(newProduct.price);

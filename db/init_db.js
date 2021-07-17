@@ -34,6 +34,7 @@ async function createTables() {
         title varchar(255) UNIQUE NOT NULL,
         description TEXT NOT NULL,
         price DECIMAL NOT NULL,
+        cost DECIMAL NOT NULL,
         image varchar(255),
         "imageDescription" varchar(255),
         "isHighlighted" BOOLEAN DEFAULT false,
