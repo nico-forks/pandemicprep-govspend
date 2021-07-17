@@ -1,3 +1,5 @@
+** For this project the main branch will be gov.
+
 # Pandemic Prep
 Pandemic Prep is an e-commerce web application with the purpose of supplying products needed for emergency and/or 
 "apocalyptic" situations
