@@ -8,6 +8,7 @@ const { categoryIdByName, getAllCategories } = require('./singletables/categorie
 const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductById, getProductsByCategory } = require('./singletables/products');
 const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
 const { addReview } = require('./singletables/reviews');
+const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -22,16 +23,18 @@ const productArray = require("./singletables/productObject");
 //
 async function seed() {
     try {
-        await createNewUsers();
-        await fillUsers();
+        // await createNewUsers();
+        // await fillUsers();
         // await gettingAllUsers();
         // await creatingOneNewProduct();
         // await fileWriting();  //ran only one time to write the users into a file
 
-        // await seedingProductObject();
-        // await gettingProductsByQuery();
-        // await updatingUsers();
-        // await gettingUserById();
+        await seedingProductObject();
+        await gettingProductsByQuery();
+        await updatingUsers();
+        await gettingUserById();
+
+        await clicks();
         
         // await gettingCategoryIdsByName();
         // await addingOneCart();
@@ -41,9 +44,9 @@ async function seed() {
         // await gettingProductById();
         // await gettingProductsByCategory();
         // await makingProductCart();
-        console.log("Running get all products...");
-        const allProducts = await getAllProducts(1);
-        console.log("Result: ", allProducts);
+        // console.log("Running get all products...");
+        // const allProducts = await getAllProducts(1);
+        // console.log("Result: ", allProducts);
     } catch (error) {
         throw error;
     }
@@ -396,6 +399,35 @@ async function makingProductCart() {
         throw error;
     }
 }
+
+
+//clicks
+
+async function clicks() {
+    try {
+        //add view clicks
+        console.log('add view click to product 5, user 5', await addViewClick(5, 5));
+        console.log('add second view click to product 5, user 5', await addViewClick(5, 5));
+        console.log('add view click to product 10, user 8', await addViewClick(10, 8));
+        //add cart clicks
+        console.log('add cart click for click 1, product 5, user 5', await addCartClick(1, 5, 5));
+        console.log('add cart click for click 3, product 10, user 8', await addCartClick(3, 10, 8));
+        console.log('add cart click for click that doesnt exist', await addCartClick(11, 5, 5));
+        console.log('add cart click for click that does exist, but wrong product ', await addCartClick(2, 1, 5));
+        console.log('add cart click for click that does exist, but wrong user ', await addCartClick(2, 5, 11));
+        //add buy click
+        console.log('add a buy click to a click with a cart. Click 1, product 5, user 5', await addBuyClick(1, 5, 5));
+        console.log('add buy click to click that doesnt exist', await addBuyClick(11, 5, 5));
+        console.log('add a buy click for product with click, but not cart. It should fail. Click 2, product 5, user 5', await addBuyClick(2, 5, 5));
+        console.log('add buy click for click 3, wrong product 11, right user 8', await addBuyClick(3, 11, 8));
+        console.log('add buy click for click 3, right product 10, wrong user 15', await addBuyClick(3, 10, 15));
+    } catch (error) {
+        console.error('error with seeding view clicks', error);
+    }
+    
+}
+
+
 // async function gettingHighlightedProducts() {
 //     try {
 //         const products = await getHighlightedProducts();
