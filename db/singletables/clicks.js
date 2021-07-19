@@ -109,9 +109,30 @@ async function addBuyClick(clickId, productId, userId) {
     }
 }
 
+async function removeFromCart(clickId, productId, userId) {
+    try {
+        const date = new Date();
+        const firstClick = await getClick(clickId);
+        if (firstClick.cartclick && firstClick.productid === productId && firstClick.userid === userId) {
+            const { rows: [ removeCart ]} = await client.query(`
+                UPDATE clicks
+                SET removecart = ${true},
+                removetime = $1
+                WHERE id = $2
+                RETURNING *;
+            `, [ date, clickId ]);
+            return removeCart;
+        }
+        return { message: 'error adding a buy click'}
+    } catch (error) {
+        console.error('error with addBuyClick()', error);
+    }
+}
+
 
 module.exports = {
 	addViewClick, 
     addCartClick,
-    addBuyClick
+    addBuyClick,
+    removeFromCart
 };

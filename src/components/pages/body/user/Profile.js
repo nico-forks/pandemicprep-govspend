@@ -35,6 +35,8 @@ export const Profile = ({
 	cart,
 	setCart,
 	setCartSize,
+	clicks,
+	setClicks,
 	setProfileCompleted,
 }) => {
 	//CURRENT VIEWS: login register guest userCheckout edit fulledit checkout-register

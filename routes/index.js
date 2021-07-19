@@ -55,4 +55,7 @@ apiRouter.use('/admin', adminRouter);
 const cartRouter = require('./cart');
 apiRouter.use('/cart', cartRouter);
 
+const clicksRouter = require('./clicks');
+apiRouter.use('/clicks', clicksRouter);
+
 module.exports = apiRouter;

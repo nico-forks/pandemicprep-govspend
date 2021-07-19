@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
+import { addClick } from '../../../../api/clicks';
 
 import './Productlist.css';
 import '../MainBody.css';
@@ -11,6 +12,9 @@ export const Productlist = ({
 	NavLink,
 	category,
 	useHistory,
+	clicks,
+	setClicks,
+	user
 }) => {
 
 	const history = useHistory();
@@ -34,6 +38,13 @@ export const Productlist = ({
 								to='/product'
 								onClick={(event) => {
 									setProduct(singleProduct);
+									
+									if (user.id > 0) addClick('view', null, singleProduct.id, user.id, user.token).then(data => {
+										const newData = clicks.map(item => item);
+										newData.push(data);
+										setClicks(newData);
+										console.log(data);
+									})
 								}}
 							>
 								<div key={i} className='product'>

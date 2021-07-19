@@ -23,8 +23,8 @@ const productArray = require("./singletables/productObject");
 //
 async function seed() {
     try {
-        // await createNewUsers();
-        // await fillUsers();
+        await createNewUsers();
+        await fillUsers();
         // await gettingAllUsers();
         // await creatingOneNewProduct();
         // await fileWriting();  //ran only one time to write the users into a file
@@ -142,7 +142,7 @@ async function createNewUsers() {
 //add 2000 random US users. The function takes very long to execute. About 5 mins or more.
 async function fillUsers() {
     try {
-        // const data = await fetch('https://randomuser.me/api/?results=2000&nat=us');
+        const data = await fetch('https://randomuser.me/api/?results=2&nat=us');
         const newUsers = (await data.json()).results;
         // console.log(newUsers);
         const length = newUsers.length;

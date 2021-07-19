@@ -56,7 +56,16 @@ const App = () => {
 	const history = useHistory();
 	const [profileCompleted, setProfileCompleted] = useState(false);
 
+	//new for govspend
+	const [clicks, setClicks] = useState([]);
+
 	
+	//for development only
+	useEffect(() => {
+		console.log(clicks);
+	}, [clicks]);
+
+
 	
 	useEffect(() => {
 		
@@ -155,6 +164,9 @@ const App = () => {
 							NavLink={NavLink}
 							setProduct={setProduct}
 							useHistory={useHistory}
+							clicks={clicks}
+							setClicks={setClicks}
+							user={user}
 						/>
 						<Categories
 							setProducts={setProducts}
@@ -179,6 +191,9 @@ const App = () => {
 								pageType={pageType}
 								setPageType={setPageType}
 								useHistory={useHistory}
+								clicks={clicks}
+								setClicks={setClicks}
+								user={user}
 							/>
 							<PageIndex
 								searchObject={searchObject}
@@ -270,6 +285,8 @@ const App = () => {
 							cart={cart}
 							setCartSize={setCartSize}
 							user={user}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 						<Categories
 							setProducts={setProducts}
@@ -292,6 +309,8 @@ const App = () => {
 							setView={setView}
 							useHistory={useHistory}
 							profileCompleted={profileCompleted}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 					</Route>
 
