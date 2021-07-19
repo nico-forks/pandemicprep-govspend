@@ -111,6 +111,7 @@ async function addBuyClick(clickId, productId, userId) {
 
 async function removeFromCart(clickId, productId, userId) {
     try {
+        
         const date = new Date();
         const firstClick = await getClick(clickId);
         if (firstClick.cartclick && firstClick.productid === productId && firstClick.userid === userId) {
@@ -123,16 +124,36 @@ async function removeFromCart(clickId, productId, userId) {
             `, [ date, clickId ]);
             return removeCart;
         }
-        return { message: 'error adding a buy click'}
+        return { message: 'error removing a cart click'}
     } catch (error) {
-        console.error('error with addBuyClick()', error);
+        console.error('error with removeFromCart()', error);
     }
 }
 
+async function getUserClicks(userId) {
+    try {
+        
+            const { rows: data } = await client.query(`
+                SELECT * 
+                FROM clicks
+                WHERE userid = $1 AND
+                cartclick = $2 AND
+                removecart = $3 AND
+                buyclick = $4;
+            `, [ userId, true, false, false ]);
+            console.log('userid', userId, 'data', data);
+            if (data) return data;
+            return [];
+        
+    } catch (error) {
+        console.error('error with getUserClicks()', error);
+    }
+}
 
 module.exports = {
 	addViewClick, 
     addCartClick,
     addBuyClick,
-    removeFromCart
+    removeFromCart,
+    getUserClicks
 };

@@ -8,8 +8,9 @@ import './Promoted.css';
 import 'react-animated-slider/build/horizontal.css';
 
 import { getPromotedProducts, getProductById } from '../../../../api/products';
+import { addClick } from '../../../../api/clicks';
 
-export const Promoted = ({ NavLink, setProduct, useHistory }) => {
+export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, user }) => {
 	const [content, setContent] = useState([]);
 	const history = useHistory();
 
@@ -49,6 +50,14 @@ export const Promoted = ({ NavLink, setProduct, useHistory }) => {
 						
 						onClick={() => {
 							fetchPromotedProduct(item, index);
+							//analytics
+							if (user.id > 0) addClick('view', null, item.id, user.id, user.token).then(data => {
+								const newData = clicks.map(thisItem => thisItem);
+								newData.push(data);
+								setClicks(newData);
+								console.log(data);
+							});
+							//end analytics
 						}}
 					>
 						<div className='image-container'>

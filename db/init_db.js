@@ -111,7 +111,7 @@ async function createTables() {
         cartclick BOOLEAN DEFAULT FALSE,
         carttime TIMESTAMP,
         removecart BOOLEAN DEFAULT FALSE,
-        removtime TIMESTAMP,
+        removetime TIMESTAMP,
         buyclick BOOLEAN DEFAULT FALSE,
         buytime TIMESTAMP,
         productid INTEGER REFERENCES products(id),

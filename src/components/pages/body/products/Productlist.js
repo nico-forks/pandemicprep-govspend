@@ -39,12 +39,14 @@ export const Productlist = ({
 								onClick={(event) => {
 									setProduct(singleProduct);
 									
+									//analytics
 									if (user.id > 0) addClick('view', null, singleProduct.id, user.id, user.token).then(data => {
 										const newData = clicks.map(item => item);
 										newData.push(data);
 										setClicks(newData);
 										console.log(data);
 									})
+									//end analytics
 								}}
 							>
 								<div key={i} className='product'>

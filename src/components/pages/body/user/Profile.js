@@ -272,6 +272,13 @@ export const Profile = ({
 					history.push('/');
 					return;
 				} else if (view === 'userCheckout') {
+					//analytics 
+					const finalClicks = cart.map(item => {
+						//compare cart to clicks, add a click that is this product and has both view and cart and remove false
+					})
+
+
+
 					setCart(await deactivateCart({ userId: user.id, cartId: cart.id }, user.token));
 					setCartSize(0);
 					history.push('/success');

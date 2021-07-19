@@ -1,5 +1,6 @@
 /** @format */
 import { getProductsByCategory } from '../api/products';
+import { getClicks } from '../api/clicks';
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -96,6 +97,8 @@ const App = () => {
 							isUser: response.isUser,
 							token: response.token,
 						});
+						//get clicks
+						getClicks(response.token).then(data => setClicks(data));
 						setCart(response.activeCart);
 						setCartSize(response.activeCart.cartQuantity);
 					} else {

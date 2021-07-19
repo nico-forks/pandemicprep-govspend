@@ -1,14 +1,30 @@
 const express = require('express');
 const clicksRouter = express.Router();
 
-const { addViewClick, addCartClick, addBuyClick, removeFromCart } = require('../db/singletables/clicks');
+const { addViewClick, addCartClick, addBuyClick, removeFromCart, getUserClicks } = require('../db/singletables/clicks');
 
+
+
+
+
+
+clicksRouter.get('/', async function (req, res) {
+    console.log('getting to get clicks...')
+    if (req.user) {
+        try {
+            const clicks = await getUserClicks(req.user.id);
+            res.send(clicks);
+        } catch (error) {
+            console.error('error getting to the clicks', error);
+        }
+    }
+})
 
 
 //Add view click to a product
 
 clicksRouter.post('/view', async (req, res) => {
-    console.log('getting to the add view at the back...')
+    
     if (req.user) {
 		const { productId, userId } = req.body;
         try {
@@ -16,7 +32,7 @@ clicksRouter.post('/view', async (req, res) => {
             
             res.send(newViewClick);
         } catch (error) {
-            console.error('Error at the router post /addview', error);
+            console.error('Error at the router post /view', error);
         }
     
 } else {
@@ -33,7 +49,7 @@ clicksRouter.post('/cart', async (req, res) => {
             
             res.send(newCartClick);
         } catch (error) {
-            console.error('Error at the router post /addview', error);
+            console.error('Error at the router post /cart', error);
         }
     
 } else {
@@ -50,7 +66,7 @@ clicksRouter.post('/buy', async (req, res) => {
             
             res.send(newBuyClick);
         } catch (error) {
-            console.error('Error at the router post /addview', error);
+            console.error('Error at the router post /buy', error);
         }
     
 } else {
@@ -66,7 +82,7 @@ clicksRouter.post('/remove', async (req, res) => {
             
             res.send(newRemove);
         } catch (error) {
-            console.error('Error at the router post /addview', error);
+            console.error('Error at the router post /remove', error);
         }
     
 } else {

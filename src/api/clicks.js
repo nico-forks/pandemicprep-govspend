@@ -1,6 +1,24 @@
 import axios from 'axios';
 
 
+
+
+
+export async function getClicks(token) {
+    try {
+        const { data } = await axios.get('/api/clicks/', {
+			headers: { Authorization: 'Bearer ' + token },
+		}); 
+        console.log('the data being returned', data);
+        return data;
+    } catch (error) {
+        console.error('error getting clicks from api', error);
+    }
+}
+
+
+
+
 /**
  * 
  * @param {String} kindOfClick One of three kinds 'view', 'cart', 'buy', or 'remove'. This last one is when a product is removed from the cart
@@ -12,7 +30,7 @@ import axios from 'axios';
  */
 
 export async function addClick(kindOfClick, clickId, productId, userId, token) {
-    console.log('getting to the api');
+    
     try {
         
         let payload = kindOfClick === 'view' ? {productId, userId} : {clickId, productId, userId};
@@ -23,6 +41,6 @@ export async function addClick(kindOfClick, clickId, productId, userId, token) {
         
 		return click;
 	} catch (error) {
-		console.error('Error adding view click from the api', error);
+		console.error('Error adding or removing click from the api', error);
 	}
 }
