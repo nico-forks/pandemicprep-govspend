@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Stripe, stripeConnection } from '../orders/Stripe';
 import { Form, Button } from 'react-bootstrap';
+import Promise from 'bluebird';
+
+import { addClick } from '../../../../api/clicks';
 
 import {
 	addUser,
@@ -272,12 +275,26 @@ export const Profile = ({
 					history.push('/');
 					return;
 				} else if (view === 'userCheckout') {
-					//analytics 
-					const finalClicks = cart.map(item => {
+					
+					//analytics --- not working yet
+					
+					const finalClicks = clicks.filter(clickItem => {
 						//compare cart to clicks, add a click that is this product and has both view and cart and remove false
+						
+						if (cart.items.some(cartItem => {
+							if (cartItem.productId === clickItem.productid && clickItem.cartclick && !clickItem.removeclick) return true;
+					})) return true;
+				});
+					const newClicks = clicks.map(item => item);
+					
+					Promise.each(finalClicks, async (click) => {
+						newClicks.splice(newClicks.map(newClick => newClick.id).indexOf(click.id), 1);
+						
+						const updatedClick = await addClick('buy', click.id, click.productid, click.userid, user.token);
+						newClicks.push(updatedClick);
 					})
-
-
+					setClicks(newClicks);
+					//end analytics
 
 					setCart(await deactivateCart({ userId: user.id, cartId: cart.id }, user.token));
 					setCartSize(0);

@@ -40,8 +40,7 @@ export const Cart = ({
 			const [ thisClick ] = clicks.filter(item => {
 				return (item.productid === product.id && item.cartclick && !item.removeclick)
 			});
-			console.log('this click', thisClick);
-			console.log('this product:', product.id, 'clicks', clicks);
+			
 			addClick('remove', thisClick.id, thisClick.productid, thisClick.userid, user.token).then(data => {
 				const newClicks = clicks.map(item => item);
 				newClicks.filter(item => item.id != data.id);

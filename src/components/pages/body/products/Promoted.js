@@ -55,7 +55,7 @@ export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, u
 								const newData = clicks.map(thisItem => thisItem);
 								newData.push(data);
 								setClicks(newData);
-								console.log(data);
+								
 							});
 							//end analytics
 						}}

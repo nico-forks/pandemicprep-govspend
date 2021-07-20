@@ -57,14 +57,11 @@ const App = () => {
 	const history = useHistory();
 	const [profileCompleted, setProfileCompleted] = useState(false);
 
-	//new for govspend
+	//new for analytics
 	const [clicks, setClicks] = useState([]);
 
 	
-	//for development only
-	useEffect(() => {
-		console.log(clicks);
-	}, [clicks]);
+
 
 
 	
@@ -279,6 +276,8 @@ const App = () => {
 							setCartSize={setCartSize}
 							user={user}
 							setProfileCompleted={setProfileCompleted}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 					</Route>
 					<Route path='/product'>

@@ -44,7 +44,7 @@ export const Productlist = ({
 										const newData = clicks.map(item => item);
 										newData.push(data);
 										setClicks(newData);
-										console.log(data);
+										
 									})
 									//end analytics
 								}}
