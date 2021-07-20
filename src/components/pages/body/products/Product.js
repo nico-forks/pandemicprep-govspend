@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
+
 import './Product.css';
 
 import { addProductToCart, patchCartItemQuantity } from '../../../../api/cart';
 import { addProductToGuestCart } from '../../../index';
+import { addClick } from '../../../../api/clicks';
 
-export const Product = ({ product, setCart, cart, user, setCartSize }) => {
+export const Product = ({ product, setCart, cart, user, setCartSize, clicks, setClicks }) => {
 	
 	
 	const history = useHistory();
@@ -60,6 +62,18 @@ export const Product = ({ product, setCart, cart, user, setCartSize }) => {
 						console.error(error);
 					});
 			}
+
+			//analytics
+			const lastClick = clicks[clicks.length - 1];
+			const newClicks = clicks.map(item => item);
+			newClicks.pop();
+			if (lastClick.productid === product.id && lastClick.userid === user.id) {
+				addClick('cart', lastClick.id, product.id, user.id, user.token).then(data => {
+					newClicks.push(data);
+					setClicks(newClicks);
+				})
+			}
+			//end analytics
 		} else {
 			addProductToGuestCart(cart, product).then((result) => {
 				setCart(result);

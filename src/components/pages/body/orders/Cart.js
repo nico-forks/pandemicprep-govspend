@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Stripe } from '../orders/Stripe';
 import { Button, Container, Col, Row, InputGroup, FormControl } from 'react-bootstrap';
+import { addClick } from '../../../../api/clicks';
 
 import './Cart.css';
 
@@ -24,6 +25,8 @@ export const Cart = ({
 	setView,
 	useHistory,
 	profileCompleted,
+	clicks,
+	setClicks
 }) => {
 	const history = useHistory();
 	const [shipping, setShipping] = useState(5);
@@ -31,6 +34,22 @@ export const Cart = ({
 	const removeHandler = (product) => {
 		const productId = product.id;
 		if (user.firstName !== 'Guest') {
+
+			//analytics
+			
+			const [ thisClick ] = clicks.filter(item => {
+				return (item.productid === product.id && item.cartclick && !item.removeclick)
+			});
+			
+			addClick('remove', thisClick.id, thisClick.productid, thisClick.userid, user.token).then(data => {
+				const newClicks = clicks.map(item => item);
+				newClicks.filter(item => item.id != data.id);
+				newClicks.push(data);
+				setClicks(newClicks);
+				
+			})
+			//end of analytics
+
 			removeProductFromCart(
 				{ cartId: cart.id, products_cartsId: product.jointId },
 				user.token,

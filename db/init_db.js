@@ -48,7 +48,7 @@ async function createTables() {
         "imageDescription" varchar(255)
       );
 
-      /*
+      
       CREATE TABLE users (
         id SERIAL PRIMARY KEY,
         "isAdmin" BOOLEAN DEFAULT false,
@@ -68,7 +68,7 @@ async function createTables() {
         phone varchar(20),
         "creditCard" varchar(255)
       );
-      */
+      
 
       CREATE TABLE carts (
         id SERIAL PRIMARY KEY,
@@ -104,6 +104,20 @@ async function createTables() {
         "itemTotal" DECIMAL NOT NULL
       );
 
+      CREATE TABLE clicks (
+        id SERIAL PRIMARY KEY,
+        viewclick BOOLEAN DEFAULT TRUE,
+        viewtime TIMESTAMP,
+        cartclick BOOLEAN DEFAULT FALSE,
+        carttime TIMESTAMP,
+        removecart BOOLEAN DEFAULT FALSE,
+        removetime TIMESTAMP,
+        buyclick BOOLEAN DEFAULT FALSE,
+        buytime TIMESTAMP,
+        productid INTEGER REFERENCES products(id),
+        userid INTEGER REFERENCES users(id)
+      );
+
       
     `);
     } catch (error) {
@@ -114,11 +128,12 @@ async function createTables() {
 async function dropTables() {
     try {
         await client.query(`
+      DROP TABLE IF EXISTS clicks;
       DROP TABLE IF EXISTS products_carts;
       DROP TABLE IF EXISTS products_categories;
       DROP TABLE IF EXISTS reviews;
       DROP TABLE IF EXISTS carts;
-      /* DROP TABLE IF EXISTS users CASCADE; */
+      DROP TABLE IF EXISTS users CASCADE;
       DROP TABLE IF EXISTS categories;
       DROP TABLE IF EXISTS products;
     `);
