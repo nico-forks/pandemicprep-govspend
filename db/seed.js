@@ -24,21 +24,22 @@ const productArray = require("./singletables/productObject");
 //
 async function seed() {
     try {
-        // await createNewUsers();
-        // await fillUsers();
+        await createNewUsers();
+        await fillUsers();
 
-        await seedClicks();
+        
         
         // await gettingAllUsers();
         // await creatingOneNewProduct();
         
 
-        // await seedingProductObject();
-        // await gettingProductsByQuery();
-        // await updatingUsers();
-        // await gettingUserById();
-        // await clicks();
+        await seedingProductObject();
+        await gettingProductsByQuery();
+        await updatingUsers();
+        await gettingUserById();
+        await clicks();
         
+        await seedClicks();
         // await gettingCategoryIdsByName();
         // await addingOneCart();
         // await seedingInitialReviews();

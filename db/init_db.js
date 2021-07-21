@@ -11,9 +11,9 @@ async function buildTables() {
     try {
         client.connect();
 
-        // await dropTables();
+        await dropTables();
 
-        // await createTables();
+        await createTables();
     } catch (error) {
         throw error;
     }
