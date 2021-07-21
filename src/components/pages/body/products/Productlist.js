@@ -40,7 +40,7 @@ export const Productlist = ({
 									setProduct(singleProduct);
 									
 									//analytics
-									if (user.id > 0) addClick('view', null, singleProduct.id, user.id, user.token).then(data => {
+									if (user.id > 0) addClick('view', null, singleProduct.id, user.id, null, user.token).then(data => {
 										const newData = clicks.map(item => item);
 										newData.push(data);
 										setClicks(newData);

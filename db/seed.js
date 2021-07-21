@@ -9,6 +9,7 @@ const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductByI
 const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
 const { addReview } = require('./singletables/reviews');
 const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
+const { seedClicks } = require('./utils/utils');
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -23,18 +24,20 @@ const productArray = require("./singletables/productObject");
 //
 async function seed() {
     try {
-        await createNewUsers();
-        await fillUsers();
+        // await createNewUsers();
+        // await fillUsers();
+
+        await seedClicks();
+        
         // await gettingAllUsers();
         // await creatingOneNewProduct();
-        // await fileWriting();  //ran only one time to write the users into a file
+        
 
-        await seedingProductObject();
-        await gettingProductsByQuery();
-        await updatingUsers();
-        await gettingUserById();
-
-        await clicks();
+        // await seedingProductObject();
+        // await gettingProductsByQuery();
+        // await updatingUsers();
+        // await gettingUserById();
+        // await clicks();
         
         // await gettingCategoryIdsByName();
         // await addingOneCart();
@@ -142,7 +145,8 @@ async function createNewUsers() {
 //add 2000 random US users. The function takes very long to execute. About 5 mins or more.
 async function fillUsers() {
     try {
-        const data = await fetch('https://randomuser.me/api/?results=2&nat=us');
+        //results=50 for development, 1950 final
+        const data = await fetch('https://randomuser.me/api/?results=50&nat=us');
         const newUsers = (await data.json()).results;
         // console.log(newUsers);
         const length = newUsers.length;

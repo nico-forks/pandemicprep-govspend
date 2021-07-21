@@ -11,9 +11,9 @@ async function buildTables() {
     try {
         client.connect();
 
-        await dropTables();
+        // await dropTables();
 
-        await createTables();
+        // await createTables();
     } catch (error) {
         throw error;
     }
@@ -115,7 +115,8 @@ async function createTables() {
         buyclick BOOLEAN DEFAULT FALSE,
         buytime TIMESTAMP,
         productid INTEGER REFERENCES products(id),
-        userid INTEGER REFERENCES users(id)
+        userid INTEGER REFERENCES users(id),
+        cartid INTEGER REFERENCES carts(id)
       );
 
       

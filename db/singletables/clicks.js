@@ -20,11 +20,11 @@ async function addViewClick(productId, userId) {
 			rows: [ click ],
 		} = await client.query(
 			`
-        INSERT INTO clicks (viewclick, viewtime, productid, userid)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO clicks (viewclick, viewtime, productid, userid, cartid)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *;
     `,
-			[true, time, productId, userId],
+			[true, time, productId, userId, null],
 		);
 		
 		if (click) return click;
@@ -61,7 +61,7 @@ async function getClick(clickId) {
  * @returns {object} a click object {id, viewclick, viewtime, cartclick, carttime, buyclic, buytime, productid, userid}
  * or a {message} in the case of failure.
  */
-async function addCartClick(clickId, productId, userId) {
+async function addCartClick(clickId, productId, userId, cartId) {
     try {
         const date = new Date();
         const firstClick = await getClick(clickId);
@@ -69,10 +69,11 @@ async function addCartClick(clickId, productId, userId) {
             const { rows: [ cartClick ]} = await client.query(`
                 UPDATE clicks
                 SET cartclick = ${true},
-                carttime = $1
-                WHERE id = $2
+                carttime = $1,
+                cartid = $2
+                WHERE id = $3
                 RETURNING *;
-            `, [ date, clickId ]);
+            `, [ date, cartId, clickId ]);
             return cartClick;
         }
         return { message: 'error adding a cart click'}

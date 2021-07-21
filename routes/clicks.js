@@ -40,12 +40,12 @@ clicksRouter.post('/view', async (req, res) => {
 }
 });
 
-//Add view click to a product
+//Add cart click to a product
 clicksRouter.post('/cart', async (req, res) => {
     if (req.user) {
-		const { clickId,productId, userId } = req.body;
+		const { clickId,productId, userId, cartId } = req.body;
         try {
-            const newCartClick = await addCartClick(clickId, productId, userId);
+            const newCartClick = await addCartClick(clickId, productId, userId, cartId);
             
             res.send(newCartClick);
         } catch (error) {
@@ -57,7 +57,7 @@ clicksRouter.post('/cart', async (req, res) => {
 }
 });
 
-//Add view click to a product
+//Add buy click to a product
 clicksRouter.post('/buy', async (req, res) => {
     if (req.user) {
 		const { clickId, productId, userId } = req.body;
@@ -74,6 +74,7 @@ clicksRouter.post('/buy', async (req, res) => {
 }
 });
 
+//add remove from cart click to a product
 clicksRouter.post('/remove', async (req, res) => {
     if (req.user) {
 		const { clickId, productId, userId } = req.body;
