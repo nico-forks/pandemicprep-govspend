@@ -267,7 +267,7 @@ async function getAllProductsCart() {
  * @param {integer} param0
  */
 async function removeProductFromCart({ userId, cartId, products_cartsId }) {
-	console.log('im getting to remove product from cart...');
+	
 	try {
 		const deleted = await client.query(
 			`

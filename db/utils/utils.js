@@ -4,9 +4,9 @@ const Promise = require('bluebird');
 const { deactivateCart, getActiveCart, addCart, removeProductFromCart, addProductToCart } = require('../singletables/cart');
 const { flip } = require('lodash');
 
-const userSize = 50;        //the number of users in the db
+const userSize = 1980;        //the number of users in the db
 const productSize = 231;    //The number of products in the db
-const numberOfSessions = 10; //will seed this many sessions
+const numberOfSessions = 2000; //will seed this many sessions
 /*
 -select random user and date.
 -random user clicks a random number of products.
@@ -41,7 +41,7 @@ async function userSession() {
         //a user's session. May view many items, may put some in cart, may remove some, may or may not buy the cart.
         await Promise.each(actionsArray, async (action) => {
             try {
-                const productId = Math.floor(Math.random() * productSize);
+                const productId = Math.floor((Math.random() * (productSize - 1)) + 1);
                 
                 //add one view click
                 const { rows: [ click ]} = await client.query(`
@@ -50,7 +50,7 @@ async function userSession() {
                     RETURNING *;
         `, [true, date, productId, userId, null]);
 
-        console.log('clicked product', productId, 'for user', userId);
+        
 
             //now I have userId, productId, date, and click.
             //if flip coin is true then:
@@ -76,7 +76,7 @@ async function userSession() {
                     WHERE id = $3;
                 `, [ true, date, click.id ]);
 
-                console.log('added product ', productId, 'to cart ', cartId, ' also added cart-click');
+                
                 //flip coint again to decide to remove or not to
                 if (flipCoin()) {
                     //remove from click (add removecart = true)
@@ -98,7 +98,7 @@ async function userSession() {
                     
                     await removeProductFromCart({ userId, cartId, products_cartsId: productsCartsId});
 
-                    console.log('removed click and product from cart. Product', productId, 'prouducts_carts id', productsCartsId, 'cart', cartId);
+                    
                 }
 
                 }
@@ -131,7 +131,7 @@ async function userSession() {
                     WHERE cartid = $3;
                 `, [true, date, cartId]);
 
-                console.log('bought cart. cart', cartId, 'will go to processing, user', userId, 'gets new cart', cart.id);
+                
             }
             
 
@@ -148,7 +148,7 @@ async function userSession() {
 async function seedClicks() {
     try {
         const array = [];
-        for (let i = 0; i < numbereOfSessions; i++) {
+        for (let i = 0; i < numberOfSessions; i++) {
             array.push(i);
         }
         await Promise.each(array, async () => {
