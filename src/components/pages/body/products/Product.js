@@ -68,7 +68,7 @@ export const Product = ({ product, setCart, cart, user, setCartSize, clicks, set
 			const newClicks = clicks.map(item => item);
 			newClicks.pop();
 			if (lastClick.productid === product.id && lastClick.userid === user.id) {
-				addClick('cart', lastClick.id, product.id, user.id, user.token).then(data => {
+				addClick('cart', lastClick.id, product.id, user.id, cart.id, user.token).then(data => {
 					newClicks.push(data);
 					setClicks(newClicks);
 				})

@@ -41,7 +41,7 @@ export const Cart = ({
 				return (item.productid === product.id && item.cartclick && !item.removeclick)
 			});
 			
-			addClick('remove', thisClick.id, thisClick.productid, thisClick.userid, user.token).then(data => {
+			addClick('remove', thisClick.id, thisClick.productid, thisClick.userid, null, user.token).then(data => {
 				const newClicks = clicks.map(item => item);
 				newClicks.filter(item => item.id != data.id);
 				newClicks.push(data);

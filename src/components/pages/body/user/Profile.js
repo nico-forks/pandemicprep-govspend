@@ -276,7 +276,7 @@ export const Profile = ({
 					return;
 				} else if (view === 'userCheckout') {
 					
-					//analytics --- not working yet
+					//analytics
 					
 					const finalClicks = clicks.filter(clickItem => {
 						//compare cart to clicks, add a click that is this product and has both view and cart and remove false
@@ -290,7 +290,7 @@ export const Profile = ({
 					Promise.each(finalClicks, async (click) => {
 						newClicks.splice(newClicks.map(newClick => newClick.id).indexOf(click.id), 1);
 						
-						const updatedClick = await addClick('buy', click.id, click.productid, click.userid, user.token);
+						const updatedClick = await addClick('buy', click.id, click.productid, click.userid, null, user.token);
 						newClicks.push(updatedClick);
 					})
 					setClicks(newClicks);

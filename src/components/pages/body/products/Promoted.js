@@ -51,7 +51,7 @@ export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, u
 						onClick={() => {
 							fetchPromotedProduct(item, index);
 							//analytics
-							if (user.id > 0) addClick('view', null, item.id, user.id, user.token).then(data => {
+							if (user.id > 0) addClick('view', null, item.id, user.id, null, user.token).then(data => {
 								const newData = clicks.map(thisItem => thisItem);
 								newData.push(data);
 								setClicks(newData);
