@@ -175,7 +175,7 @@ async function getActiveCartAlone(userId) {
 async function addProductToCart({ userId, productId, cartId, quantity, unitPrice }) {
 	
 	try {
-		const itemTotal = quantity * unitPrice;
+		const itemTotal = Math.round(((quantity * unitPrice) + Number.EPSILON) * 100) / 100;
 		await client.query(
 			`
               INSERT INTO products_carts ("productId", "cartId", quantity, "unitPrice", "itemTotal")
@@ -189,7 +189,7 @@ async function addProductToCart({ userId, productId, cartId, quantity, unitPrice
 		let total = 0;
 		let cartQuantity = 0;
 		cart.items.map((item) => {
-			total = total + item.itemTotal;
+			total = Math.round(((total + item.itemTotal) + Number.EPSILON) * 100) / 100  ;
 			cartQuantity = cartQuantity + item.quantity;
 		});
 

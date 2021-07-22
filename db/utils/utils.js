@@ -4,9 +4,11 @@ const Promise = require('bluebird');
 const { deactivateCart, getActiveCart, addCart, removeProductFromCart, addProductToCart } = require('../singletables/cart');
 const { flip } = require('lodash');
 
-const userSize = 1980;        //the number of users in the db
+const userSize = 2000;        //the number of users in the db
 const productSize = 231;    //The number of products in the db
 const numberOfSessions = 2000; //will seed this many sessions
+const maxTimeDelta = 630000000;
+
 /*
 -select random user and date.
 -random user clicks a random number of products.
@@ -30,7 +32,7 @@ async function userSession() {
     const initialDate = Math.floor(new Date(2020, 0).getTime());
     const finalDate = Math.floor(new Date(2021, 0).getTime());
     const dateEpoch = Math.floor((Math.random() * (finalDate - initialDate)) + initialDate);
-    const date = new Date(dateEpoch);
+    let date = new Date(dateEpoch);
     const numberOfActions = Math.floor((Math.random() * 40) + 1);
     const actionsArray = [];
     for (let i = 0; i < numberOfActions; i++) { actionsArray.push(i); }
@@ -68,6 +70,8 @@ async function userSession() {
                 //add this product to cart (products_carts)
                 await addProductToCart({ userId, productId, cartId, quantity: 1, unitPrice});
 
+                date = new Date(date.valueOf() + timeDelta());
+                
                 //now add cart-click to this click
                 await client.query(`
                     UPDATE clicks
@@ -80,6 +84,8 @@ async function userSession() {
                 //flip coint again to decide to remove or not to
                 if (flipCoin()) {
                     //remove from click (add removecart = true)
+                    date = new Date(date.valueOf() + timeDelta());
+                    
                     await client.query(`
                         UPDATE clicks
                         set removecart = $1,
@@ -123,6 +129,8 @@ async function userSession() {
                 //change all the clicks that have that cartId into buy=true
                 const cart = await deactivateCart({userId, cartId});
 
+                date = new Date(date.valueOf() + timeDelta());
+                
                 //update all clicks to reflect buying
                 await client.query(`
                     UPDATE clicks
@@ -166,6 +174,10 @@ async function seedClicks() {
 
 function flipCoin() {
     return Math.random() < 0.5;
+}
+
+function timeDelta() {
+    return Math.floor(Math.random() * maxTimeDelta);
 }
 
 module.exports = { 

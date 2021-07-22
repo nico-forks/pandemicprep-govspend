@@ -38,7 +38,7 @@ async function seed() {
         // await updatingUsers();
         // await gettingUserById();
         // await clicks();
-        // await seedClicks();
+        await seedClicks();
 
         // await gettingCategoryIdsByName();
         // await addingOneCart();
