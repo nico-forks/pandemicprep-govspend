@@ -10,6 +10,7 @@ const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCa
 const { addReview } = require('./singletables/reviews');
 const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
 const { seedClicks } = require('./utils/utils');
+const { salesQuery } = require('./analytics');
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -27,6 +28,7 @@ async function seed() {
         // await createNewUsers();
         // await fillUsers();
 
+        await salesQuery({});
         
         
         // await gettingAllUsers();
@@ -38,7 +40,7 @@ async function seed() {
         // await updatingUsers();
         // await gettingUserById();
         // await clicks();
-        await seedClicks();
+        // await seedClicks();
 
         // await gettingCategoryIdsByName();
         // await addingOneCart();
