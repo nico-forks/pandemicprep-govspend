@@ -10,7 +10,7 @@ const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCa
 const { addReview } = require('./singletables/reviews');
 const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
 const { seedClicks } = require('./utils/utils');
-const { salesQuery } = require('./analytics');
+const { salesQuery } = require('./sales');
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -28,8 +28,11 @@ async function seed() {
         // await createNewUsers();
         // await fillUsers();
 
-        await salesQuery({});
-        
+        //These three test the sales query
+        // await salesQuery({category: ['food', 'house'], username: ['john', 'susan'], age: [{from: 25, to: 45}], city: ['Jacksonville', 'Orlando']});
+        // await salesQuery({category: [4], product: [135]});
+        // await salesQuery({category: [4]});
+        // await salesQuery();
         
         // await gettingAllUsers();
         // await creatingOneNewProduct();

@@ -195,5 +195,5 @@ function tableName(property, counter) {
 }
 
 
-module.exports = { analyticsQuery }
+module.exports = { salesQuery }
 
