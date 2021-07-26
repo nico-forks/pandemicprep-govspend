@@ -222,6 +222,53 @@ async function getUserByEmail(email) {
 	}
 }
 
+async function getCities() {
+	try {
+		const { rows } = await client.query(`
+			SELECT city || ', ' || state || ', ' || country AS location
+			FROM users
+			GROUP BY location
+			ORDER BY location;
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('getCities');
+	} catch (error) {
+		console.error('error with getCities at the users db', error);
+	}
+}
+
+async function getZipcodes() {
+	try {
+		const { rows } = await client.query(`
+			SELECT zipcode || ', ' || country AS code
+			FROM users
+			GROUP BY code
+			ORDER BY code;
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('getZipcodes');
+	} catch (error) {
+		console.error('error with getZipcodes at the users db', error);
+	}
+}
+
+
+//abandoned feature
+// async function getAllUsernames() {
+// 	try {
+// 		const { rows } = await client.query(`
+// 			SELECT id, "firstName", "lastName"
+// 			FROM users
+// 		`);
+
+// 		if (Array.isArray(rows)) return rows;
+// 		throw error;
+
+// 	} catch (error) {
+// 		console.error('error at getAllUsernames in users db', error);
+// 	}
+// }
+
 
 
 module.exports = {
@@ -231,4 +278,6 @@ module.exports = {
 	updateUser,
 	getUserById,
 	getUserByEmail,
+	getCities,
+	getZipcodes
 };

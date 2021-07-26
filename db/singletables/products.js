@@ -353,6 +353,20 @@ async function addProduct_Categories(prodId, catId) {
 	}
 }
 
+//returns the ids and titles of all the products
+async function getAllProductNamesAndIds() {
+	try {
+		const { rows } = await client.query(`
+			SELECT id, title
+			FROM products
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('error retrieving products');
+	} catch (error) {
+		console.error('error with getAllProductNamesAndIds', error);
+	}
+}
+
 module.exports = {
 	getProductById,
 	addProductAndCategory,
@@ -363,5 +377,6 @@ module.exports = {
 	getProductsByCategory,
 	updateProduct,
 	addProduct_Categories,
+	getAllProductNamesAndIds,
 	getHighlightedProducts,
 };

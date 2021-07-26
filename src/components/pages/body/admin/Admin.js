@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 
-import { AdminProductList, Userlist, OrdersProcessing } from '../../../index';
+import { AdminProductList, Userlist, OrdersProcessing, Sales, SalesAnalysis } from '../../../index';
 import './Admin.css';
-import { Sales } from './Sales';
+
 
 export const Admin = ({ user, setUser, setCart }) => {
 	const [adminView, setAdminView] = useState('none');
@@ -47,6 +47,10 @@ export const Admin = ({ user, setUser, setCart }) => {
 				>
 					Sales Report
 				</Button>
+				<Button
+					onClick={() => setAdminView('salesanalysis')} >
+					Sales Analysis
+				</Button>
 			</div>
 
 			{adminView === 'none' ? (
@@ -83,6 +87,7 @@ export const Admin = ({ user, setUser, setCart }) => {
 			)}
 			{adminView === 'processing' ? <OrdersProcessing user={user} /> : ''}
 			{adminView === 'sales' ? <Sales user={user} /> : ''}
+			{adminView === 'salesanalysis' ? <SalesAnalysis user={user} /> : ''}
 		</>
 	);
 };

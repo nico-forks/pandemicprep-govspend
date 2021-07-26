@@ -1,0 +1,18 @@
+#salesanal {
+    margin-top: 0px;
+    background-color: white;
+    width: 100vw;
+    height: 90vh;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: 1fr 12fr;
+}
+
+.SAQueryContainer {
+    width: 25vw;
+    height: 90vh;
+    overflow-y: auto;
+    background-color: silver;
+    margin-left: 0px;
+    margin-bottom: 5px;
+}

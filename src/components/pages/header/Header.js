@@ -47,8 +47,7 @@ export const Header = ({
 		<div>
 			<div id='headerWrap' className='StreamsHero-image'>
 				<h1 id='prepared'>
-					Are you prepared for
-					<span id='doomsday'>DOOMSDAY?</span>
+					Are you prepared?
 				</h1>
 				<NavLink to='/news'>
 					<Button id='updatedButton' onClick={() => setCategory('')}>
