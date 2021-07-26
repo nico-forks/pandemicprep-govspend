@@ -316,20 +316,7 @@ const App = () => {
 						/>
 					</Route>
 
-					{user.isUser ? (
-						<Route path='/orders'>
-							<Orders user={user} />
-						</Route>
-					) : (
-						''
-					)}
-
-					<Route path='/user-list'>
-						<Userlist />
-					</Route>
-					<Route path='/sales'>
-						<Sales />
-					</Route>
+					
 					{user.isAdmin ? (
 						<Route path='/admin'>
 							<Admin product={products} setProducts={setProducts} user={user} />

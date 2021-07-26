@@ -139,7 +139,7 @@ async function salesQuery(incomingQuery = {}) {
         `, values);
         console.log(rows);
     } catch (error) {
-        console.error('error with master query', error);
+        console.error('error with master sales query', error);
     }
 }
 

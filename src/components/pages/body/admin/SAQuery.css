@@ -1,0 +1,69 @@
+.categoriesOuter {
+    width: 97%;
+    
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.title {
+    margin: 0px 10px;
+}
+.checkboxes {
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+}
+
+.checkboxLabel {
+    margin: 0px;
+}
+
+.checkboxGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    
+}
+
+.categoriesInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.select {
+    width: 90%;
+    height: 35px;
+    margin-top: 0px;
+}
+
+.selectInner {
+    margin: 0px 10px;
+}
+
+hr {
+    height: 5px;
+    margin: 0px;
+}
+
+.demoOuter {
+    width: 97%;
+    
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.genderInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.ageInner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.lastItem {
+    margin-bottom: 10px
+}

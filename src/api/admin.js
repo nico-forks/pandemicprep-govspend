@@ -34,6 +34,23 @@ export async function getAllProducts(pageNumber, token) {
 }
 
 /**
+ * 
+ * @param {String} token 
+ * @returns {Array} [{id, title}]
+ */
+export async function getAllProductNamesAndIds(token) {
+	
+	try {
+		const { data } = await axios.get('/api/products/all', {
+			headers: { Authorization: 'Bearer ' + token }});
+
+		return data;
+	} catch (error) {
+		console.error('error with getAllProductNamesAndIds at the api', error);
+	}
+}
+
+/**
  * Gets all processing orders (ADMIN)
  * @param {*} param0
  */
@@ -106,3 +123,34 @@ export async function getSalesReport(token) {
 		throw error;
 	}
 }
+
+export async function getCities(token) {
+	try {
+		const { data } = await axios.get(`/api/admin/cities`, {headers: { Authorization: 'Bearer ' + token }});
+		if (Array.isArray(data)) return data;
+		throw new Error('cities');
+	} catch (error) {
+		console.error('error at getCities in admin api', error);
+	}
+}
+
+export async function getZipcodes(token) {
+	try {
+		const { data } = await axios.get(`/api/admin/zipcodes`, {headers: { Authorization: 'Bearer ' + token }});
+		if (Array.isArray(data)) return data;
+		throw new Error('zipcodes');
+	} catch (error) {
+		console.error('error at getZipcodes in admin api', error);
+	}
+}
+
+//abandoned feature
+// export async function getAllUsernames(token) {
+// 	try {
+// 		const { usernames } = await axios.get(`/api/admin/users/names`, {
+// 			headers: { Authorization: 'Bearer ' + token },
+// 		});
+// 	} catch (error) {
+// 		console.error('error with the getAllUserNames at admin.js api', error);
+// 	}
+// }

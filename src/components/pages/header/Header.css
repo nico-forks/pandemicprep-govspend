@@ -40,6 +40,7 @@
 #headerWrap {
     display: flex !important;
     justify-content: center;
+    align-items: center;
     height: 60px;
     position: fixed;
     background-color: rgb(1, 0, 53);
@@ -48,14 +49,16 @@
 
 #headerWrap button {
     position: absolute;
+    top: 5px;
     right: 50px;
-    margin-top: 5px;
+    
 }
 /*ARE YOU PREPARED HEADER STYLING*/
 #prepared {
     font: bold 42px Helvetica, Sans-Serif;
     letter-spacing: -1px;
     color: white;
+    margin-top: 10px;
 }
 /*DOOMSDAY WORD (LARGE) BANNER STYLING*/
 #doomsday {
