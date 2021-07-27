@@ -12,7 +12,15 @@
     width: 25vw;
     height: 90vh;
     overflow-y: auto;
-    background-color: silver;
+    background-color: white;
     margin-left: 0px;
     margin-bottom: 5px;
+}
+
+.SAResultsContainer {
+    width: 75vw;
+    height: 90vh;
+    overflow-y: auto;
+    background-color: white;
+
 }

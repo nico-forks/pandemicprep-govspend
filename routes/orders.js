@@ -1,6 +1,6 @@
 const express = require('express');
 const ordersRouter = express.Router();
-const stripe = require('stripe')('sk_test_51HbAonE4JzAJB7t2idVGZHl8r5tInb2TseIYxrPXXR37hePbl8MEt2aZsLmBmAiNUWmq1aBn8XAPkQLu6suKNbDj00CleQPnYb');
+// const stripe = require('stripe')('sk_test_51HbAonE4JzAJB7t2idVGZHl8r5tInb2TseIYxrPXXR37hePbl8MEt2aZsLmBmAiNUWmq1aBn8XAPkQLu6suKNbDj00CleQPnYb');
 
 const {
     addCart,
@@ -34,31 +34,31 @@ ordersRouter.post('/', async (req, res, next) => {
     }
 });
 
-ordersRouter.post('/create-checkout-session', async (req, res) => {
+// ordersRouter.post('/create-checkout-session', async (req, res) => {
    
-  const {cart} = req.body
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'Total',
-            },
-            unit_amount: parseInt((cart.total * 100) + 500),
-          },
-          quantity: 1,
-        },
-      ],
-      mode: 'payment',
-      success_url: 'http://localhost:3000/success',
-      cancel_url: 'http://localhost:3000/',
-    });
+//   const {cart} = req.body
+//     const session = await stripe.checkout.sessions.create({
+//       payment_method_types: ['card'],
+//       line_items: [
+//         {
+//           price_data: {
+//             currency: 'usd',
+//             product_data: {
+//               name: 'Total',
+//             },
+//             unit_amount: parseInt((cart.total * 100) + 500),
+//           },
+//           quantity: 1,
+//         },
+//       ],
+//       mode: 'payment',
+//       success_url: 'http://localhost:3000/success',
+//       cancel_url: 'http://localhost:3000/',
+//     });
   
-    res.send({ id: session.id, session: session});
+//     res.send({ id: session.id, session: session});
     
-  });
+//   });
 
 module.exports = ordersRouter;
 

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Stripe, stripeConnection } from '../orders/Stripe';
+// import { Stripe, stripeConnection } from '../orders/Stripe';
 import { Form, Button } from 'react-bootstrap';
 import Promise from 'bluebird';
 

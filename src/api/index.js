@@ -13,7 +13,8 @@ export {
     getSalesReport,
     getAllProductNamesAndIds,
     getCities,
-    getZipcodes
+    getZipcodes,
+    getDeepSalesReport
 } from './admin'
 
 

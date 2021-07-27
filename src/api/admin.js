@@ -144,13 +144,13 @@ export async function getZipcodes(token) {
 	}
 }
 
-//abandoned feature
-// export async function getAllUsernames(token) {
-// 	try {
-// 		const { usernames } = await axios.get(`/api/admin/users/names`, {
-// 			headers: { Authorization: 'Bearer ' + token },
-// 		});
-// 	} catch (error) {
-// 		console.error('error with the getAllUserNames at admin.js api', error);
-// 	}
-// }
+export async function getDeepSalesReport(token, query = {}) {
+	console.log('api', query);
+	try {
+		const { data } = await axios.post(`/api/admin/sales`, query, {headers: { Authorization: 'Bearer ' + token }});
+		if (Array.isArray(data)) return data;
+		throw new Error('salesreport');
+	} catch (error) {
+		console.error('error at getSalesReport in admin api', error);
+	}
+} 

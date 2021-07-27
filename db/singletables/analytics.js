@@ -1,4 +1,4 @@
-const { client } = require('./client');
+const { client } = require('../client');
 const Promise = require('bluebird');
 const _ = require('lodash');
 
