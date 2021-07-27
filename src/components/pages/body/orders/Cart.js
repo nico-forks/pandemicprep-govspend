@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
-import { Stripe } from '../orders/Stripe';
+// import { Stripe } from '../orders/Stripe';
 import { Button, Container, Col, Row, InputGroup, FormControl } from 'react-bootstrap';
 import { addClick } from '../../../../api/clicks';
 
@@ -354,7 +354,8 @@ export const Cart = ({
 							</Row>
 						</Container>
 					) : (
-						<Stripe className='stripe-button' />
+						// <Stripe className='stripe-button' /> 
+						''
 					)}
 				</div>
 			</div>

@@ -15,11 +15,11 @@ async function addCart({ status, total, userId }) {
 			rows: [newCart],
 		} = await client.query(
 			`
-        INSERT INTO carts (status, date, time, total, "userId")
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO carts (status, date, time, timestamp, total, "userId")
+        VALUES ($1, $2, $3, $4, $5, $6)
         RETURNING *;
     `,
-			[status, getDate().date, getDate().time, total, userId],
+			[status, getDate().date, getDate().time, new Date(), total, userId],
 		);
 		newCart.total = parseFloat(newCart.total);
 
@@ -90,7 +90,7 @@ async function getProcessingCarts(pageNumber = 1) {
 		);
 
 		await Promise.mapSeries(carts, async function (cart, index, length) {
-			cart.total = parseFloat(cart.total);
+			cart.total = Math.round(((parseFloat(cart.total)) + Number.EPSILON) * 100) / 100;
 			const items = await getProductsCartForACartId(cart.id);
 			cart.items = items;
 			const user = await getUserById(cart.userId);
@@ -137,7 +137,7 @@ async function getActiveCart(userId) {
 
 		const items = await getProductsCartForACartId(await activeCart.id);
 
-		activeCart.total = parseFloat(activeCart.total);
+		activeCart.total = Math.round(((parseFloat(activeCart.total)) + Number.EPSILON) * 100) / 100;
 		activeCart.items = items;
 
 		if (activeCart !== undefined) {
@@ -233,7 +233,7 @@ async function getProductsCartForACartId(id) {
 		if (items) {
 			items.forEach((item) => {
 				item.unitPrice = parseFloat(item.unitPrice);
-				item.itemTotal = parseFloat(item.itemTotal);
+				item.itemTotal = Math.round(((parseFloat(item.itemTotal)) + Number.EPSILON) * 100) / 100;
 			});
 			return items;
 		} else {
@@ -254,7 +254,7 @@ async function getAllProductsCart() {
             `);
 		rows.forEach((item) => {
 			item.unitPrice = parseFloat(item.unitPrice);
-			item.itemTotal = parseFloat(item.itemTotal);
+			item.itemTotal = Math.round(((parseFloat(item.itemTotal)) + Number.EPSILON) * 100) / 100;
 		});
 		return rows;
 	} catch (error) {
@@ -283,7 +283,7 @@ async function removeProductFromCart({ userId, cartId, products_cartsId }) {
 		let total = 0;
 		let cartQuantity = 0;
 		cart.items.forEach((item) => {
-			total = total + item.itemTotal;
+			total =  Math.round(((total + item.itemTotal) + Number.EPSILON) * 100) / 100;
 			cartQuantity = cartQuantity + item.quantity;
 		});
 
@@ -319,7 +319,7 @@ async function removeProductFromCart({ userId, cartId, products_cartsId }) {
  */
 
 async function updateProductQuantity({ userId, jointId, quantity, unitPrice }) {
-	const itemTotal = unitPrice * quantity;
+	const itemTotal =  Math.round(((unitPrice * quantity) + Number.EPSILON) * 100) / 100;
 
 	try {
 		await client.query(
@@ -338,7 +338,7 @@ async function updateProductQuantity({ userId, jointId, quantity, unitPrice }) {
 		let total = 0;
 		let cartQuantity = 0;
 		cart.items.map((item) => {
-			total = total + item.itemTotal;
+			total = Math.round(((total + item.itemTotal) + Number.EPSILON) * 100) / 100;
 			cartQuantity = cartQuantity + item.quantity;
 		});
 
@@ -431,7 +431,7 @@ async function getUserOrderHistory(userId, pageNumber = 1) {
 		);
 
 		await Promise.mapSeries(carts, async function (cart, index, length) {
-			cart.total = parseFloat(cart.total);
+			cart.total =  Math.round(((parseFloat(cart.total)) + Number.EPSILON) * 100) / 100;
 			const items = await getProductsCartForACartId(cart.id);
 			cart.items = items;
 			const user = await getUserById(cart.userId);
@@ -466,7 +466,7 @@ async function getOrderHistory(pageNumber = 1) {
 		);
 
 		await Promise.mapSeries(carts, async function (cart, index, length) {
-			cart.total = parseFloat(cart.total);
+			cart.total =  Math.round(((parseFloat(cart.total)) + Number.EPSILON) * 100) / 100;
 			const items = await getProductsCartForACartId(cart.id);
 			cart.items = items;
 			const user = await getUserById(cart.userId);
@@ -486,10 +486,10 @@ async function lastUpdated(cartId) {
 		await client.query(
 			`
             UPDATE carts
-			SET date=$1, time=$2
-            WHERE id=$3;
+			SET date=$1, time=$2, timestamp=$3
+            WHERE id=$4;
         `,
-			[getDate().date, getDate().time, cartId],
+			[getDate().date, getDate().time, getDate().fullDate, cartId],
 		);
 	} catch (error) {
 		throw error;
@@ -506,7 +506,7 @@ function getDate() {
 		':' +
 		(newDate.getSeconds() < 10 ? '0' + newDate.getSeconds() : newDate.getSeconds());
 
-	return { date, time };
+	return { date, time, fullDate: newDate };
 }
 
 async function getSalesReport() {

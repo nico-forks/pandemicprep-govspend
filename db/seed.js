@@ -10,7 +10,10 @@ const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCa
 const { addReview } = require('./singletables/reviews');
 const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
 const { seedClicks } = require('./utils/utils');
-const { salesQuery } = require('./sales');
+const { salesQuery, testTimestamp } = require('./singletables/sales');
+
+//results=50 for development, 2000 final
+const numberOfUsers = 20;
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -29,7 +32,7 @@ async function seed() {
         // await fillUsers();
 
         //These three test the sales query
-        // await salesQuery({category: ['food', 'house'], username: ['john', 'susan'], age: [{from: 25, to: 45}], city: ['Jacksonville', 'Orlando']});
+        // await salesQuery({category: ['food', 'house'], dates: [{from: '2020-10-01', to: '2020-10-30'}], age: [{from: 25, to: 45}], city: ['Jacksonville']});
         // await salesQuery({category: [4], product: [135]});
         // await salesQuery({category: [4]});
         // await salesQuery();
@@ -37,6 +40,8 @@ async function seed() {
         // await gettingAllUsers();
         // await creatingOneNewProduct();
         
+        await testTimestamp('2020-01-01');
+
 
         // await seedingProductObject();
         // await gettingProductsByQuery();
@@ -152,7 +157,7 @@ async function createNewUsers() {
 async function fillUsers() {
     try {
         //results=50 for development, 2000 final
-        const data = await fetch('https://randomuser.me/api/?results=2000&nat=us');
+        const data = await fetch(`https://randomuser.me/api/?results=${numberOfUsers}&nat=us`);
         const newUsers = (await data.json()).results;
         // console.log(newUsers);
         const length = newUsers.length;

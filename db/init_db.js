@@ -75,7 +75,8 @@ async function createTables() {
         status varchar(20) NOT NULL,
         "cartQuantity" INTEGER DEFAULT 0,
         date VARCHAR(10),
-        time VARCHAR(8), 
+        time VARCHAR(8),
+        timestamp TIMESTAMP, 
         total DECIMAL NOT NULL,
         "userId" INTEGER REFERENCES users(id)
       ); 

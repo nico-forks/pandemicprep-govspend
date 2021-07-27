@@ -11,8 +11,10 @@ const {
 	getOrderHistory,
 	getSalesReport,
 	getCities,
-	getZipcodes
+	getZipcodes,
+	salesQuery
 } = require('../db');
+// const { salesQuery } = require('../db/singletables/sales');
 
 //Gets all products (requires admin status)
 adminRouter.get('/products/:pageNumber', async (req, res, next) => {
@@ -94,8 +96,12 @@ adminRouter.get('/cities', async (req, res, next) => {
 	try {
 		if (req.user.isAdmin) {
 			const cities = await getCities();
-			if (Array.isArray(cities)) res.send(cities);
-			throw new Error('cities route');
+			if (Array.isArray(cities)) {
+				res.send(cities);
+			} else {
+				throw new Error('cities route');
+			}
+			
 		}
 	} catch (error) {
 		next(error);
@@ -106,14 +112,55 @@ adminRouter.get('/zipcodes', async (req, res, next) => {
 	try {
 		if (req.user.isAdmin) {
 			const zipcodes = await getZipcodes();
-			if (Array.isArray(zipcodes)) res.send(zipcodes);
-			throw new Error('zipcodes route');
+			if (Array.isArray(zipcodes)) {
+				res.send(zipcodes);
+			} else {
+				throw new Error('zipcodes route');
+			}
+			
 		}
 	} catch (error) {
 		next(error);
 	}
 });
 
+
+adminRouter.get('/sales', async (req, res, next) => {
+	
+	try {
+		if (req.user) {
+			if (req.user.isAdmin) {
+				const sales = await getSalesReport()
+				
+				res.send(sales)
+			} else {
+				res.send({ message: 'You must be an admin to retrieve the sales report!' });
+			}
+		} else {
+			res.send({ message: 'You must be an admin to retrieve the sales report!' });
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+
+adminRouter.post('/sales', async (req, res, next) => {
+	console.log('getting to post/sales with ', req.body)
+	try {
+		if (req.user.isAdmin) {
+			const data = await salesQuery(req.body);
+			if (Array.isArray(data)) {
+				res.send(data);
+			} else {
+				throw new Error('post/sales');
+			}
+			
+		}
+	} catch (error) {
+		console.error('error at post/sales');
+	}
+});
 
 //Updates products (requires admin status)
 
@@ -200,24 +247,7 @@ adminRouter.patch('/finalizing', async (req, res, next) => {
 // 	}
 // });
 
-adminRouter.get('/sales', async (req, res, next) => {
-	
-	try {
-		if (req.user) {
-			if (req.user.isAdmin) {
-				const sales = await getSalesReport()
-				
-				res.send(sales)
-			} else {
-				res.send({ message: 'You must be an admin to retrieve the sales report!' });
-			}
-		} else {
-			res.send({ message: 'You must be an admin to retrieve the sales report!' });
-		}
-	} catch (error) {
-		next(error);
-	}
-})
+
 
 
 
