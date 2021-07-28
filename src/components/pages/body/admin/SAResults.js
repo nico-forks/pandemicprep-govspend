@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import _ from 'lodash';
 import './SAResults.css';
 
-
 export const SAResults = ({salesData, setSalesData}) => {
 
     const [ sortBy, setSortBy ] = useState({field: 'sale', direction: 'up'});
