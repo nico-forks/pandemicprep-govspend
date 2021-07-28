@@ -60,7 +60,7 @@ export const Header = ({
 					to='/'
 					className='navLinkWrapper'
 					onClick={() => {
-						setProducts(promotedProducts);
+						setProducts([]);
 						setCategory('');
 					}}
 				>

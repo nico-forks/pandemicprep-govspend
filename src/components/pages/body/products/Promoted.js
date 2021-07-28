@@ -39,7 +39,7 @@ export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, u
 			<div className='wrapper'>
 				<h1>Featured Products</h1>
 			</div>
-
+			<div className='carouselContainer'>
 			<Carousel className='carousel' indicators={false} >
 				{content.map((item, index) => (
 					<Carousel.Item
@@ -75,6 +75,7 @@ export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, u
 					</Carousel.Item>
 				))}
 			</Carousel>
+			</div>
 		</div>
 	);
 };

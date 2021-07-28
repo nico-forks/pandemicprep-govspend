@@ -3,7 +3,7 @@ Pandemic Prep is an e-commerce web application with the purpose of supplying pro
 "apocalyptic" situations
 
 # Deployment: 
-Our fully deployed app on heroku: https://panprep2.herokuapp.com 
+Our fully deployed app on heroku: https://pandemicprep3.herokuapp.com/ 
 
 # Motivation
 This project is the conclusion of months of learning from an intensive bootcamp at FullStack Academy. This project reflects everything we have learned and more(PostgreSQL, Node.js, Express, React, JavaScript, axios, etc...).
