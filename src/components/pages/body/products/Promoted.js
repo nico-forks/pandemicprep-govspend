@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-animated-slider';
 import { Carousel } from 'react-bootstrap';
 
 import './Promoted.css';
@@ -61,7 +60,7 @@ export const Promoted = ({ NavLink, setProduct, useHistory, clicks, setClicks, u
 						}}
 					>
 						<div className='image-container'>
-							<img className="d-block" src={item.image} />
+							<img className="d-block" src={item.image} alt={`product ${item.title}`} />
 						
 						<Carousel.Caption className='carousel-captions'>
 							<div className='carousel-text'>

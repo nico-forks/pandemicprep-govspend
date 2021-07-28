@@ -146,7 +146,7 @@ adminRouter.get('/sales', async (req, res, next) => {
 
 
 adminRouter.post('/sales', async (req, res, next) => {
-	console.log('getting to post/sales with ', req.body)
+	
 	try {
 		if (req.user.isAdmin) {
 			const data = await salesQuery(req.body);

@@ -11,7 +11,7 @@ export const AdminProductList = ({ user }) => {
 	const [adminPageLimit, setAdminPageLimit] = useState(0);
 	const [adminView, setAdminView] = useState('none');
 	const [clickedIndex, setClickedIndex] = useState(-1);
-
+	
 	// input values for adding new product
 	const [title, setTitle] = useState('');
 	const [categories, setCategories] = useState('');
@@ -42,11 +42,13 @@ export const AdminProductList = ({ user }) => {
 			.then((response) => {
 				setAdminProductList(response[1]);
 				setAdminPageLimit(response[0]);
+				
 			})
 			.catch((error) => {
 				console.error(error);
 			});
-	}, [adminPage, edit]);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [adminPage]);
 
 	// Input value handlers
 	const handleTitle = (event) => {
@@ -91,7 +93,6 @@ export const AdminProductList = ({ user }) => {
 	};
 	const editProduct = async (event, item) => {
 		event.preventDefault();
-		
 		try {
 			const fields = {
 				title: editTitle === '' ? item.title : editTitle,
@@ -278,6 +279,7 @@ export const AdminProductList = ({ user }) => {
 										<Form.Control
 											type='text' 
 											placeholder={item.categories}
+											
 										></Form.Control>
 									</Form.Group>
 								</Col>
@@ -315,7 +317,7 @@ export const AdminProductList = ({ user }) => {
 										<Form.Check
 											id='react-checkbox'
 											type='checkbox'
-											defaultChecked={isActive}
+											defaultChecked={item.isActive}
 											onClick={(event) => {
 												isActive
 													? setIsActive(false)
@@ -334,7 +336,7 @@ export const AdminProductList = ({ user }) => {
 
 												<Button
 													type='button'
-													
+													onClick={event => editProduct(event, item)}
 												>Authorize</Button>
 											</div>
 										) : (
@@ -437,7 +439,7 @@ export const AdminProductList = ({ user }) => {
 												<Button className='edit-button'>Cancel</Button>
 												<Button
 													type='button'
-													
+													onClick={event => editProduct(event, item)}
 												>Authorize</Button>
 											</div>
 										) : (

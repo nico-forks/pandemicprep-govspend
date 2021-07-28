@@ -2,10 +2,7 @@
 
 import {
 	addUser,
-	getAllUsers,
-	getProductsByQuery,
 	loginUser,
-	guestUser,
 	updateUser,
 } from '../../../../api';
 
@@ -80,7 +77,6 @@ export async function adminRegisterNewUser({
 			lastName,
 			email,
 			password: password1,
-			isUser,
 			isAdmin,
 		});
 
@@ -198,7 +194,7 @@ function checkPassword(password1, password2) {
 	});
 	if (hasNumber) {
 		return { valid: true, message: 'valid' };
-	} else {
+	} else if(!hasNumber) {
 		return { valid: false, message: '- 1+ numbers\n- 1+ uppercase\n- 8+ characters' };
 	}
 	if (hasUpper) {

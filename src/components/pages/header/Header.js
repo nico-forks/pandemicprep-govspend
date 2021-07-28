@@ -66,6 +66,7 @@ export const Header = ({
 					<img
 						id='headLogo'
 						src={process.env.PUBLIC_URL + '/styleimages/PANPREPLOGO.png'}
+						alt='Panprep logo'
 					/>
 				</NavLink>
 
@@ -123,7 +124,7 @@ export const Header = ({
 					}}
 				>
 					<section id='cart-size'>{cartSize > 0 ? cartSize : ''}</section>
-					<img id='cartLogo' src={process.env.PUBLIC_URL + '/styleimages/cart.png'} />
+					<img id='cartLogo' src={process.env.PUBLIC_URL + '/styleimages/cart.png'} alt='cart logo' />
 				</button>
 
 				{user.isUser === false ? (
@@ -136,6 +137,7 @@ export const Header = ({
 								<img
 									id='pointer'
 									src={process.env.PUBLIC_URL + '/styleimages/pointer.png'}
+									alt='small pointer arrow'
 								/>
 							</Dropdown.Toggle>
 							<Dropdown.Menu  >
@@ -144,6 +146,7 @@ export const Header = ({
 										<img
 											id='dropdownIcon'
 											src={process.env.PUBLIC_URL + '/styleimages/admin.png'}
+											alt='drop down icon'
 										/>
 										Admin
 									</Dropdown.Item>
@@ -161,6 +164,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/settings.png'}
+										alt='drop down icon'
 									/>
 									Edit Profile
 								</Dropdown.Item>
@@ -168,6 +172,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/shop.png'}
+										alt='drop down icon'
 									/>
 									Orders
 								</Dropdown.Item>
@@ -195,6 +200,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/logout.png'}
+										alt='drop down icon'
 									/>
 									Log Out
 								</Dropdown.Item>

@@ -5,10 +5,10 @@ import { Form, Button, Row, Col, Pagination } from 'react-bootstrap';
 
 import './Userlist.css';
 
-import { getAllUsers, addUser, adminUpdateUser } from '../../../../api';
+import { getAllUsers, adminUpdateUser } from '../../../../api';
 import { adminRegisterNewUser } from '../user/profileUtils';
 
-export const Userlist = ({ user, setUser, setCart }) => {
+export const Userlist = ({ user }) => {
 	const [adminUserList, setAdminUserList] = useState([]);
 	const [userPage, setUserPage] = useState(1);
 	const [userPageLimit, setUserPageLimit] = useState(0);
@@ -25,8 +25,6 @@ export const Userlist = ({ user, setUser, setCart }) => {
 	// Input values for edit one user
 	const [editEmail, setEditEmail] = useState('');
 	const [editPassword, setEditPassword] = useState('');
-	const [editIsAdmin, setEditIsAdmin] = useState('');
-	const [editIsUser, setEditIsUser] = useState('');
 	const [edit, setEdit] = useState(false);
 
 	useEffect(() => {
@@ -38,6 +36,7 @@ export const Userlist = ({ user, setUser, setCart }) => {
 			.catch((error) => {
 				console.error(error);
 			});
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [userPage, edit]);
 
 	// Input value handlers
@@ -57,14 +56,14 @@ export const Userlist = ({ user, setUser, setCart }) => {
 	const handleIsAdmin = (event) => {
 		setIsAdmin(event.target.checked);
 	};
-	const handleIsUser = (event) => {
-		setIsUser(event.target.checked);
-	};
+	// const handleIsUser = (event) => {
+	// 	setIsUser(event.target.checked);
+	// };
 	// form handler that allows admin to add a new user
 	const adminAddUser = async (event) => {
 		event.preventDefault();
 		try {
-			const newUser = await adminRegisterNewUser({
+			await adminRegisterNewUser({
 				firstName,
 				lastName,
 				email,
@@ -100,7 +99,7 @@ export const Userlist = ({ user, setUser, setCart }) => {
 			if (editPassword === '') {
 				delete fields.password;
 			}
-			const updatedUser = await adminUpdateUser({
+			await adminUpdateUser({
 				id: item.id,
 				fields: fields,
 				token: user.token,

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Container, Row, Col } from 'react-bootstrap';
 import _ from 'lodash';
 import './SAResults.css';
 

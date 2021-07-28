@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './Orders.css';
 
@@ -8,19 +8,20 @@ import { getOrderHistory } from '../../../../api';
 
 export const Orders = ({ user }) => {
 	const [orderHistory, setOrderHistory] = useState([]);
-	const [orderPage, setOrderPage] = useState(1);
-	const [orderPageLimit, setOrderPageLimit] = useState(0);
+	const orderPage = 1;
+	// const [orderPageLimit, setOrderPageLimit] = useState(0);
 	const [clickedIndex, setClickedIndex] = useState(-1);
 
 	useEffect(() => {
 		getOrderHistory(orderPage, user.token)
 			.then((response) => {
-				setOrderPageLimit(response[0]);
+				// setOrderPageLimit(response[0]);
 				setOrderHistory(response[1]);
 			})
 			.catch((error) => {
 				console.error(error);
 			});
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [orderPage]);
 
 	const toggleDetails = (index) => {

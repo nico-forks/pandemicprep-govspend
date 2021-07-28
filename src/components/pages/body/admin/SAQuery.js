@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import _ from 'lodash';
 import { getAllCategories, getAllProductNamesAndIds, getCities, getZipcodes, getDeepSalesReport } from '../../../../api/index';
 
@@ -13,6 +13,7 @@ export const SAQuery = ({user, setSalesData}) => {
     ages: ['all ages', '0-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70+'], cities: [], zipcodes: []});
     const [ query, setQuery ] = useState({age: [{from: '1900-01-01', to: '2200-01-01'}], gender: ['male', 'female'], date: [{from: '1900-01-01', to: '2200-01-01'}]})
 
+    
     useEffect(() => {
 
         async function fixCategories() {
@@ -55,9 +56,10 @@ export const SAQuery = ({user, setSalesData}) => {
                 console.error('error in fixQuery inside SAQuery useEffect', error);
             }
         }
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    
     useEffect(() => {
         
         getDeepSalesReport(user.token, query).then(data => {
@@ -67,6 +69,7 @@ export const SAQuery = ({user, setSalesData}) => {
             });
             setSalesData(newData);
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [query])
 
 
@@ -85,7 +88,7 @@ export const SAQuery = ({user, setSalesData}) => {
         }
         if (kind === 'product') {
             resetExclusive('product');
-            if (event.target.value != 0) {
+            if (event.target.value !== '0') {
                 newQuery.product = [event.target.value];
             } else {
                 resetExclusive();
@@ -118,7 +121,7 @@ export const SAQuery = ({user, setSalesData}) => {
         }
         if (kind === 'city') {
             resetExclusive('city');
-            if (event.target.value != 0) {
+            if (event.target.value !== '0') {
                 newQuery.city = [event.target.value];
             } else {
                 resetExclusive();
@@ -127,7 +130,7 @@ export const SAQuery = ({user, setSalesData}) => {
         }
         if (kind === 'zipcode') {
             resetExclusive('zipcode');
-            if (event.target.value != 0) {
+            if (event.target.value !== '0') {
                 newQuery.zipcode = [event.target.value];
             } else {
                 resetExclusive();

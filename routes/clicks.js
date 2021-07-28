@@ -9,7 +9,7 @@ const { addViewClick, addCartClick, addBuyClick, removeFromCart, getUserClicks }
 
 
 clicksRouter.get('/', async function (req, res) {
-    console.log('getting to get clicks...')
+    
     if (req.user) {
         try {
             const clicks = await getUserClicks(req.user.id);

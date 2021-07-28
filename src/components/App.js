@@ -21,8 +21,6 @@ import {
 	Cart,
 	Product,
 	Orders,
-	Userlist,
-	Sales,
 	PageIndex,
 	Admin,
 	Promoted,
@@ -46,7 +44,7 @@ const App = () => {
 	const [cart, setCart] = useState({ status: 'active', cartQuantity: 0, total: 0, items: [] });
 	const [cartSize, setCartSize] = useState(0);
 	const [products, setProducts] = useState([]);
-	const [promotedProducts, setPromotedProducts] = useState([]);
+	// const [promotedProducts, setPromotedProducts] = useState([]);
 	const [product, setProduct] = useState({});
 	const [searchObject, setSearchObject] = useState('');
 	const [searchTerm, setSearchTerm] = useState('');
@@ -54,7 +52,7 @@ const App = () => {
 	const [category, setCategory] = useState(''); // const history = useHistory();
 	const [pageType, setPageType] = useState('');
 	const [view, setView] = useState('');
-	const history = useHistory();
+	// const history = useHistory();
 	const [profileCompleted, setProfileCompleted] = useState(false);
 
 	//new for analytics
@@ -81,6 +79,7 @@ const App = () => {
 			});
 	}, [category]);
 
+	
 	useEffect(() => {
 		//get user from token if present
 		if (localStorage.getItem('panprepToken')) {
@@ -133,6 +132,7 @@ const App = () => {
 				setCategoryList(result);
 			})
 			.catch((error) => console.error(error));
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -145,7 +145,7 @@ const App = () => {
 					setSearchObject={setSearchObject}
 					useHistory={useHistory}
 					NavLink={NavLink}
-					promotedProducts={promotedProducts}
+					// promotedProducts={promotedProducts}
 					setPageType={setPageType}
 					setSearchTerm={setSearchTerm}
 					setView={setView}
@@ -316,7 +316,14 @@ const App = () => {
 						/>
 					</Route>
 
-					
+					{user.isUser ? (
+						<Route path='/orders'>
+							<Orders user={user} />
+						</Route>
+					) : (
+						''
+					)}
+
 					{user.isAdmin ? (
 						<Route path='/admin'>
 							<Admin product={products} setProducts={setProducts} user={user} />

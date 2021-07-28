@@ -71,6 +71,7 @@ export async function getAllProcessing(pageNumber, token) {
  * @param {object} param0
  */
 export async function updateProduct({ id, fields, token }) {
+	
 	try {
 		const { data } = await axios.patch(
 			'/api/admin/product',
@@ -145,7 +146,7 @@ export async function getZipcodes(token) {
 }
 
 export async function getDeepSalesReport(token, query = {}) {
-	console.log('api', query);
+	
 	try {
 		const { data } = await axios.post(`/api/admin/sales`, query, {headers: { Authorization: 'Bearer ' + token }});
 		if (Array.isArray(data)) return data;

@@ -6,7 +6,7 @@ const { flip } = require('lodash');
 
 
 
-const numberOfSessions = 20; //will seed this many sessions 2000
+
 const maxTimeDelta = 630000000;
 
 /*
@@ -26,7 +26,7 @@ generate random clicks with random products, random users
 */
 
 //this function will seed clicks, carts, and purchases
-async function userSession() {
+async function userSession(numberOfSessions) {
     
     
     const initialDate = Math.floor(new Date(2020, 0).getTime());
@@ -238,7 +238,7 @@ async function getProductsCount() {
 }
 
 
-async function seedClicks() {
+async function seedClicks(numberOfSessions) {
     try {
         const array = [];
         for (let i = 0; i < numberOfSessions; i++) {
@@ -246,7 +246,7 @@ async function seedClicks() {
         }
         await Promise.each(array, async () => {
             try {
-                await userSession();
+                await userSession(numberOfSessions);
             } catch (error) {
                 console.error('error in the seedClicks', error);
             }

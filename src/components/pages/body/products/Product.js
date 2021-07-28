@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -85,7 +85,7 @@ export const Product = ({ product, setCart, cart, user, setCartSize, clicks, set
 	return (
 		<>
 			<div key={product.id} className='product1'>
-				<img className='image' src={process.env.PUBLIC_URL + product.image}></img>
+				<img className='image' src={process.env.PUBLIC_URL + product.image} alt={`Product ${product.title}`} />
 				<div className='info'>
 					<p className='header'>{product.title}</p>
 					<p className='description1'>{product.description}</p>

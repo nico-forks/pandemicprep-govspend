@@ -498,7 +498,10 @@ async function lastUpdated(cartId) {
 
 function getDate() {
 	const newDate = new Date();
-	let date = newDate.getFullYear() + '-' + (newDate.getMonth() + 1) + '-' + newDate.getDate();
+	const year = newDate.getFullYear();
+	const month = newDate.getMonth() + 1 < 10 ? '0' + (newDate.getMonth() + 1) : newDate.getMonth() + 1;
+	let day = newDate.getDay() < 10 ? '0' + newDate.getDay() : newDate.getDay();
+	let date = year + '-' + month + '-' + day;
 	const time =
 		(newDate.getHours() < 10 ? '0' + newDate.getHours() : newDate.getHours()) +
 		':' +
@@ -516,7 +519,7 @@ async function getSalesReport() {
 			sum("cartQuantity") AS "cartQuantity", 
 			sum(total) AS total
 			FROM carts
-			WHERE date LIKE '2020%'
+			WHERE date LIKE '2021%'
 			AND status = 'processing' 
 			OR status = 'complete'
 			GROUP BY date;

@@ -12,6 +12,7 @@ export async function addProductToGuestCart(cartState, product) {
 				item.quantity = item.quantity + 1;
 				item.total = item.quantity * parseFloat(item.unitPrice);
 			}
+			return item;
 		});
 	} else {
 		cart.items.push({
@@ -34,6 +35,7 @@ export async function addProductToGuestCart(cartState, product) {
 	cart.items.map((item) => {
 		cartQuantity = cartQuantity + item.quantity;
 		cartTotal = cartTotal + parseFloat(item.itemTotal);
+		return item;
 	});
 	cart.cartQuantity = cartQuantity;
 	cart.total = cartTotal;
@@ -49,6 +51,7 @@ export async function removeProductFromGuestCart(cartState, product) {
 		if (item.id === product.id) {
 			index = i;
 		}
+		return item;
 	});
 
 	newCart.items.splice(index, 1);
@@ -58,6 +61,7 @@ export async function removeProductFromGuestCart(cartState, product) {
 	newCart.items.map((item) => {
 		newQuantity = newQuantity + item.quantity;
 		newTotal = newTotal + parseFloat(item.itemTotal);
+		return item;
 	});
 	newCart.cartQuantity = newQuantity;
 	newCart.total = newTotal;
