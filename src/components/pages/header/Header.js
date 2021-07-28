@@ -50,7 +50,7 @@ export const Header = ({
 					Are you prepared?
 				</h1>
 				<NavLink to='/news'>
-					<Button id='updatedButton' onClick={() => setCategory('')}>
+					<Button id='updatedButton' size='sm' onClick={() => setCategory('')}>
 						Stay Updated
 					</Button>
 				</NavLink>
@@ -58,16 +58,19 @@ export const Header = ({
 			<div className='headerContainer'>
 				<NavLink
 					to='/'
+					className='navLinkWrapper'
 					onClick={() => {
 						setProducts(promotedProducts);
 						setCategory('');
 					}}
 				>
-					<img
-						id='headLogo'
-						src={process.env.PUBLIC_URL + '/styleimages/PANPREPLOGO.png'}
-						alt='Panprep logo'
-					/>
+					<div className='logoWrapper'>
+						<img
+							id='headLogo'
+							src={process.env.PUBLIC_URL + '/styleimages/PANPREPLOGO.png'}
+							alt='Panprep logo'
+						/>
+					</div>
 				</NavLink>
 
 				<Form onSubmit={searchProducts} className='searchForm'>

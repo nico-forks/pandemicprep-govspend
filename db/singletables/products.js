@@ -367,6 +367,7 @@ async function getAllProductNamesAndIds() {
 	}
 }
 
+
 module.exports = {
 	getProductById,
 	addProductAndCategory,

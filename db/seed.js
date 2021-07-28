@@ -51,6 +51,9 @@ async function seed() {
         await clicks();
         await seedClicks(numberOfSessions);
 
+       
+
+
         // await gettingCategoryIdsByName();
         // await addingOneCart();
         // await seedingInitialReviews();
@@ -225,6 +228,9 @@ async function seedingProductObject() {
         throw error;
     }
 }
+
+
+
 async function gettingProductsByQuery() {
     try {
         console.log("getting products by query...");

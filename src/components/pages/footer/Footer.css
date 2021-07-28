@@ -7,20 +7,21 @@ footer {
     background-color: black;
     border: 2px solid black;
     text-align: center;
-    height: 55px;
+    height: 30px;
     width: 100%;
     position: fixed;
     bottom: 0;
 }
 
 #footer {
-    font: bold 22px Helvetica, Sans-Serif; 
+    font: bold 14px Helvetica, Sans-Serif; 
     letter-spacing: -1px; 
-    color: white; 
+    color: white;
+    margin: 0px; 
 }
 
 #est {
-    font-size: 14px;
+    font-size: 10px;
 }
 
 #footerLogo {

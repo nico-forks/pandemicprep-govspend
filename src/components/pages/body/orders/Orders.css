@@ -39,6 +39,10 @@
         "content1 content2 content3 content4";
 }
 
+.history-top:hover {
+    cursor: pointer; 
+}
+
 .hidden-details-cont {
     grid-area: hiddenDetails;
     display: grid;
@@ -84,6 +88,7 @@
 
 .hist-tit {
     font: bold 20px Helvetica, Sans-Serif;
+    padding-top: 5px;
 }
 
 .hid-tit {
@@ -110,7 +115,7 @@
 background-color:transparent;
 color: transparent;
 position: absolute;
-margin-top: 25px;
+margin-top: 28px;
 font: bold 14px Helvetica, Sans-Serif;
 height: 8px;
 display: block;
@@ -120,6 +125,6 @@ width: 90%;
 }
 
 .history-top:hover >#clickMe{
-    color: red;
+    color: gray;
 }
 
