@@ -160,7 +160,7 @@ export const SAQuery = ({user, setSalesData}) => {
                     
                     {categories.categories.map((result, index) => {
                         return (
-                            <div className='checkboxGroup' key={index}> >
+                            <div className='checkboxGroup' key={index}>
                                 <label className='checkboxLabel' htmlFor={`cat-${index}`} >{result.name}</label>
                                 <input className='checkboxes' type="checkbox" name={`cat-${index}`} value={result.id} defaultChecked />
                             </div>
