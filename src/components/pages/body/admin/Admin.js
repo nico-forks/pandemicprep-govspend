@@ -54,41 +54,43 @@ export const Admin = ({ user, setUser, setCart }) => {
 				</Button>
 			</div>
 
-			{adminView === 'none' ? (
-				<div id='adminDiv'>
-					<h1 id='adminh1'>Welcome Admin!</h1>
-				</div>
-			) : (
-				''
-			)}
+			<div className="adminBodyContainer">
+				{adminView === 'none' ? (
+					<div id='adminDiv'>
+						<h1 id='adminh1'>Welcome Admin!</h1>
+					</div>
+				) : (
+					''
+				)}
 
-			{adminView === 'products' ? (
-				<AdminProductList
-					user={user}
-					adminView={adminView}
-					setAdminView={setAdminView}
-					clickedIndex={clickedIndex}
-					setClickedIndex={setClickedIndex}
-				/>
-			) : (
-				''
-			)}
-			{adminView === 'users' ? (
-				<Userlist
-					user={user}
-					adminView={adminView}
-					setAdminView={setAdminView}
-					clickedIndex={clickedIndex}
-					setClickedIndex={setClickedIndex}
-					setUser={setUser}
-					setCart={setCart}
-				/>
-			) : (
-				''
-			)}
-			{adminView === 'processing' ? <OrdersProcessing user={user} /> : ''}
-			{adminView === 'sales' ? <Sales user={user} /> : ''}
-			{adminView === 'salesanalysis' ? <SalesAnalysis user={user} /> : ''}
+				{adminView === 'products' ? (
+					<AdminProductList
+						user={user}
+						adminView={adminView}
+						setAdminView={setAdminView}
+						clickedIndex={clickedIndex}
+						setClickedIndex={setClickedIndex}
+					/>
+				) : (
+					''
+				)}
+				{adminView === 'users' ? (
+					<Userlist
+						user={user}
+						adminView={adminView}
+						setAdminView={setAdminView}
+						clickedIndex={clickedIndex}
+						setClickedIndex={setClickedIndex}
+						setUser={setUser}
+						setCart={setCart}
+					/>
+				) : (
+					''
+				)}
+				{adminView === 'processing' ? <OrdersProcessing user={user} /> : ''}
+				{adminView === 'sales' ? <Sales user={user} /> : ''}
+				{adminView === 'salesanalysis' ? <SalesAnalysis user={user} /> : ''}
+			</div>
 		</>
 	);
 };

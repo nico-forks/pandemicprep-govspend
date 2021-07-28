@@ -7,12 +7,30 @@ const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client({
   connectionString: DB_URL,
   ssl: 
-  process.env.DATABASE_URL ? true : false
-  // {
-  //   rejectUnauthorized: false,
-  // }
+  {
+    rejectUnauthorized: false,
+  }
 });
 
 module.exports = {
   client,
 }
+
+//For developement
+
+// const client = new Client({
+//   connectionString: DB_URL,
+//   ssl: 
+//   process.env.DATABASE_URL ? true : false
+  
+// });
+
+//For heroku deployment
+
+// const client = new Client({
+//   connectionString: DB_URL,
+//   ssl: 
+//   {
+//     rejectUnauthorized: false,
+//   }
+// });

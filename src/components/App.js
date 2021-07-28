@@ -58,8 +58,6 @@ const App = () => {
 	//new for analytics
 	const [clicks, setClicks] = useState([]);
 
-	
-
 
 
 	

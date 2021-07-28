@@ -9,7 +9,7 @@ export const Footer = () => {
             <div className="footerDiv">
                 <h2 id="footer">
 
-                    &#169; Doomsday Preppers <br></br><span id="est">Est 2020</span>
+                    &#169; Doomsday Preppers <span id="est">Est 2020</span>
 
                 </h2>
             </div>

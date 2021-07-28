@@ -2,7 +2,7 @@
     margin-top: 0px;
     background-color: white;
     width: 100vw;
-    height: 90vh;
+    height: calc(100vh - 200px);
     margin-bottom: 50px;
     display: grid;
     grid-template-columns: 1fr 12fr;
@@ -10,7 +10,7 @@
 
 .SAQueryContainer {
     width: 25vw;
-    height: 90vh;
+    height: calc(100vh - 200px);
     overflow-y: auto;
     background-color: white;
     margin-left: 0px;
@@ -19,7 +19,7 @@
 
 .SAResultsContainer {
     width: 75vw;
-    height: 90vh;
+    height: calc(100vh - 200px);
     overflow-y: auto;
     background-color: white;
 

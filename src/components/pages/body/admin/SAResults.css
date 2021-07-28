@@ -4,7 +4,7 @@
 
 .salesReportOuter h3 {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .salesReportOuter  p {
@@ -18,7 +18,7 @@
     left: 25vw;
     width: 75vw;
     padding: 0px 30px;
-    top: 200px;
+    top: 170px;
     background-color: white;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .salesReportTable {
-    margin-top: 80px;
+    margin-top: 95px;
 }
 
 .salesReportRow {
