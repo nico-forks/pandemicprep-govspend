@@ -9,6 +9,7 @@ export const Admin = ({ user, setUser, setCart }) => {
 	const [adminView, setAdminView] = useState('none');
 	const [clickedIndex, setClickedIndex] = useState(-1);
 
+
 	/** different components we may want inside the admin tab
 	 * list of all products(most likely pagination)
 	 * list of all users(most likely pagination)

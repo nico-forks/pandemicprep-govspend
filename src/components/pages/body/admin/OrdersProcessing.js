@@ -15,6 +15,7 @@ export const OrdersProcessing = ({ user }) => {
 	const [clickedIndex, setClickedIndex] = useState(-1);
 	const [finalized, setFinalized] = useState(true);
 
+	
 	useEffect(() => {
 		getAllProcessing(processingPage, user.token)
 			.then((response) => {
@@ -24,6 +25,7 @@ export const OrdersProcessing = ({ user }) => {
 			.catch((error) => {
 				console.error(error);
 			});
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [processingPage, finalized]);
 
 	const toggleDetails = (event, index) => {

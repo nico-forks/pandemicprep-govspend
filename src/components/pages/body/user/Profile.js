@@ -10,9 +10,6 @@ import { addClick } from '../../../../api/clicks';
 
 import {
 	addUser,
-	getAllUsers,
-	getProductsByQuery,
-	loginUser,
 	getFullUserFromToken,
 	addProductToCart,
 	deactivateCart,
@@ -23,12 +20,11 @@ import {
 	countries,
 	registrationHandler,
 	loginHandler,
-	guestHandler,
 	updateHandler,
 } from './profileUtils';
 
 import './Profile.css';
-import { getUserFromToken } from '../../../../api/users';
+
 
 export const Profile = ({
 	view,
@@ -46,7 +42,6 @@ export const Profile = ({
 	//CHANGE PASSWORD Button: needs onclick function to switch state to ''
 	//SET UP STATES FOR DIFFERENT VIEWS! :)
 
-	const [isUser, setIsUser] = useState(false);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -59,10 +54,8 @@ export const Profile = ({
 	const [zipcode, setZipcode] = useState('');
 	const [country, setCountry] = useState('');
 	const [phone, setPhone] = useState('');
-	const [creditCard, setCreditCard] = useState(
-		Math.floor(Math.random() * (9999999999999999 - 1000000000000000 + 1)) + 1000000000000000,
-	);
-	const [searchString, setSearchString] = useState('');
+	const creditCard= Math.floor((Math.random() * (9999999999999999 - 1000000000000000 + 1)) + 1000000000000000);
+	
 	const history = useHistory();
 
 	if (view === '') {
@@ -75,6 +68,7 @@ export const Profile = ({
 		}
 	}
 
+	
 	useEffect(() => {
 		if (view === 'edit' || view === 'fulledit' || view === 'userCheckout') {
 			getFullUserFromToken(user.id, user.token).then((result) => {
@@ -90,6 +84,7 @@ export const Profile = ({
 				setPhone(result.phone);
 			});
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const cancelHandler = (event) => {
@@ -283,7 +278,9 @@ export const Profile = ({
 						
 						if (cart.items.some(cartItem => {
 							if (cartItem.productId === clickItem.productid && clickItem.cartclick && !clickItem.removeclick) return true;
-					})) return true;
+							return cartItem;
+					}));
+					return true;
 				});
 					const newClicks = clicks.map(item => item);
 					
@@ -309,10 +306,6 @@ export const Profile = ({
 		resetForm();
 		history.push('/');
 	};
-
-	function warning(warningMessage) {
-		alert(warningMessage);
-	}
 
 	function resetForm() {
 		setFirstName('');

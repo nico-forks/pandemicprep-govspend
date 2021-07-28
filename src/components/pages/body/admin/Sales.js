@@ -1,14 +1,15 @@
 /** @format */
 
 import React, { useState, useEffect } from 'react';
-import { Pagination } from 'react-bootstrap';
+// import { Pagination } from 'react-bootstrap';
+import _ from 'lodash';
 
 import './Sales.css';
 import { getSalesReport } from '../../../../api';
 
 export const Sales = ({ user }) => {
 	const [salesReport, setSalesReport] = useState([]);
-	const [clickedIndex, setClickedIndex] = useState(-1);
+	
 	const [twentyTwenty, setTwentyTwenty] = useState({
 		january: [],
 		february: [],
@@ -27,32 +28,56 @@ export const Sales = ({ user }) => {
 	useEffect(() => {
 		getSalesReport(user.token)
 			.then((response) => {
-				
+				console.log('res', response);
 				response.forEach((item) => {
-					if (item.date.substring(0, 7) === '2020-01') {
-						twentyTwenty.january.push(item)
-					} else if (item.date.substring(0, 7) === '2020-02') {
-						twentyTwenty.february.push(item)
-					} else if (item.date.substring(0, 7) === '2020-03') {
-						twentyTwenty.march.push(item)
-					} else if (item.date.substring(0, 7) === '2020-04') {
-						twentyTwenty.april.push(item)
-					} else if (item.date.substring(0, 7) === '2020-05') {
-						twentyTwenty.may.push(item)
-					} else if (item.date.substring(0, 7) === '2020-06') {
-						twentyTwenty.june.push(item)
-					} else if (item.date.substring(0, 7) === '2020-07') {
-						twentyTwenty.july.push(item)
-					} else if (item.date.substring(0, 7) === '2020-08') {
-						twentyTwenty.august.push(item)
-					} else if (item.date.substring(0, 7) === '2020-09') {
-						twentyTwenty.september.push(item)
-					} else if (item.date.substring(0, 7) === '2020-10') {
-						twentyTwenty.october.push(item)
-					} else if (item.date.substring(0, 7) === '2020-11') {
-						twentyTwenty.november.push(item)
-					} else if (item.date.substring(0, 7) === '2020-12') {
-						twentyTwenty.december.push(item)
+					if (item.date.substring(0, 7) === '2021-01') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.january.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-02') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.february.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-03') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.march.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-04') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.april.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-05') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.may.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-06') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.june.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-07') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.july.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-08') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.august.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-09') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.september.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-10') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.october.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-11') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.november.push(item);
+						setTwentyTwenty(newTwenty);
+					} else if (item.date.substring(0, 7) === '2021-12') {
+						const newTwenty = _.clone(twentyTwenty);
+						newTwenty.december.push(item);
+						setTwentyTwenty(newTwenty);
 					}
 				});
 				
@@ -61,6 +86,7 @@ export const Sales = ({ user }) => {
 			.catch((error) => {
 				console.error(error);
 			});
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const compare = (a, b) => {
@@ -75,7 +101,9 @@ export const Sales = ({ user }) => {
 	// const toggleDetails = (index) => {
 	// 	setClickedIndex(index);
 	// };
-
+	useEffect(() => {
+		console.log(Object.entries(twentyTwenty));
+	}, [twentyTwenty]);
 	return (
 		<div className='sales-container'>
 			<div className='sales-report'>

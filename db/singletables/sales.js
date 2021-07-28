@@ -145,9 +145,6 @@ async function salesQuery(incomingQuery = {}) {
                 return `(${_.join(subArray, ' AND ')})`;
             }), ' AND ')})`;
         }
-        
-        console.log('final query', finalQuery);
-        console.log('values', values)
 
         const { rows } = await client.query(`
             SELECT products.title, SUM(products_carts."quantity") AS quantity, SUM(products_carts."itemTotal") AS sale, 
@@ -232,19 +229,5 @@ function tableName(property, counter) {
     }
 }
 
-async function testTimestamp(date) {
-    try {
-        const { rows } = await client.query(`
-            SELECT *
-            FROM carts
-            WHERE timestamp BETWEEN $1 AND $2;
-
-        `, [ date, '2021-11-01' ]);
-        console.log(rows);
-    } catch (error) {
-        console.error('error with my test', error);
-    }
-} 
-
-module.exports = { salesQuery, testTimestamp };
+module.exports = { salesQuery };
 

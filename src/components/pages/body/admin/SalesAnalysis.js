@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 import _ from 'lodash';
 import { SAQuery } from './SAQuery';
 import { SAResults } from './SAResults';
@@ -20,11 +19,8 @@ export const SalesAnalysis = ({user}) => {
             });
             setSalesData(newData);
         })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    useEffect(() => {
-        console.log(salesData);
-    }, [salesData])
 
     return (
         <div id='salesanal' >

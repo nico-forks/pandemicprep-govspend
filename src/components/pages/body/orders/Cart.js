@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React from 'react';
 // import { Stripe } from '../orders/Stripe';
 import { Button, Container, Col, Row, InputGroup, FormControl } from 'react-bootstrap';
 import { addClick } from '../../../../api/clicks';
@@ -8,10 +8,9 @@ import { addClick } from '../../../../api/clicks';
 import './Cart.css';
 
 import {
-	addNewCart,
 	removeProductFromCart,
 	patchCartItemQuantity,
-	deactivateCart,
+	
 } from '../../../../api';
 // import { Product } from '../products/Product';
 import { removeProductFromGuestCart } from '../../../utils';
@@ -19,7 +18,6 @@ import { removeProductFromGuestCart } from '../../../utils';
 export const Cart = ({
 	cart,
 	setCart,
-	cartSize,
 	setCartSize,
 	user,
 	setView,
@@ -29,10 +27,10 @@ export const Cart = ({
 	setClicks
 }) => {
 	const history = useHistory();
-	const [shipping, setShipping] = useState(5);
+	const shipping =5;
 
 	const removeHandler = (product) => {
-		const productId = product.id;
+		
 		if (user.firstName !== 'Guest') {
 
 			//analytics
@@ -43,7 +41,7 @@ export const Cart = ({
 			
 			addClick('remove', thisClick.id, thisClick.productid, thisClick.userid, null, user.token).then(data => {
 				const newClicks = clicks.map(item => item);
-				newClicks.filter(item => item.id != data.id);
+				newClicks.filter(item => item.id !== data.id);
 				newClicks.push(data);
 				setClicks(newClicks);
 				
@@ -101,6 +99,7 @@ export const Cart = ({
 					}
 					newQuantity = newQuantity + item.quantity;
 					newTotal = newTotal + parseFloat(item.itemTotal);
+					return item;
 				});
 
 				newCart.cartQuantity = newQuantity;
@@ -188,6 +187,7 @@ export const Cart = ({
 													<img
 														className='cart-image'
 														src={process.env.PUBLIC_URL + product.image}
+														alt='a shopping cart'
 													/>
 												</Col>
 												<Col

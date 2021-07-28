@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import './AddProduct.css';
-import { addNewProduct } from '../../../../api';
 
 export const AddProduct = () => {
 	const [name, setName] = useState('');

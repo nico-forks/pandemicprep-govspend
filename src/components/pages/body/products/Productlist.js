@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { addClick } from '../../../../api/clicks';
 
 import './Productlist.css';
@@ -55,6 +55,7 @@ export const Productlist = ({
 										<img
 											className='image'
 											src={process.env.PUBLIC_URL + singleProduct.image}
+											alt={`product ${singleProduct.title}`}
 										/>
 										<p className='description'>{singleProduct.description}</p>
 										<p className='price'>

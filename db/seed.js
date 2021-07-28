@@ -14,6 +14,7 @@ const { salesQuery, testTimestamp } = require('./singletables/sales');
 
 //results=50 for development, 2000 final
 const numberOfUsers = 20;
+const numberOfSessions = 200; //will seed this many sessions 2000
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
@@ -28,10 +29,10 @@ const productArray = require("./singletables/productObject");
 //
 async function seed() {
     try {
-        // await createNewUsers();
-        // await fillUsers();
+        await createNewUsers();
+        await fillUsers();
 
-        //These three test the sales query
+        //These four test the sales query
         // await salesQuery({category: ['food', 'house'], dates: [{from: '2020-10-01', to: '2020-10-30'}], age: [{from: 25, to: 45}], city: ['Jacksonville']});
         // await salesQuery({category: [4], product: [135]});
         // await salesQuery({category: [4]});
@@ -40,15 +41,15 @@ async function seed() {
         // await gettingAllUsers();
         // await creatingOneNewProduct();
         
-        await testTimestamp('2020-01-01');
+        // await testTimestamp('2020-01-01'); temporary test
 
 
-        // await seedingProductObject();
-        // await gettingProductsByQuery();
-        // await updatingUsers();
-        // await gettingUserById();
-        // await clicks();
-        // await seedClicks();
+        await seedingProductObject();
+        await gettingProductsByQuery();
+        await updatingUsers();
+        await gettingUserById();
+        await clicks();
+        await seedClicks(numberOfSessions);
 
         // await gettingCategoryIdsByName();
         // await addingOneCart();
