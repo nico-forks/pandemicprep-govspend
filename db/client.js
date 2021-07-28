@@ -7,12 +7,18 @@ const DB_URL = process.env.DATABASE_URL || `postgres://${DB_NAME}`;
 const client = new Client({
   connectionString: DB_URL,
   ssl: 
-  process.env.DATABASE_URL ? true : false
-  // {
-  //   rejectUnauthorized: false,
-  // }
+  {
+    rejectUnauthorized: false,
+  }
 });
 
 module.exports = {
   client,
 }
+
+// const client = new Client({
+//   connectionString: DB_URL,
+//   ssl: 
+//   process.env.DATABASE_URL ? true : false
+  
+// });
