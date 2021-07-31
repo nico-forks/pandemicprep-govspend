@@ -6,7 +6,8 @@ const {
     addProductAndCategory,
     getProductById,
     getProductsByCategory,
-    getHighlightedProducts
+    getHighlightedProducts,
+    getAllProductNamesAndIds
 } = require('../db/singletables/products');
 
 //Initial load of main page where products.isHighlighted is true
@@ -15,6 +16,19 @@ productsRouter.get('/', async (req, res, next) => {
         const products = await getHighlightedProducts();
 
         res.send(products);
+    } catch (error) {
+        next(error);
+    }
+});
+
+productsRouter.get('/all', async (req, res, next) => {
+    try {
+        if (req.user.isAdmin) {
+            const products = await getAllProductNamesAndIds();
+            res.send(products);
+        } else {
+            throw new Error('unauthorized user');
+        }
     } catch (error) {
         next(error);
     }
@@ -67,6 +81,8 @@ productsRouter.get('/category/:categoryName/:pageNumber', async (req, res, next)
         next(error);
     }
 });
+
+
 
 
 module.exports = productsRouter;

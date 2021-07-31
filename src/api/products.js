@@ -58,6 +58,9 @@ export async function getProductsByCategory(categoryName, pageNumber) {
 	}
 }
 
+
+
+
 //BELOW FUNCTION IS FOR FUTURE PRODUCTION
 export async function getPromotedProducts() {
 	try {

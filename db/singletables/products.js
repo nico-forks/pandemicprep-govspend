@@ -39,17 +39,18 @@ async function addProductAndCategory({ name, price, description, image, category
  */
 async function addProduct({ name, price, description, image, isHighlighted }) {
 	try {
+		const cost = Math.round(((price * (Math.random() * 0.70 + 0.20 )) + Number.EPSILON) * 100) /100;
 		const {
 			rows: [newProduct],
 		} = await client.query(
 			`
-		INSERT INTO products (title, price, description, image, "isHighlighted")
-		VALUES ($1, $2, $3, $4, $5)
+		INSERT INTO products (title, price, cost, description, image, "isHighlighted")
+		VALUES ($1, $2, $3, $4, $5, $6)
 		ON CONFLICT DO NOTHING
 		RETURNING *;
 	`,
 
-			[name, price, description, image, isHighlighted],
+			[name, price, cost, description, image, isHighlighted],
 		);
 		if (newProduct) {
 			newProduct.price = parseFloat(newProduct.price);
@@ -352,6 +353,21 @@ async function addProduct_Categories(prodId, catId) {
 	}
 }
 
+//returns the ids and titles of all the products
+async function getAllProductNamesAndIds() {
+	try {
+		const { rows } = await client.query(`
+			SELECT id, title
+			FROM products
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('error retrieving products');
+	} catch (error) {
+		console.error('error with getAllProductNamesAndIds', error);
+	}
+}
+
+
 module.exports = {
 	getProductById,
 	addProductAndCategory,
@@ -362,5 +378,6 @@ module.exports = {
 	getProductsByCategory,
 	updateProduct,
 	addProduct_Categories,
+	getAllProductNamesAndIds,
 	getHighlightedProducts,
 };

@@ -10,7 +10,11 @@ export {
     updateProduct, 
     adminUpdateUser, 
     completeOrder,
-    getSalesReport
+    getSalesReport,
+    getAllProductNamesAndIds,
+    getCities,
+    getZipcodes,
+    getDeepSalesReport
 } from './admin'
 
 
@@ -20,3 +24,4 @@ export { getProductsByQuery, addNewProduct } from "./products";
 export { addNewCart, getOrderHistory } from "./orders";
 export { addProductToCart, removeProductFromCart, deactivateCart, patchCartItemQuantity } from "./cart";
 export { fetchNews } from './news'
+export { getAllCategories } from './categories';

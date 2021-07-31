@@ -18,6 +18,8 @@ const SALT_COUNT = 13;
 async function addUser({
 	firstName,
 	lastName,
+	birthdate,
+	gender,
 	isAdmin = false,
 	isUser = false,
 	email = null,
@@ -48,8 +50,8 @@ async function addUser({
 				rows: [newUser],
 			} = await client.query(
 				`
-            INSERT INTO users("isAdmin", "isUser", email, password, "firstName", "lastName", "addressLine1", "addressLine2", city, state, zipcode, country, phone, "creditCard")
-            VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 ,$7 ,$8 ,$9 ,$10 ,$11 ,$12 ,$13, $14)
+            INSERT INTO users("isAdmin", "isUser", email, password, "firstName", "lastName", birthdate, gender, "addressLine1", "addressLine2", city, state, zipcode, country, phone, "creditCard")
+            VALUES ($1, $2 ,$3 ,$4 ,$5 ,$6 ,$7 ,$8 ,$9 ,$10 ,$11 ,$12 ,$13, $14, $15, $16)
             ON CONFLICT DO NOTHING
             RETURNING *;
         `,
@@ -61,6 +63,8 @@ async function addUser({
 					securedPassword,
 					firstName,
 					lastName,
+					birthdate,
+					gender,
 					addressLine1,
 					addressLine2,
 					city,
@@ -218,6 +222,53 @@ async function getUserByEmail(email) {
 	}
 }
 
+async function getCities() {
+	try {
+		const { rows } = await client.query(`
+			SELECT city || ', ' || state || ', ' || country AS location
+			FROM users
+			GROUP BY location
+			ORDER BY location;
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('getCities');
+	} catch (error) {
+		console.error('error with getCities at the users db', error);
+	}
+}
+
+async function getZipcodes() {
+	try {
+		const { rows } = await client.query(`
+			SELECT zipcode || ', ' || country AS code
+			FROM users
+			GROUP BY code
+			ORDER BY code;
+		`);
+		if (Array.isArray(rows)) return rows;
+		throw new Error('getZipcodes');
+	} catch (error) {
+		console.error('error with getZipcodes at the users db', error);
+	}
+}
+
+
+//abandoned feature
+// async function getAllUsernames() {
+// 	try {
+// 		const { rows } = await client.query(`
+// 			SELECT id, "firstName", "lastName"
+// 			FROM users
+// 		`);
+
+// 		if (Array.isArray(rows)) return rows;
+// 		throw error;
+
+// 	} catch (error) {
+// 		console.error('error at getAllUsernames in users db', error);
+// 	}
+// }
+
 
 
 module.exports = {
@@ -227,4 +278,6 @@ module.exports = {
 	updateUser,
 	getUserById,
 	getUserByEmail,
+	getCities,
+	getZipcodes
 };

@@ -9,8 +9,12 @@ const {
 	getProcessingCarts,
 	completeCart,
 	getOrderHistory,
-	getSalesReport
+	getSalesReport,
+	getCities,
+	getZipcodes,
+	salesQuery
 } = require('../db');
+// const { salesQuery } = require('../db/singletables/sales');
 
 //Gets all products (requires admin status)
 adminRouter.get('/products/:pageNumber', async (req, res, next) => {
@@ -31,6 +35,22 @@ adminRouter.get('/products/:pageNumber', async (req, res, next) => {
 	}
 });
 
+
+//abandoned feature
+// adminRouter.get('/users/names', async (req, res, next) => {
+// 	try {
+// 		if (req.user.isAdmin) {
+// 			const names = await getAllUsernames();
+// 			console.log(names);
+// 			if (Array.isArray(names)) res.send(names);
+// 			throw new Error('couldnt get names from getAllUsernames at the db');
+// 		}
+// 	} catch (error) {
+// 		next(error);
+// 	}
+// })
+
+
 //Gets all users (requires admin status)
 adminRouter.get('/users/:pageNumber', async (req, res, next) => {
 	try {
@@ -47,6 +67,98 @@ adminRouter.get('/users/:pageNumber', async (req, res, next) => {
 		}
 	} catch (error) {
 		throw error;
+	}
+});
+
+// Gets all processing carts (requires admin status)
+
+adminRouter.get('/processing/:pageNumber', async (req, res, next) => {
+	try {
+		const { pageNumber } = req.params;
+
+		if (req.user) {
+			if (req.user.isAdmin) {
+				const allProcessing = await getProcessingCarts(pageNumber);
+				res.send(allProcessing);
+			} else {
+				res.send({ message: 'You must be an admin to get all processing carts' });
+			}
+		} else {
+			res.send({ message: 'You must be an admin to get all processing carts' });
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+
+adminRouter.get('/cities', async (req, res, next) => {
+	try {
+		if (req.user.isAdmin) {
+			const cities = await getCities();
+			if (Array.isArray(cities)) {
+				res.send(cities);
+			} else {
+				throw new Error('cities route');
+			}
+			
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+adminRouter.get('/zipcodes', async (req, res, next) => {
+	try {
+		if (req.user.isAdmin) {
+			const zipcodes = await getZipcodes();
+			if (Array.isArray(zipcodes)) {
+				res.send(zipcodes);
+			} else {
+				throw new Error('zipcodes route');
+			}
+			
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+
+adminRouter.get('/sales', async (req, res, next) => {
+	
+	try {
+		if (req.user) {
+			if (req.user.isAdmin) {
+				const sales = await getSalesReport()
+				
+				res.send(sales)
+			} else {
+				res.send({ message: 'You must be an admin to retrieve the sales report!' });
+			}
+		} else {
+			res.send({ message: 'You must be an admin to retrieve the sales report!' });
+		}
+	} catch (error) {
+		next(error);
+	}
+});
+
+
+adminRouter.post('/sales', async (req, res, next) => {
+	
+	try {
+		if (req.user.isAdmin) {
+			const data = await salesQuery(req.body);
+			if (Array.isArray(data)) {
+				res.send(data);
+			} else {
+				throw new Error('post/sales');
+			}
+			
+		}
+	} catch (error) {
+		console.error('error at post/sales');
 	}
 });
 
@@ -94,26 +206,7 @@ adminRouter.patch('/user', async (req, res, next) => {
 	}
 });
 
-// Gets all processing carts (requires admin status)
 
-adminRouter.get('/processing/:pageNumber', async (req, res, next) => {
-	try {
-		const { pageNumber } = req.params;
-
-		if (req.user) {
-			if (req.user.isAdmin) {
-				const allProcessing = await getProcessingCarts(pageNumber);
-				res.send(allProcessing);
-			} else {
-				res.send({ message: 'You must be an admin to get all processing carts' });
-			}
-		} else {
-			res.send({ message: 'You must be an admin to get all processing carts' });
-		}
-	} catch (error) {
-		next(error);
-	}
-});
 
 // Sets status of cart from processing to complete by cartId
 adminRouter.patch('/finalizing', async (req, res, next) => {
@@ -154,23 +247,8 @@ adminRouter.patch('/finalizing', async (req, res, next) => {
 // 	}
 // });
 
-adminRouter.get('/sales', async (req, res, next) => {
-	
-	try {
-		if (req.user) {
-			if (req.user.isAdmin) {
-				const sales = await getSalesReport()
-				
-				res.send(sales)
-			} else {
-				res.send({ message: 'You must be an admin to retrieve the sales report!' });
-			}
-		} else {
-			res.send({ message: 'You must be an admin to retrieve the sales report!' });
-		}
-	} catch (error) {
-		next(error);
-	}
-})
+
+
+
 
 module.exports = adminRouter;

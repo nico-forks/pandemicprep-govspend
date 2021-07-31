@@ -47,11 +47,10 @@ export const Header = ({
 		<div>
 			<div id='headerWrap' className='StreamsHero-image'>
 				<h1 id='prepared'>
-					Are you prepared for
-					<span id='doomsday'>DOOMSDAY?</span>
+					Are you prepared?
 				</h1>
 				<NavLink to='/news'>
-					<Button id='updatedButton' onClick={() => setCategory('')}>
+					<Button id='updatedButton' size='sm' onClick={() => setCategory('')}>
 						Stay Updated
 					</Button>
 				</NavLink>
@@ -59,15 +58,19 @@ export const Header = ({
 			<div className='headerContainer'>
 				<NavLink
 					to='/'
+					className='navLinkWrapper'
 					onClick={() => {
-						setProducts(promotedProducts);
+						setProducts([]);
 						setCategory('');
 					}}
 				>
-					<img
-						id='headLogo'
-						src={process.env.PUBLIC_URL + '/styleimages/PANPREPLOGO.png'}
-					/>
+					<div className='logoWrapper'>
+						<img
+							id='headLogo'
+							src={process.env.PUBLIC_URL + '/styleimages/PANPREPLOGO.png'}
+							alt='Panprep logo'
+						/>
+					</div>
 				</NavLink>
 
 				<Form onSubmit={searchProducts} className='searchForm'>
@@ -124,7 +127,7 @@ export const Header = ({
 					}}
 				>
 					<section id='cart-size'>{cartSize > 0 ? cartSize : ''}</section>
-					<img id='cartLogo' src={process.env.PUBLIC_URL + '/styleimages/cart.png'} />
+					<img id='cartLogo' src={process.env.PUBLIC_URL + '/styleimages/cart.png'} alt='cart logo' />
 				</button>
 
 				{user.isUser === false ? (
@@ -137,6 +140,7 @@ export const Header = ({
 								<img
 									id='pointer'
 									src={process.env.PUBLIC_URL + '/styleimages/pointer.png'}
+									alt='small pointer arrow'
 								/>
 							</Dropdown.Toggle>
 							<Dropdown.Menu  >
@@ -145,6 +149,7 @@ export const Header = ({
 										<img
 											id='dropdownIcon'
 											src={process.env.PUBLIC_URL + '/styleimages/admin.png'}
+											alt='drop down icon'
 										/>
 										Admin
 									</Dropdown.Item>
@@ -162,6 +167,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/settings.png'}
+										alt='drop down icon'
 									/>
 									Edit Profile
 								</Dropdown.Item>
@@ -169,6 +175,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/shop.png'}
+										alt='drop down icon'
 									/>
 									Orders
 								</Dropdown.Item>
@@ -196,6 +203,7 @@ export const Header = ({
 									<img
 										id='dropdownIcon'
 										src={process.env.PUBLIC_URL + '/styleimages/logout.png'}
+										alt='drop down icon'
 									/>
 									Log Out
 								</Dropdown.Item>

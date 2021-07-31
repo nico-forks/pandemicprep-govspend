@@ -9,6 +9,14 @@ body {
     z-index: -1;
 }
 
+.carouselContainer {
+  position: fixed;
+  top: 250px;
+  width: 100%;
+  height: calc(100vh - 360px);
+  overflow: hidden;
+}
+
 .wrapper {
     margin-top: 170px;
     text-align: center;

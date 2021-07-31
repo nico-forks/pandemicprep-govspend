@@ -34,12 +34,14 @@ export const PageIndex = ({
 					console.error(error);
 				});
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page, category, searchTerm]);
 
 	useEffect(() => {
 		if (page > 1) {
 			setPage(1);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [category, searchTerm]);
 
 	const firstHandler = () => {

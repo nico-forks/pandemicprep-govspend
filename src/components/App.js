@@ -1,5 +1,6 @@
 /** @format */
 import { getProductsByCategory } from '../api/products';
+import { getClicks } from '../api/clicks';
 
 import React, { useState, useEffect } from 'react';
 import {
@@ -20,8 +21,6 @@ import {
 	Cart,
 	Product,
 	Orders,
-	Userlist,
-	Sales,
 	PageIndex,
 	Admin,
 	Promoted,
@@ -45,7 +44,7 @@ const App = () => {
 	const [cart, setCart] = useState({ status: 'active', cartQuantity: 0, total: 0, items: [] });
 	const [cartSize, setCartSize] = useState(0);
 	const [products, setProducts] = useState([]);
-	const [promotedProducts, setPromotedProducts] = useState([]);
+	// const [promotedProducts, setPromotedProducts] = useState([]);
 	const [product, setProduct] = useState({});
 	const [searchObject, setSearchObject] = useState('');
 	const [searchTerm, setSearchTerm] = useState('');
@@ -53,10 +52,14 @@ const App = () => {
 	const [category, setCategory] = useState(''); // const history = useHistory();
 	const [pageType, setPageType] = useState('');
 	const [view, setView] = useState('');
-	const history = useHistory();
+	// const history = useHistory();
 	const [profileCompleted, setProfileCompleted] = useState(false);
 
-	
+	//new for analytics
+	const [clicks, setClicks] = useState([]);
+
+
+
 	
 	useEffect(() => {
 		
@@ -74,6 +77,7 @@ const App = () => {
 			});
 	}, [category]);
 
+	
 	useEffect(() => {
 		//get user from token if present
 		if (localStorage.getItem('panprepToken')) {
@@ -87,6 +91,8 @@ const App = () => {
 							isUser: response.isUser,
 							token: response.token,
 						});
+						//get clicks
+						getClicks(response.token).then(data => setClicks(data));
 						setCart(response.activeCart);
 						setCartSize(response.activeCart.cartQuantity);
 					} else {
@@ -124,6 +130,7 @@ const App = () => {
 				setCategoryList(result);
 			})
 			.catch((error) => console.error(error));
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
@@ -136,7 +143,7 @@ const App = () => {
 					setSearchObject={setSearchObject}
 					useHistory={useHistory}
 					NavLink={NavLink}
-					promotedProducts={promotedProducts}
+					// promotedProducts={promotedProducts}
 					setPageType={setPageType}
 					setSearchTerm={setSearchTerm}
 					setView={setView}
@@ -155,6 +162,9 @@ const App = () => {
 							NavLink={NavLink}
 							setProduct={setProduct}
 							useHistory={useHistory}
+							clicks={clicks}
+							setClicks={setClicks}
+							user={user}
 						/>
 						<Categories
 							setProducts={setProducts}
@@ -179,6 +189,9 @@ const App = () => {
 								pageType={pageType}
 								setPageType={setPageType}
 								useHistory={useHistory}
+								clicks={clicks}
+								setClicks={setClicks}
+								user={user}
 							/>
 							<PageIndex
 								searchObject={searchObject}
@@ -261,6 +274,8 @@ const App = () => {
 							setCartSize={setCartSize}
 							user={user}
 							setProfileCompleted={setProfileCompleted}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 					</Route>
 					<Route path='/product'>
@@ -270,6 +285,8 @@ const App = () => {
 							cart={cart}
 							setCartSize={setCartSize}
 							user={user}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 						<Categories
 							setProducts={setProducts}
@@ -292,6 +309,8 @@ const App = () => {
 							setView={setView}
 							useHistory={useHistory}
 							profileCompleted={profileCompleted}
+							clicks={clicks}
+							setClicks={setClicks}
 						/>
 					</Route>
 
@@ -303,12 +322,6 @@ const App = () => {
 						''
 					)}
 
-					<Route path='/user-list'>
-						<Userlist />
-					</Route>
-					<Route path='/sales'>
-						<Sales />
-					</Route>
 					{user.isAdmin ? (
 						<Route path='/admin'>
 							<Admin product={products} setProducts={setProducts} user={user} />

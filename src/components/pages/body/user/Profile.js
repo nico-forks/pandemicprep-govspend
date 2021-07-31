@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Stripe, stripeConnection } from '../orders/Stripe';
+// import { Stripe, stripeConnection } from '../orders/Stripe';
 import { Form, Button } from 'react-bootstrap';
+import Promise from 'bluebird';
+
+import { addClick } from '../../../../api/clicks';
 
 import {
 	addUser,
-	getAllUsers,
-	getProductsByQuery,
-	loginUser,
 	getFullUserFromToken,
 	addProductToCart,
 	deactivateCart,
@@ -20,12 +20,11 @@ import {
 	countries,
 	registrationHandler,
 	loginHandler,
-	guestHandler,
 	updateHandler,
 } from './profileUtils';
 
 import './Profile.css';
-import { getUserFromToken } from '../../../../api/users';
+
 
 export const Profile = ({
 	view,
@@ -35,13 +34,14 @@ export const Profile = ({
 	cart,
 	setCart,
 	setCartSize,
+	clicks,
+	setClicks,
 	setProfileCompleted,
 }) => {
 	//CURRENT VIEWS: login register guest userCheckout edit fulledit checkout-register
 	//CHANGE PASSWORD Button: needs onclick function to switch state to ''
 	//SET UP STATES FOR DIFFERENT VIEWS! :)
 
-	const [isUser, setIsUser] = useState(false);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -54,10 +54,8 @@ export const Profile = ({
 	const [zipcode, setZipcode] = useState('');
 	const [country, setCountry] = useState('');
 	const [phone, setPhone] = useState('');
-	const [creditCard, setCreditCard] = useState(
-		Math.floor(Math.random() * (9999999999999999 - 1000000000000000 + 1)) + 1000000000000000,
-	);
-	const [searchString, setSearchString] = useState('');
+	const creditCard= Math.floor((Math.random() * (9999999999999999 - 1000000000000000 + 1)) + 1000000000000000);
+	
 	const history = useHistory();
 
 	if (view === '') {
@@ -70,6 +68,7 @@ export const Profile = ({
 		}
 	}
 
+	
 	useEffect(() => {
 		if (view === 'edit' || view === 'fulledit' || view === 'userCheckout') {
 			getFullUserFromToken(user.id, user.token).then((result) => {
@@ -85,6 +84,7 @@ export const Profile = ({
 				setPhone(result.phone);
 			});
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const cancelHandler = (event) => {
@@ -270,6 +270,29 @@ export const Profile = ({
 					history.push('/');
 					return;
 				} else if (view === 'userCheckout') {
+					
+					//analytics
+					
+					const finalClicks = clicks.filter(clickItem => {
+						//compare cart to clicks, add a click that is this product and has both view and cart and remove false
+						
+						if (cart.items.some(cartItem => {
+							if (cartItem.productId === clickItem.productid && clickItem.cartclick && !clickItem.removeclick) return true;
+							return cartItem;
+					}));
+					return true;
+				});
+					const newClicks = clicks.map(item => item);
+					
+					Promise.each(finalClicks, async (click) => {
+						newClicks.splice(newClicks.map(newClick => newClick.id).indexOf(click.id), 1);
+						
+						const updatedClick = await addClick('buy', click.id, click.productid, click.userid, null, user.token);
+						newClicks.push(updatedClick);
+					})
+					setClicks(newClicks);
+					//end analytics
+
 					setCart(await deactivateCart({ userId: user.id, cartId: cart.id }, user.token));
 					setCartSize(0);
 					history.push('/success');
@@ -283,10 +306,6 @@ export const Profile = ({
 		resetForm();
 		history.push('/');
 	};
-
-	function warning(warningMessage) {
-		alert(warningMessage);
-	}
 
 	function resetForm() {
 		setFirstName('');

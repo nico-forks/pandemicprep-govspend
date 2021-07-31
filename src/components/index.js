@@ -17,6 +17,7 @@ export { OrdersProcessing } from "./pages/body/admin/OrdersProcessing";
 export { Sales } from "./pages/body/admin/Sales";
 export { Userlist } from "./pages/body/admin/Userlist";
 export { AdminProductList } from "./pages/body/admin/AdminProductList";
+export { SalesAnalysis } from "./pages/body/admin/SalesAnalysis";
 
 //categories
 export { Categories } from "./pages/body/categories/Categories";
@@ -25,7 +26,7 @@ export { Categories } from "./pages/body/categories/Categories";
 export { Cart } from "./pages/body/orders/Cart";
 export { Orders } from "./pages/body/orders/Orders";
 export { Payment } from "./pages/body/orders/Payment";
-export { Stripe, stripeConnection } from "./pages/body/orders/Stripe";
+// export { Stripe, stripeConnection } from "./pages/body/orders/Stripe";
 export { Success } from "./pages/body/orders/Success";
 
 //products

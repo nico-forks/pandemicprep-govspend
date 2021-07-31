@@ -1,4 +1,5 @@
 const Promise = require("bluebird");
+const fetch = require('node-fetch');
 // ALL DATABASE FUNCTIONS BEING IMPORTED FROM THE DB INDEX FOLDER
 
 // FUNCTIONS REQUIRED WITH A MORE ACCURATE PATH TO AVOID CIRCULAR DEPENDENCIES
@@ -7,8 +8,18 @@ const { categoryIdByName, getAllCategories } = require('./singletables/categorie
 const { addProductAndCategory, getProductsByQuery, getAllProducts, getProductById, getProductsByCategory } = require('./singletables/products');
 const { addCart, getCartHistoryStatus, getCartHistoryStatusAdmin, addProductToCart } = require('./singletables/cart');
 const { addReview } = require('./singletables/reviews');
+const { addViewClick, addCartClick, addBuyClick } = require('./singletables/clicks');
+const { seedClicks } = require('./utils/utils');
+const { salesQuery, testTimestamp } = require('./singletables/sales');
+
+//results=50 for development, 2000 final
+const numberOfUsers = 2000;
+const numberOfSessions = 2000; //will seed this many sessions 2000
+
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");
+// Imported array with all the random users
+
 //
 //
 //
@@ -19,12 +30,30 @@ const productArray = require("./singletables/productObject");
 async function seed() {
     try {
         await createNewUsers();
+        await fillUsers();
+
+        //These four test the sales query
+        // await salesQuery({category: ['food', 'house'], dates: [{from: '2020-10-01', to: '2020-10-30'}], age: [{from: 25, to: 45}], city: ['Jacksonville']});
+        // await salesQuery({category: [4], product: [135]});
+        // await salesQuery({category: [4]});
+        // await salesQuery();
+        
         // await gettingAllUsers();
         // await creatingOneNewProduct();
+        
+        // await testTimestamp('2020-01-01'); temporary test
+
+
         await seedingProductObject();
         await gettingProductsByQuery();
         await updatingUsers();
         await gettingUserById();
+        await clicks();
+        await seedClicks(numberOfSessions);
+
+       
+
+
         // await gettingCategoryIdsByName();
         // await addingOneCart();
         // await seedingInitialReviews();
@@ -33,9 +62,9 @@ async function seed() {
         // await gettingProductById();
         // await gettingProductsByCategory();
         // await makingProductCart();
-        console.log("Running get all products...");
-        const allProducts = await getAllProducts(1);
-        console.log("Result: ", allProducts);
+        // console.log("Running get all products...");
+        // const allProducts = await getAllProducts(1);
+        // console.log("Result: ", allProducts);
     } catch (error) {
         throw error;
     }
@@ -49,6 +78,8 @@ async function createNewUsers() {
             lastName: "Cash",
             isAdmin: true,
             isUser: true,
+            birthdate: '1980-04-26',
+            gender: 'male',
             email: "johnny@cash.com",
             password: "Password1",
             addressLine1: "4545 street",
@@ -67,6 +98,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '1985-03-21',
+            gender: 'female',
             email: "myemail2@you.com",
             password: "Password2",
             addressLine1: null,
@@ -85,6 +118,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '1990-05-22',
+            gender: 'male',
             email: "myemail3@you.com",
             password: "Password3",
             addressLine1: null,
@@ -103,6 +138,8 @@ async function createNewUsers() {
             lastName: "Moe",
             isAdmin: false,
             isUser: true,
+            birthdate: '2000-06-23',
+            gender: 'female',
             email: "myemail4@you.com",
             password: "not",
             addressLine1: null,
@@ -119,6 +156,45 @@ async function createNewUsers() {
         throw error;
     }
 }
+
+//add 2000 random US users. The function takes very long to execute. About 5 mins or more.
+async function fillUsers() {
+    try {
+        //results=50 for development, 2000 final
+        const data = await fetch(`https://randomuser.me/api/?results=${numberOfUsers}&nat=us`);
+        const newUsers = (await data.json()).results;
+        // console.log(newUsers);
+        const length = newUsers.length;
+
+        await Promise.mapSeries(newUsers, function(item, index, length) {
+            const user = addUser({
+                firstName: item.name.first,
+                lastName: item.name.last,
+                birthdate: item.dob.date.slice(0, 10),
+                gender: item.gender,
+                isAdmin: false,
+                isUser: true,
+                email: item.email,
+                password: item.login.password,
+                addressLine1: `${item.location.street.number} ${item.location.street.name}`,
+                addressLine2: '',
+                city: item.location.city,
+                state: item.location.state,
+                zipcode: item.location.postcode,
+                country: item.location.country,
+                phone: item.phone,
+                creditCard: null
+        });
+        
+        return user;
+        })
+
+        
+    } catch (error) {
+        console.error('fillUsers()', error);
+    }
+}
+
 async function gettingAllUsers() {
     try {
         console.log("Running getAllUsers...");
@@ -152,6 +228,9 @@ async function seedingProductObject() {
         throw error;
     }
 }
+
+
+
 async function gettingProductsByQuery() {
     try {
         console.log("getting products by query...");
@@ -342,6 +421,35 @@ async function makingProductCart() {
         throw error;
     }
 }
+
+
+//clicks
+
+async function clicks() {
+    try {
+        //add view clicks
+        console.log('add view click to product 5, user 5', await addViewClick(5, 5));
+        console.log('add second view click to product 5, user 5', await addViewClick(5, 5));
+        console.log('add view click to product 10, user 8', await addViewClick(10, 8));
+        //add cart clicks
+        console.log('add cart click for click 1, product 5, user 5', await addCartClick(1, 5, 5));
+        console.log('add cart click for click 3, product 10, user 8', await addCartClick(3, 10, 8));
+        console.log('add cart click for click that doesnt exist', await addCartClick(11, 5, 5));
+        console.log('add cart click for click that does exist, but wrong product ', await addCartClick(2, 1, 5));
+        console.log('add cart click for click that does exist, but wrong user ', await addCartClick(2, 5, 11));
+        //add buy click
+        console.log('add a buy click to a click with a cart. Click 1, product 5, user 5', await addBuyClick(1, 5, 5));
+        console.log('add buy click to click that doesnt exist', await addBuyClick(11, 5, 5));
+        console.log('add a buy click for product with click, but not cart. It should fail. Click 2, product 5, user 5', await addBuyClick(2, 5, 5));
+        console.log('add buy click for click 3, wrong product 11, right user 8', await addBuyClick(3, 11, 8));
+        console.log('add buy click for click 3, right product 10, wrong user 15', await addBuyClick(3, 10, 15));
+    } catch (error) {
+        console.error('error with seeding view clicks', error);
+    }
+    
+}
+
+
 // async function gettingHighlightedProducts() {
 //     try {
 //         const products = await getHighlightedProducts();
