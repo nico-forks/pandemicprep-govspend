@@ -14,7 +14,7 @@ const { salesQuery, testTimestamp } = require('./singletables/sales');
 
 //results=50 for development, 2000 final
 const numberOfUsers = 2000;
-const numberOfSessions = 2000; //will seed this many sessions 2000
+const numberOfSessions = 200; //will seed this many sessions 2000
 
 // IMPORTED ARRAY FROM FILE CONTAINING ALL OF OUR SEEDED PRODUCTS
 const productArray = require("./singletables/productObject");

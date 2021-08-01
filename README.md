@@ -1,11 +1,14 @@
-** For this project the main branch will be gov.
+
 
 # Pandemic Prep
 Pandemic Prep is an e-commerce web application with the purpose of supplying products needed for emergency and/or 
 "apocalyptic" situations
 
 # Deployment: 
-Our fully deployed app on heroku: https://pandemicprep3.herokuapp.com/ 
+Our fully deployed app on heroku: https://pandemicprep3.herokuapp.com/
+Admin credentials:
+    user: johnny@cash.com
+    password: Password1
 
 # Motivation
 This project is the conclusion of months of learning from an intensive bootcamp at FullStack Academy. This project reflects everything we have learned and more(PostgreSQL, Node.js, Express, React, JavaScript, axios, etc...).
