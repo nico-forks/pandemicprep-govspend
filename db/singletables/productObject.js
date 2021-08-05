@@ -9,7 +9,7 @@ const productArray = [
 		description:
 			'The Wise Company® 5 Day Emergency Survival Backpack Kit delivers the goods that keep your belly full and keep you alive at home, on the hunt, or on the trail. This 5-day nutritional and first aid package includes a rugged camouflage backpack complete with a roomy main compartment, zippered exterior pockets, and padded shoulder straps.',
 		image: 'images/survival.png',
-		category: 'protection',
+		category: 'protection health',
 		isHighlighted: true,
 	},
 	{
@@ -18,7 +18,7 @@ const productArray = [
 		description:
 			'HAND SELECTED: Every pack of succulents we send is hand-picked. You will receive a unique collection of species that are FULLY ROOTED IN 2 INCH POTS.',
 		image: 'images/succ.jpg',
-		category: 'health',
+		category: 'work health',
 		isHighlighted: true,
 	},
 	{
@@ -35,7 +35,7 @@ const productArray = [
 		description:
 			'Ideal for a wide variety of writing activities and offering reliable performance.',
 		image: 'images/ballpoint.jpeg',
-		category: 'school',
+		category: 'school work',
 	},
 	{
 		name: 'Black Notebook',
@@ -130,7 +130,7 @@ const productArray = [
 		description:
 			'Soothe your soul with this lush green tea blended with spearmint, lemon verbena and lemongrass',
 		image: 'images/jade.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: 'Dragon Pearl Jasmine',
@@ -138,7 +138,7 @@ const productArray = [
 		description:
 			'Beautiful little hand-rolled pearls are gently infused with the floral essences from jasmine flowers.',
 		image: 'images/dragonpearl.jpg',
-		category: 'health',
+		category: 'health grocery',
 	},
 	{
 		name: '6 Pack Bandana Masks',
@@ -199,7 +199,7 @@ const productArray = [
 		description:
 			'INCLUDES TWO (2) HYGENOMA Lavender Hand Sanitizer bottles of 12 FL OZ with easy pump for clean serving.',
 		image: 'images/lavsan.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'Lemongrass Sanitizer Gel',
@@ -207,7 +207,7 @@ const productArray = [
 		description:
 			'70% ALCOHOL BASED FORMULA KILLS 99% GERMS: Provides superior antibacterial power to help cleanse hands and disinfect when water is not available.',
 		image: 'images/gelsan.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'First Aid Kit',
@@ -222,7 +222,7 @@ const productArray = [
 		description:
 			'Enjoy our essential oil blends for mood support and anxiety relief and say hello to better sleep and relaxation.',
 		image: 'images/dream.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'ASAKUKI Diffuser',
@@ -230,7 +230,7 @@ const productArray = [
 		description:
 			"This ultrasonic essential oil diffuser is an amazing multifunction aromatherapy device unlike any other you've ever used.",
 		image: 'images/aroma.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'Essential Oil Pack',
@@ -238,7 +238,7 @@ const productArray = [
 		description:
 			'100% Pure Therapeutic Essential Oils. No fillers, NO Additives, or Carriers Added. A Handpicked selection from different parts of the world, including countries like ( France, Australia , Brazil ).',
 		image: 'images/purea.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'SugarBear Gummies',
@@ -262,7 +262,7 @@ const productArray = [
 		description:
 			'We carefully formulated our Keto Cheesecake Shake to ensure the macros fit a ketogenic diet.',
 		image: 'images/keto.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: "Women's Multivitamins",
@@ -286,7 +286,7 @@ const productArray = [
 		description:
 			'Includes 2 Pouches of Nutritionally Complete 100% Vegan Powdered Meal, Scoop, Shaker and Booklet.',
 		image: 'images/huel.jpg',
-		category: 'health',
+		category: 'health grocery',
 	},
 	{
 		name: 'Tube Mask Pack',
@@ -318,14 +318,14 @@ const productArray = [
 		description:
 			'Our premium ethyl alcohol is sourced from a cutting-edge US manufacturer. Be certain you are rubbing safe and effective ingredients on your hands.',
 		image: 'images/sanny.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'Pukka Herbal Tea',
 		price: 15.99,
 		description: '45 Sachets of incredible organic HERBAL Teas selected from the Pukka range.',
 		image: 'images/pukka.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: 'Outdoor Survival Kit',
@@ -333,7 +333,7 @@ const productArray = [
 		description:
 			'or the first time ever, Surviveware introduces a survival kit with labeled compartments. The system is color-coded to help you stay organized. This means in an emergency the bag does the thinking for you.',
 		image: 'images/first.jpg',
-		category: 'protection',
+		category: 'health protection',
 	},
 	{
 		name: 'Toothbrush Pack',
@@ -396,14 +396,14 @@ const productArray = [
 		description:
 			'With the perfect balance of softness & strength, Kleenex facial tissues are durable with 2-ply thickness & absorbent to lock in moisture.',
 		image: 'images/tissue.jpg',
-		category: 'household',
+		category: 'health household',
 	},
 	{
 		name: 'Wicked Blueberry Tea',
 		price: 7.99,
 		description: 'Contains 12 individually wrapped whole leaf pyramid Sachets.',
 		image: 'images/blueberrytea.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: 'Zest Energy Tea',
@@ -411,7 +411,7 @@ const productArray = [
 		description:
 			'Each bag contains as much natural caffeine as coffee; 150 mg per cup; 3x the energy levels of of traditional caffeinated teas.',
 		image: 'images/zest.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: 'Black Tea',
@@ -419,7 +419,7 @@ const productArray = [
 		description:
 			'A bold, rich English Black Tea filled with caffeine to wake you up in the morning.',
 		image: 'images/blacktea.jpg',
-		category: 'grocery',
+		category: 'health grocery',
 	},
 	{
 		name: 'Germ-X Sanitizer 4 Pack',
@@ -427,7 +427,7 @@ const productArray = [
 		description:
 			'Effective at eliminating 99.99% of many common harmful germs and bacteria in as little as 15 seconds.',
 		image: 'images/germx.jpg',
-		category: 'health',
+		category: 'health household',
 	},
 	{
 		name: 'Meal Replacement Shake',
@@ -435,7 +435,7 @@ const productArray = [
 		description:
 			'YOUR ESSENTIAL NUTRIENTS- Protein (25g) + Fiber, Omegas, Greens, Antioxidants, Adaptogens + MORE',
 		image: 'images/kach.jpg',
-		category: 'health',
+		category: 'health grocery',
 	},
 	{
 		name: "Women's Multi-Vitamin",
@@ -467,7 +467,7 @@ const productArray = [
 		description:
 			'Includes 30 single-serving packets (032 oz each) of Emergen-C Original Formula in Super Orange flavor.',
 		image: 'images/emerg.jpg',
-		category: 'health',
+		category: 'health grocery',
 	},
 	{
 		name: 'Fraction Calculator',
@@ -600,7 +600,7 @@ const productArray = [
 		description:
 			'Dry erase board provides a smooth writing surface and doubles as a magnetic bulletin board.',
 		image: 'images/whiteboard.jpg',
-		category: 'school',
+		category: 'school work',
 	},
 	{
 		name: 'Dry Erase Markers',
@@ -608,7 +608,7 @@ const productArray = [
 		description:
 			'Bright, vivid, non toxic ink is quick drying, smear proof, easy to see from a distance, and provides consistent color quality.',
 		image: 'images/dryerase.jpg',
-		category: 'school',
+		category: 'school work',
 	},
 	{
 		name: 'Ruler Pack',
@@ -656,7 +656,7 @@ const productArray = [
 		description:
 			'Its 12 sticky sides each feature tear-off sticky memos in different colors so you can get creative with group brainstorming at work or keeping the whole family organized at home.',
 		image: 'images/stickymemoball.jpg',
-		category: 'work',
+		category: 'work school',
 		isHighlighted: true,
 	},
 	{
@@ -682,7 +682,7 @@ const productArray = [
 		description:
 			'Wonderfully Gentle on the Eyes: Shines a flicker-free light that brightens your space without harming your eyes; ideal for reading, working or studying.',
 		image: 'images/light.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Espresso Maker',
@@ -690,14 +690,14 @@ const productArray = [
 		description:
 			"Nespresso Inissia by De'Longhi offers an impeccable single serve Coffee or Espresso cup every time, thanks to its automatic operation and patented extraction system which delivers up to 19 bars of pressure.",
 		image: 'images/nespresso.jpg',
-		category: 'household',
+		category: 'work household grocery',
 	},
 	{
 		name: 'Air Pods',
 		price: 199.99,
 		description: 'Active noise cancellation for immersive sound.',
 		image: 'images/airpods.jpg',
-		category: 'entertainment',
+		category: 'work entertainment school',
 	},
 	{
 		name: 'Retro Handset',
@@ -705,7 +705,7 @@ const productArray = [
 		description:
 			"Using a Pop reduces up to 99% of the radiation absorbed compared to a direct use of your mobile phone. Native 3.5mm jack to plug directly in your iPhone, Blackberry and latest MacBook's.",
 		image: 'images/retro.jpg',
-		category: 'entertainment',
+		category: 'work entertainment',
 	},
 	{
 		name: 'Portable Speaker',
@@ -713,7 +713,7 @@ const productArray = [
 		description:
 			'This Logitech wireless speaker delivers deep bass and full-bodied audio for an immersive listening experience.',
 		image: 'images/ueboom.jpg',
-		category: 'entertainment',
+		category: 'work entertainment',
 	},
 	{
 		name: 'Apple Magic Keyboard',
@@ -721,14 +721,14 @@ const productArray = [
 		description:
 			'Magic Keyboard combines a sleek design with a built-in rechargeable battery and enhanced key features.',
 		image: 'images/applekey.jpg',
-		category: 'work',
+		category: 'work entertainment',
 	},
 	{
 		name: '21.5 inch Monitor',
 		price: 109.99,
 		description: '21.5 inches Full HD (1920 x 1080) widescreen IPS display.',
 		image: 'images/monitor.jpg',
-		category: 'work',
+		category: 'work school entertainment',
 	},
 	{
 		name: '24 inch Curved Monitor',
@@ -736,7 +736,7 @@ const productArray = [
 		description:
 			'1800R curve monitor the curved display delivers a revolutionary visual experience with a leading 1800R screen curvature as the images appear to wrap around you for an in depth, immersive experience.',
 		image: 'images/curved.jpg',
-		category: 'school',
+		category: 'work school entertainment',
 		isHighlighted: true,
 	},
 	{
@@ -745,7 +745,7 @@ const productArray = [
 		description:
 			'The MOFT Laptop Stand weighs a mere 3 oz. and is only 1/10 inch thick - it’s compactness born of innovation. Since MOFT is literally light as paper and slim as a coin, it’s a laptop stand perfect for mobile working.',
 		image: 'images/stand.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Laptop Table',
@@ -768,7 +768,7 @@ const productArray = [
 		price: 10.99,
 		description: '25 letter-size hanging file folders to keep your files organized and crisp.',
 		image: 'images/surge.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Filing Cabinet',
@@ -792,7 +792,7 @@ const productArray = [
 		description:
 			'Meet Echo Dot - smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small spaces.',
 		image: 'images/dot.jpg',
-		category: 'entertainment',
+		category: 'work entertainment',
 	},
 	{
 		name: 'Paper Shredder',
@@ -807,7 +807,7 @@ const productArray = [
 		price: 17.99,
 		description: 'Post-it Super Sticky Notes stick and re-stick so your thoughts get noticed.',
 		image: 'images/posits.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'File Holder',
@@ -815,7 +815,7 @@ const productArray = [
 		description:
 			'Organizer with 8 sections for holding important files and binders vertically.',
 		image: 'images/fileholder.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Paper Clips',
@@ -823,14 +823,14 @@ const productArray = [
 		description:
 			'Assort sizes, 400pcs big paper clips, included 250pcs of 1.3 inch paper clip, 150pcs of 2.0 inch paper clips, large size paperclips are perfect for holding more and thicker papers.',
 		image: 'images/paperclips.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Stapler',
 		price: 13.99,
 		description: 'Use one finger to staple up to 20 sheets.',
 		image: 'images/stapler.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Printer',
@@ -838,7 +838,7 @@ const productArray = [
 		description:
 			'Upgrade your office – Replacing the HP OfficeJet Pro 6978, this home office printer offers faster printing at 20 pages per minute, includes fax and scan-to-USB capabilities, and is 14% smaller.',
 		image: 'images/printer.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Tea Pot',
@@ -846,7 +846,7 @@ const productArray = [
 		description:
 			'Brew a delicious cup of tea in this glass tea press that utilizes the same brewing system as the French press; perfect for loose teas and tea bags.',
 		image: 'images/teapos.jpg',
-		category: 'household',
+		category: 'work household grocery health',
 		isHighlighted: true,
 	},
 	{
@@ -855,7 +855,7 @@ const productArray = [
 		description:
 			'Made of durable PU leather material, which protects your glass/wooden desktop from scratches, stains, spills, heat and scuffs.',
 		image: 'images/stickymemoball.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Color Journal Pens',
@@ -863,7 +863,7 @@ const productArray = [
 		description:
 			'SMOOTH WRITING Colorful Fine tip marker pen set with superfine, metal-clad fine tipped and outstanding performance in all areas of writing, drawing, coloring, easy and comfortable to write.',
 		image: 'images/colorpenset.jpg',
-		category: 'school',
+		category: 'work school',
 	},
 	{
 		name: 'Gel Seat Cushion',
@@ -871,7 +871,7 @@ const productArray = [
 		description:
 			'BEST gel & memory foam seat cushion made of premium quality durable memory foam with thick gel layer for superior comfort and lower back pain relief, comes with NON-SLIP rubber bottom, BUILT-IN HANDLE for easy transport , EASY CLEANING machine-wash cover.',
 		image: 'images/gelseat.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Paperclip Block',
@@ -879,7 +879,7 @@ const productArray = [
 		description:
 			'Set Of 50 Colorful Paper Clips, 50 Silver Paper Clips And 1 Super Powerful Magnet Base.',
 		image: 'images/paperclipmagnet.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Rose Gold Pens',
@@ -919,7 +919,7 @@ const productArray = [
 		description:
 			'Soft materials comfortable for wrists and hands, smooth surface, non-slip rubber undersurface firmly grips the desktop.',
 		image: 'images/mousepad.jpg',
-		category: 'work',
+		category: 'work school entertainment',
 	},
 	{
 		name: 'Rainbow Tape Dispenser',
@@ -935,7 +935,7 @@ const productArray = [
 		description:
 			'Pretty design, made with high quality paper and covers for easy writing and durability.',
 		image: 'images/colornotebook.jpg',
-		category: 'work',
+		category: 'work school entertainment',
 		isHighlighted: true,
 	},
 	{
@@ -944,7 +944,7 @@ const productArray = [
 		description:
 			'Complete Set: Package includes Planner dividers of all kind. Ruled Lined, blank, Dotted and index bookmarks tab in various colors. 402 sheets in total, meeting your all kinds of needs.',
 		image: 'images/stickyorg.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Wooden Desk Calendar',
@@ -960,7 +960,7 @@ const productArray = [
 		description:
 			'50 EASY EXERCISES FOR EVERYONE: This unique Stress Less Cards deck contains 50 extremely effective exercises to help you relieve stress and deal with anxiety whenever you need it the most. Easy for everyone to use, these powerful techniques can be quickly memorized and used in any situation; on the bus, at work, at your desk, while queuing at the supermarket or before going to bed at night. ',
 		image: 'images/stress.jpg',
-		category: 'health',
+		category: 'work entertainment health',
 	},
 	{
 		name: 'T-Rex Sticky Notes',
@@ -983,7 +983,7 @@ const productArray = [
 		description:
 			'Our decorative thumbtack is designed with a fruit avocado shape,exquisite workmanship,small and cute,it is the best supplies for office and study.',
 		image: 'images/avo.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Acrylic Clipboard',
@@ -991,7 +991,7 @@ const productArray = [
 		description:
 			'Clear acrylic with gold modern design style will make a unique and stylish addition to your workplace.',
 		image: 'images/clipboard.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Prisma Picture Frame',
@@ -1006,7 +1006,7 @@ const productArray = [
 		description:
 			"Easy to Use: Simply fill the stand with water. Then dip in the bamboo brush (included) & start drawing, painting & writing. You'll create soft, beautiful images with a rich, inky Japanese look. Appreciate your creation in the moment, and then as the water evaporates and your masterpiece slowly fades away, practice the art of letting go.",
 		image: 'images/buddha.jpg',
-		category: 'health',
+		category: 'work school health entertainment',
 	},
 	{
 		name: 'Leather Desk Organizer',
@@ -1030,14 +1030,14 @@ const productArray = [
 		description:
 			'Soft materials comfortable for hands, smooth surface, non-slip rubber undersurface firmly grips the desktop. Easy cleaning and maintenance.',
 		image: 'images/shapemousepad.jpg',
-		category: 'work',
+		category: 'school work entertainment',
 	},
 	{
 		name: 'Fox Mousepad',
 		price: 7.99,
 		description: 'Natual Rubber Base With Silky Cloth Surface. Easy Cleaning and Maintenance.',
 		image: 'images/foxmousepad.jpg',
-		category: 'work',
+		category: 'school work entertainment',
 	},
 	{
 		name: 'Wood Calculator',
@@ -1051,7 +1051,7 @@ const productArray = [
 		price: 23.99,
 		description: 'Ready to eat, 3 year shelf life, made in USA..',
 		image: 'images/astro.jpg',
-		category: 'household',
+		category: 'entertainment household',
 	},
 	{
 		name: 'Groot Pen Holder',
@@ -1059,7 +1059,7 @@ const productArray = [
 		description:
 			'Used as a pen holder- Groot action figures perfect design, can be placed on your desk, organized your pen or small items, very cute collectibles.',
 		image: 'images/groot.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Wooden Desk Organizer',
@@ -1067,7 +1067,7 @@ const productArray = [
 		description:
 			'Set of 12 compartments with a drawer, large capacity ,The desktop organiser shelf is fixed with the screws, which can tightly connect the separate parts.',
 		image: 'images/woodorg.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Decorative File Folders',
@@ -1075,7 +1075,7 @@ const productArray = [
 		description:
 			'This 12 pack of pretty designer top tab file folders offer a modern spin to a simple organization necessity. Elevate your desk décor by storing documents, receipts, and notes in style and keep yourself organized at work or school.',
 		image: 'images/pinkfolders.jpg',
-		category: 'work',
+		category: 'work school',
 	},
 	{
 		name: 'Pink Office Organizer Set',
@@ -1091,7 +1091,7 @@ const productArray = [
 		description:
 			'Prism+ Writing Pads add a little pop of color to your daily tasks; enjoy pretty colors perfect for general daily use, or color code by subject or project to boost your efficiency.',
 		image: 'images/prismnote.jpg',
-		category: 'school',
+		category: 'work school',
 	},
 	{
 		name: 'Wooden Desk Organizer',
@@ -1107,7 +1107,7 @@ const productArray = [
 		description:
 			'High Quality Pigment — All paints are thick and creamy do not shift or become muddy, can be diluted with plenty of water do not cracking or crumbling when the paint dries.',
 		image: 'images/watercolors.jpg',
-		category: 'school',
+		category: 'school entertainment',
 	},
 	{
 		name: 'Cat Pens',
@@ -1123,14 +1123,14 @@ const productArray = [
 		description:
 			'We all love stationery so wait until you feel these cool novelty pens in your hand, the smile on your face & the look on your desk. ',
 		image: 'images/treatpens.jpg',
-		category: 'school',
+		category: 'school work entertainment',
 	},
 	{
 		name: 'Label Printer',
 		price: 34.99,
 		description: 'Prints up to 2-lines on labels up to 12 millimeter wide. ',
 		image: 'images/labelprint.jpg',
-		category: 'household',
+		category: 'household work',
 	},
 	{
 		name: 'Ring Doorbell',
@@ -1145,7 +1145,7 @@ const productArray = [
 		price: 10.99,
 		description: '50 high-quality sheets. Undated to help you organize your week.',
 		image: 'images/dailyplan.jpg',
-		category: 'school',
+		category: 'work school',
 	},
 	{
 		name: 'Funny Notepad',
@@ -1183,7 +1183,7 @@ const productArray = [
 		description:
 			'Our bamboo fresh paper towels are thicker, larger and more durable than other paper towels.',
 		image: 'images/bounty-papertowels.jpg',
-		category: 'household',
+		category: 'grocery household',
 	},
 	{
 		name: 'Disposable Bamboo Plates',
@@ -1191,7 +1191,7 @@ const productArray = [
 		description:
 			'THE STRONGEST PALM LEAF PLATES set with 48 disposable square plates made from Areca Palm Leaf.',
 		image: 'images/dixie-plates.jpg',
-		category: 'household',
+		category: 'grocery household',
 	},
 	{
 		name: 'Mr. Organic Baked Beans',
@@ -1206,7 +1206,7 @@ const productArray = [
 		description:
 			'PREMIUM DISPOSABLE BIODEGRADABLE WOODEN CUTLERY- Our Compostable flatware are sturdy and smooth.',
 		image: 'images/clear-dixie-cutlery.jpg',
-		category: 'household',
+		category: 'grocery household',
 	},
 	{
 		name: 'Forager Variety Pack',
@@ -1222,7 +1222,7 @@ const productArray = [
 		description:
 			'Carefully harvested from remote apiaries in Ontario, this honey has a lighter sweetness and floral undertones, with subtle notes of mint, lavender, and other fresh seasonal herbs.',
 		image: 'images/honey.jpg',
-		category: 'grocery',
+		category: 'grocery health',
 	},
 	{
 		name: 'Water purification tablets',
@@ -1236,7 +1236,7 @@ const productArray = [
 		price: 19.99,
 		description: 'Makes any water clean and safe to drink.',
 		image: 'images/lifestraw-high-res.png',
-		category: 'household',
+		category: 'grocery household',
 	},
 	{
 		name: 'Hostess Twinkies',
@@ -1624,7 +1624,7 @@ const productArray = [
 		price: 29.99,
 		description: 'Standard solid core Louisville Slugger.',
 		image: 'images/louisvilleslugger.jpg',
-		category: 'protection',
+		category: 'protection entertainment',
 	},
 	{
 		name: 'Crossbow',
@@ -1680,63 +1680,63 @@ const productArray = [
 		price: 279.99,
 		description: 'Print anything and everything you could want or need.',
 		image: 'images/ender3pro.jpg',
-		category: 'work',
+		category: 'school work entertainment',
 	},
 	{
 		name: 'Braidedline',
 		price: 14.99,
 		description: 'Strong fishing line.',
 		image: 'images/braidedline.jpg',
-		category: 'household',
+		category: 'entertainment household',
 	},
 	{
 		name: 'Collapsable fishing rod with reel',
 		price: 74.99,
 		description: 'Catch dinner or a mid afternoon snack wherever you go!.',
 		image: 'images/collapsrodreel.jpg',
-		category: 'household',
+		category: 'entertainment household',
 	},
 	{
 		name: 'Box of Assorted Hooks',
 		price: 39.99,
 		description: 'Any size hook for any size fish.',
 		image: 'images/hooksbox.jpg',
-		category: 'household',
+		category: 'entertainment household',
 	},
 	{
 		name: 'Box of Assorted Lures',
 		price: 34.99,
 		description: 'Most lures for most fish.',
 		image: 'images/lures.jpg',
-		category: 'household',
+		category: 'entertainment household',
 	},
 	{
 		name: '13 inch MacBook Pro',
 		price: 1299.99,
 		description: 'Good for most coding (especially at Fullstack Academy).',
 		image: 'images/macpro.jpg',
-		category: 'work',
+		category: 'entertainment school work',
 	},
 	{
 		name: '16 inch ASUS ROG Gaming Laptop',
 		price: 1799.99,
 		description: 'Good entry point for portable gaming.',
 		image: 'images/asusroglaptop.jpg',
-		category: 'work',
+		category: 'entertainment school work',
 	},
 	{
 		name: 'Custom Built High End Gaming Dekstop',
 		price: 3499.99,
 		description: 'Can handle any game and workload thrown at it. Upgradeable.',
 		image: 'images/cleardesktop.jpg',
-		category: 'entertainment',
+		category: 'entertainment school work',
 	},
 	{
 		name: '1DJI Mavic Mini',
 		price: 799.99,
 		description: 'Good fun and able to check surroundings safely.',
 		image: 'images/dji-mavic-mini.png',
-		category: 'entertainment',
+		category: 'entertainment protection',
 	},
 	{
 		name: 'Snow Ghillie Suit',
